@@ -1,0 +1,158 @@
+% Based on elsarticle-template.tex.
+
+%\documentclass[review]{elsarticle}
+\documentclass[preprint, sort&compress]{elsarticle}
+
+\usepackage{lineno}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{latexsym}
+\usepackage[abbreviations = true]{siunitx}
+\usepackage{algorithmic, algorithm}
+\usepackage{textcomp}
+\usepackage[pdftex]{hyperref}
+%\hypersetup{colorlinks,%
+%    citecolor=blue,%
+%    filecolor=blue,%
+%    linkcolor=blue,%
+%    urlcolor=blue,%
+%    unicode
+%    }
+
+\sisetup{detect-all = true,
+  text-rm = \sffamily,
+  per-mode = symbol,
+  literal-superscript-as-power = true
+  }
+%\DeclareSIUnit \umm{\square\um}
+\modulolinenumbers[5]
+
+\floatname{algorithm}{Pseudo code}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\renewcommand{\algorithmiccomment}[1]{\hspace{1em}\emph{\{#1\}}}
+
+%\newcommand{\tss}[1]{\textsubscript{#1}}
+%\newcommand{\tSs}[1]{\textsuperscript{#1}}
+
+%%\newcommand{\texttwosuperior}{\(^2\)}  % Unicode character ²
+%\newcommand{\texttwosuperior}{\textsuperscript{2}}  % Unicode character ²
+%\newcommand{\texttimes}{\(\times\)}  % Unicode character ×
+%\newcommand{\textmu}{\(\mu\)}  % Unicode character ×
+
+\renewcommand{\vec}[1]{\mathbf{#1}}  % Vectors and matrices.
+
+%\DeclareUnicodeCharacter{03C3}{\(\sigma\)}
+\DeclareUnicodeCharacter{2096}{\text{\textsubscript{k}}}
+\DeclareUnicodeCharacter{2098}{\text{\textsubscript{m}}}
+\DeclareUnicodeCharacter{2081}{\text{\textsubscript{1}}}
+\DeclareUnicodeCharacter{2082}{\text{\textsubscript{2}}}
+\DeclareUnicodeCharacter{1D68}{\text{\textsubscript{\(\rho\)}}}
+
+\DeclareMathOperator{\e}{e}
+\DeclareMathOperator{\TE}{TE}
+%\DeclareMathOperator{\indx}{indx}  % A variable in pseudocode
+\newcommand{\indx}{B}
+
+\hyphenation{Lii-ma-tai-nen}
+
+\journal{Artificial Intelligence in Medicine}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Elsevier bibliography styles
+%%%%%%%%%%%%%%%%%%%%%%%
+%% To change the style, put a % in front of the second line of the current style and
+%% remove the % from the second line of the style you would like to use.
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Numbered
+\bibliographystyle{model1-num-names}
+%% Numbered without titles
+%\bibliographystyle{model1a-num-names}
+%% Harvard
+%\bibliographystyle{model2-names.bst}\biboptions{authoryear}
+%% Vancouver numbered
+%\usepackage{numcompress}\bibliographystyle{model3-num-names}
+%% Vancouver name/year
+%\usepackage{numcompress}\bibliographystyle{model4-names}\biboptions{authoryear}
+%% APA style
+%\bibliographystyle{model5-names}\biboptions{authoryear}
+%% AMA style
+%\usepackage{numcompress}\bibliographystyle{model6-num-names}
+%% `Elsevier LaTeX' style
+%\bibliographystyle{elsarticle-num}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Machine learning of high quality prostate MRI: towards improved
+non-invasive prostate cancer characterization}
+
+\author[dia,inf]{Jussi~Toivonen\corref{cor1}} \ead{jussi.toivonen@utu.fi}
+\author[dia,inf]{Ileana~Montoya~Perez} %\ead{iimope@utu.fi}
+\author[dia,inf]{Parisa~Movahedi} %\ead{parmov@utu.fi}
+\author[dia,inf,pet]{Harri~Merisaari} %\ead{Harri.Merisaari@tyks.fi}
+\author[dia]{Marko~Pesola}
+\author[pat]{Pekka~Taimen}
+\author[uro]{Peter~J.~Boström}
+\author[inf]{Jonne~Pohjankukka}
+\author[dia,med]{Aida~Kiviniemi}
+\author[inf]{Tapio~Pahikkala}
+\author[dia,med]{Hannu~J.~Aronen}
+\author[dia,rad]{Ivan~Jambor} %\ead{ivjamb@utu.fi}
+
+\cortext[cor1]{Corresponding author}
+
+\newcommand{\utu}{University of Turku, Turku, Finland}
+\newcommand{\tyks}{Turku University Hospital, Turku, Finland}
+
+\address[dia]{Department of Diagnostic Radiology, \utu}
+\address[inf]{Department of Information Technology, \utu}
+\address[pet]{Turku PET Centre, \utu}
+\address[pat]{Department of Pathology, University of Turku and \tyks}
+\address[uro]{Department of Urology, \tyks}
+\address[med]{Medical Imaging Centre of Southwest Finland, \tyks}
+\address[rad]{Department of Radiology, University of Massachusetts---Baystate,
+  Springfield, MA, USA}
+
+%\corraddress{Ivan Jambor MD PhD, Department of Diagnostic Radiology, University
+%of Turku, Turku, FI-20521, Finland}
+%\presentadd[\authfn{2}]{Department of Radiology, University of
+%Massachusetts---Baystate, Springfield, MA, USA}
+
+%\fundinginfo{Instrumentarium Research Foundation; Sigrid Jusélius Foundation;
+%Turku University Hospital; TYKS-SAPA research fund; Finnish Cancer Society;
+%Finnish Cultural Foundation; Orion Research Foundation; Academy of Finland}
+
+%\runningauthor{Jussi Toivonen et al.}
+
+\begin{abstract}
+\input{chapters/0-abstract}
+\end{abstract}
+
+\begin{keyword}
+multiparametric MRI \sep prostate cancer \sep texture analysis \sep
+  Gleason score classification \sep computer-aided diagnostics
+%\MSC[2010] 00-01\sep  99-00
+\end{keyword}
+
+\end{frontmatter}
+
+\linenumbers
+
+\include{chapters/1-introduction}
+\include{chapters/2-methods}
+\include{chapters/3-results}
+\include{chapters/4-discussion}
+\include{chapters/5-acknowledgements}
+\include{chapters/6-tables}
+\include{chapters/7-figures}
+\include{chapters/8-captions}
+
+\section*{References}
+\bibliography{library}
+
+\end{document}

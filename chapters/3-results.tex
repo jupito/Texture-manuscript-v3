@@ -1,0 +1,107 @@
+\section{Results}
+
+The highest ranking features for differentiating Gleason scores are summarized
+by texture extraction method in Table~\ref{tab:texture_best1p}. Features based
+on Gabor filters were included in all image types. GLCM features were selected
+for T₂w and T₂, and Zernike moments for K and T₂. Features from the Hu
+moments and LBP were also selected for T₂, in which the top 1\% had more
+variability than other image types, regarding both the texture extraction method
+and window size.
+
+
+\subsection{Univariate Analysis}
+
+For each of the five image types, a ROC analysis for each texture feature was
+performed. The resulting best features are shown in
+Table~\ref{tab:texture_imagetype}. The feature that best discriminated low from
+high Gleason score was MBB-GLCM homogeneity in T₂w with AUC of 0.84. A
+similar analysis was performed for the first-order statistical features; results
+for the best statistical features are shown in Table~\ref{tab:stats_imagetype}.
+Although the best statistical features had good performance for most of the
+modalities, they did not out-perform the best texture features. Some of the
+high-ranking features are visualized in Figure~\ref{fig:tmap}. In addition, ROC
+curves for best statistical and texture features are presented in
+Figure~\ref{fig:roc}.
+
+
+\subsection{Multivariate Analysis}
+
+Regularized logistic regression together with LPOCV was used to estimate the
+prediction performance of models trained on extracted features. Following are
+the results obtained when all features from a single image type were used and
+also for the best selected features within image type
+(Table~\ref{tab:auc_imagetype}). Moreover, performances of the models combining
+features are presented in Table~\ref{tab:auc_combinations}.
+
+
+\subsection{All features of individual image type}
+
+When using all features and L1 regularization (Table~\ref{tab:auc_imagetype}),
+T₂w had AUC (95\% CI) value of 0.82 (0.72--0.92), DWI derived parametric maps
+(ADCₘ, ADCₖ, K) had AUC (95\% CI) values ranging from 0.64 (0.52--0.77) to
+0.71 (0.58--0.83), and T₂ derived features had AUC (95\% CI) value of 0.58
+(0.45--0.71). In contrast, logistic regression utilizing L2 regularization
+showed better performance than using L1 regularization for all image types
+except for T₂w where AUC (95\% CI) value dropped to 0.68 (0.55--0.82), DWI
+derived parametric maps (ADCₘ, ADCₖ, K) had AUC (95\% CI) values ranging from
+0.69 (0.57--0.81) to 0.73 (0.60--0.85), and T₂ derived features had AUC (95\%
+CI) value of 0.70 (0.59--0.82). These results indicate that an L2 regularized
+logistic regression model with all features might perform better than a logistic
+regression model with fewer features selected by L1 regularization for all image
+types except T₂w. However, it should be noticed that with T₂w L1
+regularization performed better than L2, suggesting that a subset of features
+would performed better than all of them.
+
+
+\subsection{Selected features of individual image type}
+
+The feature selection was based on filtering features by AUC\@. Only 1\% best
+features (a total of 12 or 16 features depending on the modality) with highest
+ranking AUC were selected in each image type. When using L1 regularization, the
+best T₂w features showed better performance than the features of DWI
+parametric maps (ADCₘ, ADCₖ, K). Specifically, AUC (95\% CI) for ADCₘ, ADCₖ,
+and K were ranging from 0.71 (0.60--0.82) to 078 (0.67--0.89) while T₂w AUC
+(95\% CI) value was 0.80 (0.69--0.90). The best T₂ features had AUC (95\% CI)
+value 0.51 (0.37--0.65) which is the lowest performance among the modalities.
+
+The estimated AUC values using L2 regularization and the best 1\% features,
+compared with L1 regularization, were lower for T₂w and K.
+
+The use of texture features of the individual image type did not substantially
+out-perform predictions made by models utilizing the 18 statistical features of
+the corresponding image type (Table~\ref{tab:auc_imagetype}), except in T₂w
+where the texture feature model obtained with L1 regularization had the best
+performance among all other models. The highest AUC (95\% CI) value based on
+statistical features was achieved using L1 regularization and ADCₘ, 0.79
+(0.68--0.90), while the corresponding value for the best 1\% texture features
+was 0.71 (0.60--0.82).
+
+The AUC values for the best 1\% texture features based on T₂w, ADCₘ, ADCₖ, K
+and T₂ are shown in supporting material Tables S2, S4, S6, S8, and S10,
+respectively. Similarly, the statistical feature based AUC values for each image
+type are shown in supporting material Tables S3, S5, S7, S9, and S11.
+
+
+\subsection{All features of combined image types}
+
+No substantial improvements of AUC values were present when combining all
+features of image types (Table~\ref{tab:auc_combinations}). The AUC (95\% CI)
+values were in the range from 0.53 (0.40--0.66) to 0.82 (0.73--0.91) for L1
+regularization and from 0.69 (0.56--0.81) to 0.80 (0.71--0.89) for L2
+regularization.
+
+
+\subsection{Selected features of combined image types}
+
+In contrast to the use all features, a better model performance was present when
+combining the best 1\% features of various image types (T₂w, ADCₘ, ADCₖ, K,
+T₂). The best model performance was obtained when selecting the best 1\%
+features based on ADCₘ, K and T₂w with AUC (95\% CI) value of 0.88
+(0.82--0.95). The combinations of features extracted from DWI parametric maps
+(ADCₘ, ADCₖ, K) and those extracted from T₂w and T₂ together with the
+feature selection method lead to improved prediction performance regardless of
+the regularization algorithm (L1, L2).
+
+The final model proposed to differentiate PCa low Gleason score and high Gleason
+score includes the features from ADCₘ, K and T₂w (listed in S12) and the
+expected performance of the model is showed in Figure~\ref{fig:roc}.

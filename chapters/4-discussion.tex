@@ -1,0 +1,173 @@
+\section{Discussion}
+
+There is an increasing number of research groups studying and developing CAD of
+prostate cancer. The topic was recently reviewed by \citet{Lemaitre2015}. Most
+of the publications have focused on the task of cancer detection rather than
+characterization. However, both are required for proper treatment decision
+planning. In this study, we built a classifier for prostate cancer
+characterization utilizing texture features extracted from T₂w, the
+monoexponential and kurtosis models of high-b-value DWI, and T₂ maps.
+
+Several studies have demonstrated correlation between ADCₘ values and Gleason
+score based on biopsy \citep{Turkbey2011, Tamada2008} or prostatectomy specimens
+\citep{Toivonen2015, Peng2013, Boesen2015, Rosenkrantz2015, Donati2014}. Most of
+the studies evaluating the performance of DWI for Gleason score prediction have
+used first-order statistical features, which do not consider the spatial
+relationships between voxels. Analyzing the texture may add useful information
+regarding tumor heterogeneity and other structural properties. In our previous
+studies we observed rectangular, fixed-shape regions-of-interest, and each tumor
+was characterized by only one variable per image type \citep{Toivonen2015,
+Jambor2015Relaxation, Jambor2015Rotating}. However, in this study we measured
+the texture properties of each of the image types (T₂w, ADCₘ, ADCₖ, K, T₂).
+We have shown that the characterization performance of prostate cancer can be
+improved by combining texture features from the monoexponential and kurtosis
+models, and the T₂w.
+
+Most studies on texture analysis of PCa include only a small number of texture
+descriptors and configurations \citep{Kwak2015, Viswanath2012, Ginsburg2014}. In
+this study, we utilized a large number of both, from multiparametric source.
+This allows evaluating a huge number of feature combinations.
+
+Texture analysis of multiparametric MRI has previously seen limited use in PCa
+characterization. \citet{Fehr2015} evaluated PCa characterization with the
+whole-lesion 1st order statistics and GLCM texture features from a similar-size
+dataset of ADC and T₂w. They used oversampling to ward off effect of class
+imbalance. Similarly to our study, they integrated dynamic feature selection as
+part of the training (using the recursive feature selection support vector
+machine, RFE-SVM). In our study, we included a much more diverse and numerous
+set of features, as one of our goals was to evaluate various texture extraction
+methods. Moreover, we have for the first time demonstrated that using texture
+features from K (kurtosis function) provided improvements to ADCₘ
+(monoexponential function). This is important since first order statistics of
+parameters derived from kurtosis function do not lead to improved performance of
+ADCm (monoexponential function). The effect of noise remains to be explored in
+future studies.
+
+\citet{Tiwari2013} classified PCa using GLCM and simple gradient features from
+T₂w and MR spectroscopy (MRS). A multi-kernel classifier with graph embedding
+was used to reduce dimensionality. \citet{Tiwari2013} had fewer patients
+compared to the current study. Moreover, the classification was done on
+equally-sized, rectangular metavoxels.
+
+Furthermore, \citet{Wibmer2015} studied the associations of Gleason scores and
+individual GLCM features from ADC and T₂w of PZ lesions, using generalized
+linear regression and generalized estimating equations; and \citet{Vignati2015}
+tested Gleason score differentiation using two of the GLCM features (contrast
+and homogeneity) from T₂w and ADC individually.
+
+Contrarily to previous approaches to performing non-rigid deformation and
+co-registration of datasets with subsequent resampling to common space and
+resolution \citep{Viswanath2012, Ginsburg2014}, in the current study the
+prostate and tumor masks were done for each MR imaging method (T₂w, DWI, T₂)
+individually, allowing us to perform texture analyses at their original native
+resolutions. Estimating the effect of co-registration and resampling on texture
+extraction is not trivial, and the process could cause loss of information.
+However, the accuracy of the delineations in this study could be potentially
+improved by an added step of co-registering MRI to histology images
+\citep{Bourne2017}. We highlight the limitation of performing re-slicing and
+non-rigid deformation of MR data sets to common space and then co-registering
+with whole mount prostatectomy sections. As correctly noted by
+\citet{Bourne2017}, co-registration of whole mount prostatectomy sections to MRI
+data sets is important. However, the effect of re-slicing and non-rigid
+deformation of MR data sets to common space remains to be explored.
+
+The gray-level co-occurrence matrix may well be the most widely used tool for
+texture analysis of prostate MRI data sets. The Sobel operator, Gabor filters,
+Haar transform, and local binary patterns have already extensively been applied
+for texture analysis of prostate MRI, as have a few others~\citep{Lemaitre2015}
+not included in this study.
+
+The image moments, on the other hand, have been used more often for global
+morphological analysis like shape recognition rather than local texture
+analysis, although they have been used for texture as well~\citep{Tuceryan1994,
+Laws1980, Tuceryan1990}. To the best of our knowledge, there are no published
+studies using moment-based texture analysis for detection or characterization of
+prostate cancer using MRI data sets. \citet{Tahmasbi2011} used Zernike moments
+to characterize breast cancer, but as a global mass descriptor and not for
+texture. Our results suggest that moment-based texture features might be
+valuable for PCa characterization. More specifically, the best 1\% features of
+the image types K and T₂, and the final model ADCₘ, K, and T₂w combined
+included some of the texture features based on Hu or Zernike moments.
+
+The GLCM summarizes pixel intensity occurrences, the Gabor descriptors detect
+gradients of certain frequencies, and the LBP responds to point-like intensity
+transformation patterns. The image moments describe the mass distribution of the
+image content which is seen as a function that is integrated over space. Given
+the supposed difference in tissue heterogeneity, it makes sense that a metric
+based on mass distribution would discriminate lesions of varying Gleason scores.
+
+Most of the texture extraction methods in this study use the sliding window
+algorithm with seven or nine different window sizes depending on image
+resolution. Usually, the window should be large enough to provide reliable
+statistical information about its contents to characterize the texture, yet
+small enough so that patches of different classes do not overlap too much
+\citep{Haralick1973, Clausi2002Analysis}. The nature of each texture extraction
+algorithm also affects the specific role and usefulness of each window
+configuration. The optimal window size depends on method and data, and typically
+cannot be estimated in practice without experimentation \citep{Puig2001}. Most
+of the previous studies have utilized a very small number of different window
+sizes, often without presenting validation for the choice. In this study, we
+explored several window sizes simultaneously. This approach greatly increases
+the number of features, which is usually something to be avoided in order to
+produce an effective classifier. However, the machine learning method we used
+scales well to a large number of features.
+
+We have evaluated an extensive number of MRI texture features in multivariate
+setting for their ability to predict the Gleason score of prostate cancer.
+Moreover, we have presented a machine learning system that, from a very large
+number of candidate features, searches for a relevant subset for the task and
+alternatively weights the features accordingly. The single feature with highest
+prediction performance estimate (AUC = 0.84) was a gray-level co-occurrence
+matrix homogeneity of T₂w. The Gabor transform features performed well with the
+ADC and K parameters. The lowest percentile statistics were useful with ADC and
+T₂w. The features based on Hu and Zernike moments performed well for K and T₂.
+Our results imply that a specific set of features and feature extraction methods
+is needed to obtain maximal information from DWI, T₂w, and T₂. The highest
+overall performance estimate (AUC = 0.88) was obtained for the model utilizing a
+small subset of texture features from the ADCₘ, K, and T₂w parameters. These
+features included texture descriptors based on gray-level co-occurrence matrix,
+Gabor transform, and the Zernike and Hu moments.
+
+Our study has several limitations. First of all, only 62 patients were included
+and further validation of our results in large patient cohort is needed. All of
+the patients had gone through prostatectomy, and therefore it is biased on the
+high Gleason score group with 80\% of the lesions. As is the case with many
+previous studies, only one MRI data set per imaging method per patient was
+evaluated. Therefore, the repeatability of the texture features cannot be
+evaluated. Ideally, quantitative imaging methods would have high reliability and
+repeatability, allowing the use of derived features for disease characterization
+\citep{Shrout1979}.
+
+Many of the texture extraction methods used in this study could be further
+refined. Variations of the methods and the derived features have been proposed,
+for example for Gabor filters \citep{Clausi2000}, and local binary patterns
+\citep{Guo2012, Maenpaa2003}. For Gabor filters, schemes for unsupervised tuning
+of optimal parameters have been proposed \citep{Teuner1995}. The Zernike moments
+can be provided scale and transformation invariance \citep{Khotanzad1990}.
+
+In the cross-validation process the set of selected features was slightly
+different in every round, implying that some of the features may convey similar
+information. This is natural since we tested such a large number of feature
+candidates.
+
+In this study, we focused on the characterization of histologically confirmed
+and manually delineated cancer lesions. In a more practical setting, this
+process should be preceded by automatic segmentation of the prostate and
+detection of cancerous tissue. This limitation should be addressed in future
+studies.
+
+Studies show increased risk of PCa specific mortality for Gleason score 4+3 in
+comparison to 3+4~\citep{Wright2009}. Differentiating these scores in the
+characterization process would be useful in addition to the 3+3 vs >3+3
+threshold that was considered in this study.
+
+Our results suggest that the use of texture features extracted from T₂w, ADCₘ,
+and K parametric maps leads to improved PCa characterization accuracy compared
+to the more commonly used statistical features of DWI. In contrast, adding
+features from T₂ did not improve the classification accuracy. The results
+point out certain features and feature combinations that were succesful, out of
+a very numerous set that includes various source image types, texture extraction
+methods, window sizes, and method-specific configurations. Most of the useful
+methods have already performed well in other studies (GLCM, Gabor, LBP).
+However, the image moment based texture features (Hu, Zernike) appear to be
+novel in the context of PCa characterization.
