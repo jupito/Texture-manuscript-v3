@@ -320,18 +320,20 @@ utilizes averages and percentiles \citep{Shaish2016}.
 
 \subsection{Classification}
 
-For image types ADCₘ, ADCₖ, K a corresponding data set of 100 data points and
+For image types ADCₘ, ADCₖ, and K, a corresponding data set of 100 data points and
 1281 features were used to build models for predicting prostate lesion
-aggressiveness based on Gleason score, while in image types T₂w and T₂ the
-number of features was 1631. The features were normalized to zero mean and unit
-variance. The data points were divided into two groups by Gleason score, low
-and high (3+3 and >3+3, respectively). Logistic regression with either L1 or L2
-regularization \citep{Friedman2010} implemented by Python Scikit-learn library
-\citep{Pedregosa2011} were used to train the low vs high Gleason score
-classifiers. Both regularization mechanisms compensate the high dimensionality
-of the data by penalizing large coefficient values of the inferred linear
-models, which in turn makes them less likely to overfit to the training data
-and more able to generalize to data unseen in the training phase.
+aggressiveness based on Gleason score, while for T₂w and T₂ the number of
+features was 1631. The features were normalized to zero mean and unit variance.
+The data points were divided into two groups by Gleason score, low and high
+(3+3 and >3+3, respectively).
+
+Logistic regression with either L1 or L2 regularization \citep{Friedman2010}
+implemented by Python Scikit-learn library \citep{Pedregosa2011} were used to
+train the low vs high Gleason score classifiers. Both regularization mechanisms
+compensate the high dimensionality of the data by penalizing large coefficient
+values of the inferred linear models, which in turn makes them less likely to
+overfit to the training data and more able to generalize to data unseen in the
+training phase.
 
 L1 regularization has the additional property of shrinking the coefficients of
 the least useful features down to zero, and hence it also performs feature
