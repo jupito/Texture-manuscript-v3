@@ -47,11 +47,11 @@ In contrast to L1, L2 regularization yielded better performance for all image
 types except T₂w where AUC dropped to 0.68. DWI derived parametric maps (ADCₘ,
 ADCₖ, K) had AUC between 0.69 to 0.73, and T₂ derived features had AUC=0.70.
 
-These results indicate that, when it comes to logistic regression models, L2
-regularization with all features may perform better than fewer features
-selected by L1, for all of the image types except T₂w. With T₂w,
-L1 regularization performed better than L2, suggesting that a subset of
-features would perform better than all of them.
+These results indicate that, when it comes to logistic regression models, all
+features weighted by L2 regularization may perform better than fewer features
+selected by L1, with the exception of T₂w images. With T₂w, L1 regularization
+performed better than L2, suggesting that a subset of features would perform
+better than all of them.
 
 
 \subsubsection{Selected features within individual image types}
