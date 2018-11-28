@@ -44,7 +44,7 @@ T₂w had AUC=0.82, DWI derived parametric maps (ADCₘ, ADCₖ, K) had AUC rang
 0.64--0.71, and T₂ derived features had AUC=0.58.
 
 In contrast to L1, L2 regularization yielded better performance for all image
-types except T₂w where AUC dropped to 0.68. DWI derived parametric maps (ADCₘ,
+types except T₂w where AUC dropped to 0.68. DWI-derived parametric maps (ADCₘ,
 ADCₖ, K) had AUC range 0.69--0.73, and T₂ derived features had AUC=0.70.
 
 These results indicate that, when it comes to logistic regression models, all
@@ -56,14 +56,13 @@ better than all of them.
 
 \subsubsection{Selected features within individual image types}
 
-The feature selection was based on filtering features by AUC\@. Only 1\% best
-features (a total of 12 or 16 features depending on image modality) with highest
+The feature selection was based on filtering features by AUC\@. Only the best
+1\% of features (12 or 16 features, depending on image modality) with highest
 ranking AUC were selected in each image type. When using L1 regularization, the
-best T₂w features showed better performance than the features of DWI
-parametric maps (ADCₘ, ADCₖ, K). Specifically, AUC (95\% CI) for ADCₘ, ADCₖ,
-and K were ranging from 0.71 (0.60--0.82) to 078 (0.67--0.89) while T₂w AUC
-(95\% CI) value was 0.80 (0.69--0.90). The best T₂ features had AUC (95\% CI)
-value 0.51 (0.37--0.65) which is the lowest performance among the modalities.
+best T₂w features showed better performance (AUC=0.80) than the features of
+DWI-derived parametric maps (ADCₘ, ADCₖ, K), which had AUC range 0.71--0.78. The
+best T₂ features had AUC=0.51 which is the lowest performance among the
+modalities.
 
 The estimated AUC values using L2 regularization and the best 1\% features,
 compared with L1 regularization, were lower for T₂w and K.
