@@ -39,20 +39,19 @@ image types are presented in Table~\ref{tab:auc_combinations}.
 \subsubsection{All features within individual image types}
 
 When using all features and L1 regularization (Table~\ref{tab:auc_imagetype}),
-T₂w had AUC (95\% CI) value of 0.82 (0.72--0.92), DWI derived parametric maps
-(ADCₘ, ADCₖ, K) had AUC (95\% CI) values ranging from 0.64 (0.52--0.77) to
-0.71 (0.58--0.83), and T₂ derived features had AUC (95\% CI) value of 0.58
-(0.45--0.71). In contrast, logistic regression utilizing L2 regularization
-showed better performance than using L1 regularization for all image types
-except for T₂w where AUC (95\% CI) value dropped to 0.68 (0.55--0.82), DWI
-derived parametric maps (ADCₘ, ADCₖ, K) had AUC (95\% CI) values ranging from
-0.69 (0.57--0.81) to 0.73 (0.60--0.85), and T₂ derived features had AUC (95\%
-CI) value of 0.70 (0.59--0.82). These results indicate that an L2 regularized
-logistic regression model with all features might perform better than a logistic
-regression model with fewer features selected by L1 regularization for all image
-types except T₂w. However, it should be noticed that with T₂w L1
-regularization performed better than L2, suggesting that a subset of features
-would performed better than all of them.
+T₂w had AUC=0.82, DWI derived parametric maps (ADCₘ, ADCₖ, K) had AUC between
+0.64 to 0.71, and T₂ derived features had AUC=0.58.
+
+In contrast, logistic regression utilizing L2 regularization showed better
+performance than using L1 regularization for all image types except for T₂w
+where AUC dropped to 0.68, DWI derived parametric maps (ADCₘ, ADCₖ, K) had AUC
+between 0.69 to 0.73, and T₂ derived features had AUC=0.70.
+
+These results indicate that an L2 regularized logistic regression model with
+all features might perform better than a logistic regression model with fewer
+features selected by L1 regularization for all image types except T₂w. However,
+it should be noticed that with T₂w L1 regularization performed better than L2,
+suggesting that a subset of features would performed better than all of them.
 
 
 \subsubsection{Selected features within individual image types}
