@@ -30,12 +30,13 @@ Figure~\ref{fig:roc}.
 The prediction performance of the models trained using regularized logistic
 regression was estimated by LPOCV\@. Table~\ref{tab:auc_imagetype} contains the
 results for models within each image type using all or top 1\% of the features.
+The results are AUC values with confidence intervals included.
 
 Similar performance estimates of the models combining features from different
 image types are presented in Table~\ref{tab:auc_combinations}.
 
 
-\subsection{All features of individual image type}
+\subsubsection{All features within individual image types}
 
 When using all features and L1 regularization (Table~\ref{tab:auc_imagetype}),
 T₂w had AUC (95\% CI) value of 0.82 (0.72--0.92), DWI derived parametric maps
@@ -54,7 +55,7 @@ regularization performed better than L2, suggesting that a subset of features
 would performed better than all of them.
 
 
-\subsection{Selected features of individual image type}
+\subsubsection{Selected features within individual image types}
 
 The feature selection was based on filtering features by AUC\@. Only 1\% best
 features (a total of 12 or 16 features depending on the modality) with highest
@@ -83,7 +84,7 @@ respectively. Similarly, the statistical feature based AUC values for each image
 type are shown in supporting material Tables S3, S5, S7, S9, and S11.
 
 
-\subsection{All features of combined image types}
+\subsubsection{All features of combined image types}
 
 No substantial improvements of AUC values were present when combining all
 features of image types (Table~\ref{tab:auc_combinations}). The AUC (95\% CI)
@@ -92,7 +93,7 @@ regularization and from 0.69 (0.56--0.81) to 0.80 (0.71--0.89) for L2
 regularization.
 
 
-\subsection{Selected features of combined image types}
+\subsubsection{Selected features of combined image types}
 
 In contrast to the use all features, a better model performance was present when
 combining the best 1\% features of various image types (T₂w, ADCₘ, ADCₖ, K,
