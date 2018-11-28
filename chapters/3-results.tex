@@ -28,9 +28,10 @@ Figure~\ref{fig:roc}.
 \subsection{Multivariate Analysis}
 
 The prediction performance of the models trained using regularized logistic
-regression was estimated by LPOCV\@. Table~\ref{tab:auc_imagetype} contains the
-results for models within each image type using all or top 1\% of the features.
-The results are AUC values with confidence intervals included.
+regression was estimated by LPOCV\@. Both L1 and L2 regularization methods were
+utilized separately. Table~\ref{tab:auc_imagetype} contains the results for
+models within each image type using all or top 1\% of the features. The results
+are AUC values with confidence intervals included.
 
 Similar performance estimates of the models combining features from different
 image types are presented in Table~\ref{tab:auc_combinations}.
@@ -42,16 +43,16 @@ When using all features and L1 regularization (Table~\ref{tab:auc_imagetype}),
 T₂w had AUC=0.82, DWI derived parametric maps (ADCₘ, ADCₖ, K) had AUC between
 0.64 to 0.71, and T₂ derived features had AUC=0.58.
 
-In contrast, logistic regression utilizing L2 regularization showed better
-performance than using L1 regularization for all image types except for T₂w
-where AUC dropped to 0.68, DWI derived parametric maps (ADCₘ, ADCₖ, K) had AUC
-between 0.69 to 0.73, and T₂ derived features had AUC=0.70.
+In contrast to L1, L2 regularization yielded better performance for all image
+types except for T₂w where AUC dropped to 0.68. DWI derived parametric maps
+(ADCₘ, ADCₖ, K) had AUC between 0.69 to 0.73, and T₂ derived features had
+AUC=0.70.
 
-These results indicate that an L2 regularized logistic regression model with
-all features might perform better than a logistic regression model with fewer
-features selected by L1 regularization for all image types except T₂w. However,
-it should be noticed that with T₂w L1 regularization performed better than L2,
-suggesting that a subset of features would performed better than all of them.
+These results indicate that, when it comes to logistic regression models, L2
+regularization with all features may perform better than fewer features
+selected by L1, for all of the image types except T₂w. With T₂w,
+L1 regularization performed better than L2, suggesting that a subset of
+features would perform better than all of them.
 
 
 \subsubsection{Selected features within individual image types}
