@@ -84,19 +84,18 @@ type are shown in supporting material Tables S3, S5, S7, S9, and S11.
 
 No substantial improvements of AUC values were present when combining all
 features of all image types (Table~\ref{tab:auc_combinations}). The AUCs were
-within range 0.53--0.82 for L1 regularization and within 0.69--0.80 for L2.
+within range 0.53--0.82 with L1 regularization and within 0.69--0.80 with L2.
 
 
 \subsubsection{Selected features of combined image types}
 
 In contrast to the use all features, a better model performance was present when
-combining the best 1\% features of various image types (T₂w, ADCₘ, ADCₖ, K,
-T₂). The best model performance was obtained when selecting the best 1\%
-features based on ADCₘ, K and T₂w with AUC (95\% CI) value of 0.88
-(0.82--0.95). The combinations of features extracted from DWI parametric maps
-(ADCₘ, ADCₖ, K) and those extracted from T₂w and T₂ together with the
-feature selection method lead to improved prediction performance regardless of
-the regularization algorithm (L1, L2).
+combining the best 1\% features of all image types (T₂w, ADCₘ, ADCₖ, K,
+T₂). The best performing model with AUC=0.88 was obtained when selecting the
+best 1\% features based on ADCₘ, K and T₂w. The combinations of features
+extracted from DWI parametric maps (ADCₘ, ADCₖ, K) and those extracted from T₂w
+and T₂ together with the feature selection method lead to improved prediction
+performance regardless of the regularization method (L1, L2).
 
 The final model proposed to differentiate PCa low Gleason score and high Gleason
 score includes the features from ADCₘ, K and T₂w (listed in S12) and the
