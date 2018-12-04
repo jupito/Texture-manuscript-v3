@@ -19,7 +19,7 @@
         \STATE $\vec{auc}[k] \gets \mathrm{AUC}(\vec{X}[C,k], \vec{y}[C])$  \COMMENT{Calculate AUC for each feature}
         \STATE $\vec{auc}[k] \gets \max(\vec{auc}[k], 1-\vec{auc}[k])$  \COMMENT{Handle inverse correlation}
       \ENDFOR
-    \STATE $\indx \gets \arg\mathrm{sort}(\vec{auc})[1 \dotso (0.01 \times F)]$  \COMMENT{Get the indices of the best features}
+    \STATE $\indx \gets \arg\mathrm{sort}(\vec{auc})[1 \dotso (0.01 \times F)]$  \COMMENT{Get indices of the best features}
     \STATE $\alpha \gets \mathrm{gridSearch}(\vec{y}[C], \vec{X}[C,\indx], \omega)$  \COMMENT{Grid search with 10FCV, returns the best hyperparameter}
     \STATE $f \gets A(\vec{y}[C], \vec{X}[C,\indx], \alpha)$  \COMMENT{Train model f with algorithm A and hyperparameter $\alpha$}
     \STATE $\vec{W}_{ij} \gets H(f(\vec{X}[i,\indx]) - f(\vec{X}[j,\indx]))$  \COMMENT{Matrix W stores results from Heaviside function (H) of i and j prediction difference}
