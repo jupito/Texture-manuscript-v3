@@ -83,10 +83,9 @@ genitourinary pathologist (PT), using whole mount prostatectomy sections as
 Ten of the patients were excluded from further analysis due to presence of
 motion (n=2), severe susceptibility artifacts (n=5), or incomplete data (n=3).
 The characteristics of the remaining 62 patients are shown in Supporting
-Material (Table S1). Their median age was 65 years (ranging from 45 to 73
-years), while the median serum PSA value was 9.3 ng/ml (ranging 1.3 to 30.0
-ng/ml). The number of patients having one, two, and three lesions was 29, 28,
-and 5, respectively.
+Material (Table S1). Their median age was 65 years (range 45--73 years), while
+the median serum PSA value was 9.3 ng/ml (range 1.3--30.0 ng/ml). The number of
+patients having one, two, and three lesions was 29, 28, and 5, respectively.
 
 The final data set was composed of 100 PCa lesions derived from the MRI data
 sets of these 62 patients. In total, 67 and 33 lesions were located in
@@ -98,16 +97,27 @@ lesions, respectively.
 
 \subsection{MRI data post-processing}
 
+The post-processing pipeline is outlined in figure~\ref{fig:pipeline}. An
+example case with resulting standardized image and fitted parametric maps is
+shown in figure~\ref{fig:pmap}. The in-house software used in fitting was
+quality controlled for correctness with cross-comparison to independent
+implementation and with visual inspections of parametric maps and distributions.
+
+\subsubsection{T₂w standardization}
+
 The signal intensity of a T₂w image is not a specific tissue property and
 this non-standardness of T₂w images (``intensity drift'') requires
 standardization to a common scale. To correct this bias, a histogram alignment
 method was used, as described by \citet{Nyul1999,Nyul2000}. This simple method
 transforms the images to make their histograms match at certain landmark
-locations,  and interpolates the values between. In this study, the deciles
-(i.e.\ every tenth percentile) were used as landmarks, as suggested by
-\citet{Nyul1999}. Only delineated prostate volume was considered for histogram
-averages, as other parts of the image might distort the learning. The result was
-validated by visual inspection.
+locations,  and interpolates the values between.
+
+In this study, the deciles (i.e.\ every tenth percentile) were used as
+landmarks, as suggested by \citet{Nyul1999}. Only delineated prostate volume was
+considered for histogram averages, as other parts of the image might distort the
+learning. The result was validated by visual inspection.
+
+\subsubsection{DWI fitting}
 
 Diffusion weighted imaging data sets were fitted on voxel level using the
 monoexponential model:
@@ -127,13 +137,16 @@ and the kurtosis model \citep{Jensen2005}:
 where $S(b)$ is the signal intensity as a function of $b$ value, $S_0$ is the
 signal intensity at $b=0$~s/mm², ADCₘ is the apparent diffusion coefficient
 of the monoexponential model, ADCₖ is the apparent diffusion coefficient of
-the kurtosis model, and K is the kurtosis. The fitting procedure was performed
-using the Broyden-Fletcher-Goldfarb-Shanno (BFGS) algorithm \citep{Shanno1985}
-implemented by the dlib \citep{King2009} library. In order to find a reliable
-fit and prevent local minima, the algorithm was executed with multiple evenly
-spaced initialization values. Their intervals (step sizes) were for ADCₘ
-0.1--3.0~µm²/ms (0.01~µm²/ms), for ADCₖ 0.01--3.0~µm²/ms (0.1~µm²/ms), and
-for K 0.0001--4.0 (0.2).
+the kurtosis model, and K is the kurtosis.
+
+The fitting procedure was performed using the Broyden-Fletcher-Goldfarb-Shanno
+(BFGS) algorithm \citep{Shanno1985} implemented by the dlib \citep{King2009}
+library. In order to find a reliable fit and prevent local minima, the algorithm
+was executed with multiple evenly spaced initialization values. Their intervals
+(step sizes) were for ADCₘ 0.1--3.0~µm²/ms (0.01~µm²/ms), for ADCₖ
+0.01--3.0~µm²/ms (0.1~µm²/ms), and for K 0.0001--4.0 (0.2).
+
+\subsubsection{T₂ fitting}
 
 T₂ relaxation values were calculated on a single voxel level using a two
 parameter monoexponential function:
@@ -143,16 +156,11 @@ parameter monoexponential function:
 \end{equation}
 
 where $S(\TE)$ is the signal intensity at given time $\TE$, $S_0$ is the signal
-intensity at $\TE=0$~ms, and T₂ is the spin-spin relaxation time. The
-Levenberg-Marquardt algorithm was used for fitting, as implemented by the SciPy
-library, with the multiple initialization values of 0.0~ms to 300~ms with step
-size of 50~ms. T₂ relaxation values were constrained to 1--300~ms interval.
+intensity at $\TE=0$~ms, and T₂ is the spin-spin relaxation time.
 
-The post-processing pipeline is outlined in figure~\ref{fig:pipeline}. An
-example case with resulting standardized image and fitted parametric maps is
-shown in figure~\ref{fig:pmap}. The in-house software used in fitting was
-quality controlled for correctness with cross-comparison to independent
-implementation and with visual inspections of parametric maps and distributions.
+The Levenberg-Marquardt algorithm was used for fitting, as implemented by the
+SciPy library, with the multiple initialization values of 0.0~ms to 300~ms with
+step size of 50~ms. T₂ relaxation values were constrained to 1--300~ms interval.
 
 
 \subsection{Feature extraction}
