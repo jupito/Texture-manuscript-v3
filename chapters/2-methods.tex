@@ -178,17 +178,23 @@ In this study, the gray-level co-occurrence matrix, the local binary patterns,
 and the histogram of oriented gradients can be assigned into the statistical
 category, and the Sobel operator into the structural one. The Hu and Zernike
 moments belong to the model-based group, while the Gabor filter and the Haar
-wavelet are transform methods. The selection of texture extraction methods used
-in this study was based mainly on prior experiences in existing MRI literature
-\citep{Castellano2004, Lemaitre2015} and the availability of applicable
-open-source software components. All of these texture descriptor methods, except
-the Hu and Zernike moments, have been previously used for CAD of PCa, although
-implementation details are very scarce.
+wavelet are transform methods.
+
+The selection of texture extraction methods used in this study was based mainly
+on prior experiences in existing MRI literature \citep{Castellano2004,
+Lemaitre2015} and the availability of applicable open-source software
+components. All of these texture descriptor methods, except the Hu and Zernike
+moments, have been previously used for CAD of PCa. However, detailed information
+on their implementation and parameter selection are usually very scarce. This
+issue was addressed in this study by providing complete information on the
+parameters, and by using a wide array of them.
 
 Three-dimensional texture extraction of MRI has been utilized in various
 studies, including some of PCa diagnosis \citep{Depeursinge2014}. In this study,
 however, texture analysis was performed only in 2D and per-slice, due to voxel
 anisotropy.
+
+\subsubsection{General implementation details}
 
 Several texture descriptor methods with various parameter combinations were used
 for extracting 2D texture features from the manually delineated PCa lesions.
@@ -203,18 +209,20 @@ Seven window configurations were used for DWI and nine for T₂w and T₂
 data. These square-shaped windows had evenly spaced voxel side lengths of 3, 5,
 …, 15 for DWI and 3, 7, …, 35 for the higher-resolution T₂w and T₂. These
 lengths correspond to 3.3--17 mm for DWI and 1.4--16 mm for T₂w and T₂,
-maintaining similar physical cover among differing resolutions.
+maintaining similar physical cover over different resolutions.
 
 For each lesion, the window was placed on all possible locations along the
 transverse planes so that it still stayed completely within the lesion area. In
 cases of the window not fitting completely inside lesion area, the window
-locations with maximum lesion area were used. Extracted texture features were
-then averaged over all slices to be used as lesion-wise features. The use of
-different window sizes and parameter combinations resulted in 1281 features per
-DWI image type (ADCₘ, ADCₖ, K) and 1631 features per other image type (T₂w,
-T₂), totaling 7105 features all five image types combined. The free software
-libraries Scikit-image \citep{VanderWalt2014} and Mahotas \citep{Coelho2013}
-were utilized in the implementation of the process.
+locations with maximum lesion area were used. Extracted texture feature maps
+were then averaged over all slices to be used as lesion-wise median features.
+The use of different window sizes and parameter combinations resulted in 1281
+features per DWI image type (ADCₘ, ADCₖ, K) and 1631 features per other image
+type (T₂w, T₂), totaling 7105 features all five image types combined. The free
+software libraries Scikit-image \citep{VanderWalt2014} and Mahotas
+\citep{Coelho2013} were utilized in the implementation of the process.
+
+\subsubsection{Method-specific implementation details}
 
 The gray-level co-occurrence matrix (GLCM) \citep{Haralick1973} is a very
 popular method of texture characterization. It observes all the pixel gray level
@@ -234,14 +242,15 @@ dissimilarity, homogeneity, energy, correlation, and angular second moment
 discriminators, and maintain invariance regarding scale and shift
 \citep{Clausi2002Analysis}. In order to gain orientation invariance, the results
 were averaged over four bidirectional axes, and mean range over the orientations
-was added \citep{Haralick1973}. Since this method requires a discrete source
-image, the images needed prior normalization depending on source type. All
-images were quantized by uniform scaling to 32 gray levels based on previous
-studies \citep{Clausi2002Analysis, Clausi2002Rapid, Albregtsen2008}. The image
-type specific source intensity ranges for scaling were manually defined by
-observing prostate volume histograms. In total 324--420 GLCM related features
-with sliding window approach were extracted per image type (T₂w, ADCₘ, ADCₖ, K,
-T₂).
+was added \citep{Haralick1973}.
+
+Since GLCM requires a discrete source image, the images needed prior
+normalization depending on source type. All images were quantized by uniform
+scaling to 32 gray levels, based on previous studies \citep{Clausi2002Analysis,
+Clausi2002Rapid, Albregtsen2008}. The image type specific source intensity
+ranges for scaling were manually defined by observing prostate volume
+histograms. In total 324--420 GLCM related features with sliding window approach
+were extracted per image type (T₂w, ADCₘ, ADCₖ, K, T₂).
 
 In addition to the sliding window approach, the same GLCM-based features were
 also extracted using the minimum bounding box (MBB) around the whole lesion
@@ -270,16 +279,16 @@ properties of the image \citep{Turner1986}. Gabor filters are sensitive to edges
 in the image, so given that different lesions contain different regions, the
 detected edges between the regions could yield different responses. In this
 study, the texture extraction scheme described by \citet{Tuceryan1998} was
-applied, which uses the sliding window on the Gabor-filtered images.
+applied, which uses the sliding window on the Gabor-filtered complex images.
 
 Based on experimentation and data visualization, the filter bank included the
 combinations of five different frequencies for the sinusoidal
 ($f=0.1,0.2,…,0.5$ per voxel), three sizes for a circular Gaussian
 envelope ($\sigma=1,2,3$), and four bidirectional orientations. A number of
 derived features have been suggested \citep{Clausi2000, Hammouda2000,
-Grigorescu2002}. Here, the mean of the real part, variance of the real part,
-mean of the absolute of the real part, and mean of the magnitude were extracted
-as features. Various ways to achieve orientation invariance have been proposed
+Grigorescu2002}. Here, the extracted features included mean of the real part,
+variance of the real part, mean of the absolute of the real part, and mean of
+the magnitude. Various ways to achieve orientation invariance have been proposed
 \citep{Arivazhagan2006, Han2007, Chu2009, Rahman2011}, although not all are
 equally suitable for texture classification. In this study, the simple method of
 summing filtered images over orientations was used \citep{Han2007}, yielding
@@ -295,15 +304,15 @@ value and the standard deviation were then extracted as features
 
 Image moments are weighted averages that describe the distribution of intensity
 within image. A few variations are widely used as object shape descriptors, but
-they have also been applied for texture analysis \citep{Tuceryan1994}. In this
-study, the absolute values of the seven Hu moments \citep{Hu1962}, and the
-magnitude values of the complex Zernike moments \citep{Teague1980} up to the 8th
-degree were calculated for each window. The Hu moments are invariant regarding
-translation, scaling, rotation, and reflection \citep{Theodoridis2003}. The
-magnitude of the Zernike moments are rotation invariant, robust to noise, and,
-due to their orthogonality, have minimal redundancy \citep{Tahmasbi2011,
-Amayeh2005}. In total, 49--63 Hu moments and 175--225 Zernike moments were
-extracted from each image type.
+they have also been applied to texture analysis \citep{Tuceryan1994}. In this
+study, logarithms of the absolute values of the seven Hu moments \citep{Hu1962},
+and the magnitude values of the complex Zernike moments \citep{Teague1980} up to
+the 8th degree were calculated for each window. The Hu moments are invariant
+regarding translation, scaling, rotation, and reflection
+\citep{Theodoridis2003}. The Zernike moment magnitudes are rotation invariant,
+robust to noise, and, due to their orthogonality, have minimal redundancy
+\citep{Tahmasbi2011, Amayeh2005}. In total, 49--63 Hu moments and 175--225
+Zernike moments were extracted from each image type.
 
 The histogram of oriented gradients \citep{Dalal2005} is an algorithm developed
 primarily for object recognition. It describes an object as a set of local
@@ -314,16 +323,16 @@ size and 7--9 features in total per image type.
 
 The Sobel operator \citep{Sobel1990} is a simple convolution filter that
 emphasizes edges in image. The shape of the kernel window is 3×3 by definition,
-so no other window sizes were used. Instead, the mean of the whole lesion-wide
+so no other window sizes were used. Instead, the median of the whole lesion-wide
 texture map was used, both with the lesion edge voxels included and excluded,
 resulting in 2 features.
 
-In addition, 18 first-order statistical features were calculated for the whole
-lesion. First-order statistics imply that only the probabilistic distribution of
-intensity values is of concern, without observing their spatial relations. These
-statistical features were mean, standard deviation, range, minimum, maximum, the
-quartiles, the deciles, kurtosis, and skewness. Existing literature typically
-utilizes averages and percentiles \citep{Shaish2016}.
+In addition, first-order statistical features were calculated over the whole
+lesion. First-order statistics observe only the probabilistic distribution of
+intensity values, ignoring their spatial relations. Existing literature
+typically utilizes averages and some of the percentiles \citep{Shaish2016}.
+Here, 18 features were included, namely mean, standard deviation, range,
+minimum, maximum, quartiles, deciles, kurtosis, and skewness.
 
 
 \subsection{Classification}
