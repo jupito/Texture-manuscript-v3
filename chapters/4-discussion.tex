@@ -26,18 +26,19 @@ models, and the T₂w.
 Most studies on texture analysis of PCa include only a small number of texture
 descriptors and configurations \citep{Kwak2015, Viswanath2012, Ginsburg2014}. In
 this study, we utilized a large number of both, from multiparametric source.
-This allows evaluating a huge number of feature combinations.
+This allows evaluating a huge number of feature combinations, as the
+regularization prevents overfitting caused by high dimensionality.
 
 Texture analysis of multiparametric MRI has previously seen limited use in PCa
 characterization. \citet{Fehr2015} evaluated PCa characterization with the
-whole-lesion 1st order statistics and GLCM texture features from a similar-size
-dataset of ADC and T₂w. They used oversampling to ward off effect of class
-imbalance. Similarly to our study, they integrated dynamic feature selection as
-part of the training (using the recursive feature selection support vector
-machine, RFE-SVM). In our study, we included a much more diverse and numerous
-set of features, as one of our goals was to evaluate various texture extraction
-methods. Moreover, we have for the first time demonstrated that using texture
-features from K (kurtosis function) provided improvements to ADCₘ
+whole-lesion first order statistics and GLCM texture features from a
+similar-size dataset of ADC and T₂w. They used oversampling to ward off effect
+of class imbalance. Similarly to our study, they integrated dynamic feature
+selection as part of the training (using the recursive feature selection support
+vector machine, RFE-SVM). In our study, we included a much more diverse and
+numerous set of features, as one of our goals was to evaluate various texture
+extraction methods. Moreover, we have for the first time demonstrated that using
+texture features from K (kurtosis function) provided improvements to ADCₘ
 (monoexponential function). This is important since first order statistics of
 parameters derived from kurtosis function do not lead to improved performance of
 ADCm (monoexponential function). The effect of noise remains to be explored in
@@ -45,9 +46,9 @@ future studies.
 
 \citet{Tiwari2013} classified PCa using GLCM and simple gradient features from
 T₂w and MR spectroscopy (MRS). A multi-kernel classifier with graph embedding
-was used to reduce dimensionality. \citet{Tiwari2013} had fewer patients
-compared to the current study. Moreover, the classification was done on
-equally-sized, rectangular metavoxels.
+was used to reduce dimensionality. Compared to the current study, they had fewer
+patients, and the classification was done on equally-sized, rectangular
+metavoxels.
 
 Furthermore, \citet{Wibmer2015} studied the associations of Gleason scores and
 individual GLCM features from ADC and T₂w of PZ lesions, using generalized
@@ -64,7 +65,9 @@ resolutions. Estimating the effect of co-registration and resampling on texture
 extraction is not trivial, and the process could cause loss of information.
 However, the accuracy of the delineations in this study could be potentially
 improved by an added step of co-registering MRI to histology images
-\citep{Bourne2017}. We highlight the limitation of performing re-slicing and
+\citep{Bourne2017}.
+
+We highlight the limitation of performing re-slicing and
 non-rigid deformation of MR data sets to common space and then co-registering
 with whole mount prostatectomy sections. As correctly noted by
 \citet{Bourne2017}, co-registration of whole mount prostatectomy sections to MRI
@@ -73,7 +76,7 @@ deformation of MR data sets to common space remains to be explored.
 
 The gray-level co-occurrence matrix may well be the most widely used tool for
 texture analysis of prostate MRI data sets. The Sobel operator, Gabor filters,
-Haar transform, and local binary patterns have already extensively been applied
+Haar transform, and local binary patterns have already been extensively applied
 for texture analysis of prostate MRI, as have a few others~\citep{Lemaitre2015}
 not included in this study.
 
@@ -116,13 +119,17 @@ We have evaluated an extensive number of MRI texture features in multivariate
 setting for their ability to predict the Gleason score of prostate cancer.
 Moreover, we have presented a machine learning system that, from a very large
 number of candidate features, searches for a relevant subset for the task and
-alternatively weights the features accordingly. The single feature with highest
+alternatively weights the features accordingly.
+
+The single feature with highest
 prediction performance estimate (AUC = 0.84) was a gray-level co-occurrence
 matrix homogeneity of T₂w. The Gabor transform features performed well with the
 ADC and K parameters. The lowest percentile statistics were useful with ADC and
 T₂w. The features based on Hu and Zernike moments performed well for K and T₂.
 Our results imply that a specific set of features and feature extraction methods
-is needed to obtain maximal information from DWI, T₂w, and T₂. The highest
+is needed to obtain maximal information from DWI, T₂w, and T₂.
+
+The highest
 overall performance estimate (AUC = 0.88) was obtained for the model utilizing a
 small subset of texture features from the ADCₘ, K, and T₂w parameters. These
 features included texture descriptors based on gray-level co-occurrence matrix,
