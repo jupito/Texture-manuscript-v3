@@ -398,7 +398,7 @@ pair in turn, $(i,j)$ with $i \neq j$, are not included in the index set $C$ of
 training data. Every feature AUC is calculated using data from matrix $\vec{X}$
 and label vector $\vec{y}$. The notation $\vec{X}[C,k]$ refers to the submatrix
 of $\vec{X}$ containing the rows indexed by $C$ and the columns by $k$, that is,
-the vector with the values for $k$th feature for the training data. The top 1\%
+the vector with the values for $k$th feature in the training data. The top 1\%
 independent features are indexed by $\indx$. The optimum regularization
 hyperparameter value $\alpha \in \omega$ is calculated using 10FCV on data
 $(\vec{y}[C], \vec{X}[C,\indx])$, which is then used to train a model $f$ to
@@ -418,7 +418,7 @@ of the predictive model in turn.
 The ratio between low and high Gleason score is 1:4 in the data set, so there is
 some degree of imbalance between classes. However, the model performance was
 estimated using LPOCV together with AUC, and that degree of imbalance in the
-classes have low effect on these methods \citep{Airola2011, Smith2014}. LPOCV is
+classes has low effect on these methods \citep{Airola2011, Smith2014}. LPOCV is
 an unbiased estimate of the prediction performance of a model
 \citep{Airola2011}, and the ROC AUC is not affected by imbalance as it measures
 how accurately a model ranks a random positive unit from a negative one
