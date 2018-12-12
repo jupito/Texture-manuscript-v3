@@ -431,6 +431,43 @@ make predictions on the test pair $(\vec{X}[i,\indx], \vec{X}[j,\indx])$. The
 last line of the pseudo code describes the calculation of LPOCV score using
 ordering-by-the-number-of-wins method.
 
+\begin{algorithm}[!h]
+  \caption{LPOCV with inner feature selection by AUC filtering and
+  hyperparameter selection.}%
+  \label{alg:pseudocode}
+
+  \begin{algorithmic}
+    \REQUIRE{$\vec{X}$, matrix of $n$ lesions × $F$ features}
+    \REQUIRE{$\vec{y}$, vector of labels (1 high, -1 low)}
+    \REQUIRE{$\omega = \{0.001, 0.01, 0.1, 1, 10\}$, set of hyperparameters}
+    \ENSURE{LPOCV scores}
+    \FOR[All possible lesion pairs]{$i, j \in \{1,2,\dotsc,n\}$}
+      \STATE{$C \gets \{1,2,\dotsc,n\} \setminus \{i,j\}$}
+          \COMMENT{All lesions except $i,j$}
+      \STATE{$\vec{auc} \gets$ vector of length $F$}
+      \FOR{$k \in \{1,2,\dotsc,F\}$}
+        \STATE{$\vec{auc}[k] \gets \mathrm{AUC}(\vec{X}[C,k], \vec{y}[C])$}
+            \COMMENT{Calculate AUC for each feature}
+        \STATE{$\vec{auc}[k] \gets \max(\vec{auc}[k], 1-\vec{auc}[k])$}
+            \COMMENT{Handle inverse correlation}
+      \ENDFOR{}
+    \STATE{$\indx \gets \arg\mathrm{sort}(\vec{auc})[1 \dotso (0.01 \times F)]$}
+        \COMMENT{Get indices of the best features}
+    \STATE{$\alpha \gets \mathrm{gridSearch}(\vec{y}[C], \vec{X}[C,\indx], \omega)$}
+        \COMMENT{Grid search with 10FCV, returns the best hyperparameter}
+    \STATE{$f \gets A(\vec{y}[C], \vec{X}[C,\indx], \alpha)$}
+        \COMMENT{Train model f with algorithm A and hyperparameter $\alpha$}
+    \STATE{$\vec{W}_{ij} \gets H(f(\vec{X}[i,\indx]) - f(\vec{X}[j,\indx]))$}
+        \COMMENT{Matrix W stores results from Heaviside function (H) of i and j
+        prediction difference}
+    \ENDFOR{}
+    \STATE{$\tilde{\vec{y}} \gets \vec{W} \textbf{1}$}
+        \COMMENT{Score of each element obtained by summing along axis j}
+    \RETURN{$\tilde{\vec{y}}$}
+        \COMMENT{Returns LPOCV scores}
+  \end{algorithmic}
+\end{algorithm}
+
 
 \subsection{Addressing bias and imbalance}
 
