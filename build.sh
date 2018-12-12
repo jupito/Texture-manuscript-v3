@@ -1,3 +1,4 @@
 #!/bin/sh
 
-latexmk -pdf main
+latexmk -pdf main-els
+latexmk -pdf main-plos
