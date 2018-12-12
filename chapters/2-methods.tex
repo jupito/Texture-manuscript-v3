@@ -103,6 +103,27 @@ shown in Fig~\ref{fig:pmap}. The in-house software used in fitting was
 quality controlled for correctness with cross-comparison to independent
 implementation and with visual inspections of parametric maps and distributions.
 
+\begin{figure}[htb]
+\centering \includegraphics[width=1.0\textwidth]{figures/fig1}
+\caption{The post-processing pipeline. The T₂-weighted imaging (T₂w) data set
+is standardized while the monoexponential and kurtosis models are applied to
+diffusion weighted imaging (DWI) data set. The T₂ relaxation values are obtained
+using a two parameter monoexponential function. Subsequently, the features are
+calculated using T₂w and parametric maps. The feature selection is performed
+by choosing 1\% of the features with highest AUC\@. Then with the selected
+features a logistic regression model is fitted and used to predict the lesion's
+Gleason score group.}\label{fig:pipeline}
+\end{figure}
+
+\begin{figure}[htb]
+\centering \includegraphics[width=1.0\textwidth]{figures/fig2}
+\caption{An example of a whole mount prostate histological section~(A), with
+corresponding parametric maps for ADCₘ~(B), ADCₖ~(C), K~(D), T₂w~(E)
+and T₂~(F). This is from patient number 43 in Table S1. The two lesions are
+outlined; their Gleason scores are 4+3 (lower, in posterolateral region) and 3+4
+(upper, in anterior region).}\label{fig:pmap}
+\end{figure}
+
 \subsubsection{T₂w standardization}
 
 The signal intensity of a T₂w image is not a specific tissue property and

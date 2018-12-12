@@ -24,6 +24,24 @@ Some of the high-ranking features are visualized in Fig~\ref{fig:tmap}. In
 addition, ROC curves for best statistical and texture features are presented in
 Fig~\ref{fig:roc}.
 
+\begin{figure}[htb]
+\centering \includegraphics[width=1.0\textwidth]{figures/fig3}
+\caption{An example of prostate texture feature maps extracted from DWI
+parametric maps (ADCₘ, ADCₖ, K), T₂-weighted imaging (T₂w), and parametric map
+of T₂ relaxation values (T₂). Source image type, window size, and texture
+descriptor parameters are shown above the images. The two lesions are outlined;
+their Gleason scores are 4+3 (lower) and 3+4 (upper).}\label{fig:tmap}
+\end{figure}
+
+\begin{figure}[htb]
+\centering \includegraphics[width=1.0\textwidth]{figures/fig4}
+\caption{The ROC curves for the best statistical feature (A) and the best
+texture feature (B) within each image type (T₂w, ADCₘ, ADCₖ, K, T₂). The final
+model of the best selected features from ADCₘ, K, and T₂w obtained using L1
+regularized logistic regression and validated with leave-pair-out
+cross-validation (LPOCV) is also included in both A and~B.}\label{fig:roc}
+\end{figure}
+
 
 \subsection{Multivariate Analysis}
 
