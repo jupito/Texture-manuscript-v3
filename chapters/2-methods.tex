@@ -104,7 +104,8 @@ quality controlled for correctness with cross-comparison to independent
 implementation and with visual inspections of parametric maps and distributions.
 
 \begin{figure}[!h]
-    \centering \includegraphics[width=1.0\textwidth]{figures/fig1}
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/fig1}
     \caption{{\bf The post-processing pipeline.}
     The T₂-weighted imaging (T₂w) data set is standardized, while the
     monoexponential and kurtosis models are applied to diffusion weighted
@@ -118,7 +119,8 @@ implementation and with visual inspections of parametric maps and distributions.
 \end{figure}
 
 \begin{figure}[!h]
-    \centering \includegraphics[width=1.0\textwidth]{figures/fig2}
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/fig2}
     \caption{{\bf An example case with parametric maps.}
     A:~Whole mount prostate histological section.
     B:~ADCₘ. C:~ADCₖ. D:~K. E:~T₂w. F:~T₂.
@@ -432,8 +434,8 @@ last line of the pseudo code describes the calculation of LPOCV score using
 ordering-by-the-number-of-wins method.
 
 \begin{algorithm}[!h]
-  \caption{LPOCV with inner feature selection by AUC filtering and
-  hyperparameter selection.}%
+  \caption{{\bf LPOCV with inner feature selection by AUC filtering and
+  hyperparameter selection.}}%
   \label{alg:pseudocode}
 
   \begin{algorithmic}
