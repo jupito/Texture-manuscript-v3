@@ -109,7 +109,8 @@
 % cite package, to clean up citations in the main text. Do not remove.
 \usepackage{cite}
 
-% Use nameref to cite supporting information files (see Supporting Information section for more info)
+% Use nameref to cite supporting information files (see Supporting Information
+% section for more info)
 \usepackage{nameref,hyperref}
 
 % line numbers
@@ -321,7 +322,8 @@ Nulla mi mi, venenatis sed ipsum varius, Table~\ref{table1} volutpat euismod dia
 
 % Place tables after the first paragraph in which they are cited.
 \begin{table}[!ht]
-\begin{adjustwidth}{-2.25in}{0in} % Comment out/remove adjustwidth environment if table fits in text column.
+% Comment out/remove adjustwidth environment if table fits in text column.
+\begin{adjustwidth}{-2.25in}{0in}
 \centering
 \caption{
 {\bf Table caption Nulla mi mi, venenatis sed ipsum varius, volutpat euismod diam.}}
@@ -339,7 +341,7 @@ $cell1 row3$ & cell2 row 3 & cell3 row 3 & cell4 row 3 & cell5 row 3 & cell6 row
 \end{table}
 
 
-%PLOS does not support heading levels beyond the 3rd (no 4th level headings).
+% PLOS does not support heading levels beyond the 3rd (no 4th level headings).
 \subsection*{\lorem\ and \ipsum\ nunc blandit a tortor}
 \subsubsection*{3rd level heading}
 Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque. Quisque augue sem, tincidunt sit amet feugiat eget, ullamcorper sed velit. Sed non aliquet felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris commodo justo ac dui pretium imperdiet. Sed suscipit iaculis mi at feugiat.
@@ -372,7 +374,8 @@ Sed non aliquet felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 
 \section*{Supporting information}
 
-% Include only the SI item label in the paragraph heading. Use the \nameref{label} command to cite SI items in the text.
+% Include only the SI item label in the paragraph heading. Use the
+% \nameref{label} command to cite SI items in the text.
 \paragraph*{S1 Fig.}
 \label{S1_Fig}
 {\bf Bold the title sentence.} Add descriptive text after the title of the item (optional).
@@ -436,8 +439,6 @@ Magwire MM, Bayer F, Webster CL, Cao C, Jiggins FM.
 \newblock PLoS Genet. 2011 Oct;7(10):e1002337.
 
 \end{thebibliography}
-
-
 
 \end{document}
 
