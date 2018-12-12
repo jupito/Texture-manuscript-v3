@@ -101,7 +101,9 @@
 \usepackage{changepage}
 
 % Use Unicode characters when possible
-\usepackage[utf8x]{inputenc}
+%\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 
 % textcomp package and marvosym package for additional characters
 \usepackage{textcomp,marvosym}
@@ -194,6 +196,33 @@
 \newcommand{\deptdr}{Dept.\ of Diagnostic Radiology}
 \newcommand{\deptft}{Dept.\ of Future Technologies}
 
+%\DeclareUnicodeCharacter{03C3}{\(\sigma\)}
+\DeclareUnicodeCharacter{2096}{\text{\textsubscript{k}}}
+\DeclareUnicodeCharacter{2098}{\text{\textsubscript{m}}}
+\DeclareUnicodeCharacter{2081}{\text{\textsubscript{1}}}
+\DeclareUnicodeCharacter{2082}{\text{\textsubscript{2}}}
+\DeclareUnicodeCharacter{1D68}{\text{\textsubscript{\(\rho\)}}}
+
+\DeclareMathOperator{\e}{e}
+\DeclareMathOperator{\TE}{TE}
+%\DeclareMathOperator{\indx}{indx}  % A variable in pseudocode
+\newcommand{\indx}{B}
+
+% \floatname{algorithm}{Pseudo code}
+% \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+% \renewcommand{\algorithmicensure}{\textbf{Output:}}
+% \renewcommand{\algorithmiccomment}[1]{\hspace{1em}\emph{\{#1\}}}
+%
+% %\newcommand{\tss}[1]{\textsubscript{#1}}
+% %\newcommand{\tSs}[1]{\textsuperscript{#1}}
+%
+% %%\newcommand{\texttwosuperior}{\(^2\)}  % Unicode character ²
+% %\newcommand{\texttwosuperior}{\textsuperscript{2}}  % Unicode character ²
+% %\newcommand{\texttimes}{\(\times\)}  % Unicode character ×
+% %\newcommand{\textmu}{\(\mu\)}  % Unicode character ×
+%
+% \renewcommand{\vec}[1]{\mathbf{#1}}  % Vectors and matrices.
+
 %% END MACROS SECTION
 
 
@@ -215,7 +244,7 @@ prostate cancer characterization}
 % Insert author names, affiliations and corresponding author email (do not
 % include titles, positions, or degrees).
 \\
-%Jussi Toivonen\textsuperscript{1,2*\textcurrency},
+%Name Surname\textsuperscript{1,2*\textcurrency},
 Jussi~Toivonen\textsuperscript{1,2*},
 Ileana~Montoya~Perez\textsuperscript{1,2},
 Parisa~Movahedi\textsuperscript{1,2},
@@ -264,7 +293,8 @@ Springfield, MA, USA\\
 \end{flushleft}
 % Please keep the abstract below 300 words
 \section*{Abstract}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id. Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
+%Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id. Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
+\input{chapters/0-abstract}
 
 
 % Please keep the Author Summary between 150 and 200 words
@@ -274,6 +304,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta er
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id. Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
 
 \linenumbers
+
+%% \include{chapters/1-introduction}
+%% \include{chapters/2-methods}
+%% \include{chapters/3-results}
+%% \include{chapters/4-discussion}
+%% \include{chapters/5-acknowledgements}
+%% \include{chapters/6-tables}
+%% \include{chapters/7-figures}
+%% \include{chapters/8-captions}
 
 % Use "Eq" instead of "Equation" for equation citations.
 \section*{Introduction}
@@ -435,8 +474,8 @@ Magwire MM, Bayer F, Webster CL, Cao C, Jiggins FM.
 
 
 
-% \usepackage[utf8]{inputenc}
 % \usepackage[T1]{fontenc}
+% \usepackage[utf8]{inputenc}
 % %\usepackage{latexsym}
 % \usepackage[abbreviations = true]{siunitx}
 % \usepackage{algorithmic, algorithm}
@@ -456,32 +495,7 @@ Magwire MM, Bayer F, Webster CL, Cao C, Jiggins FM.
 % %\DeclareSIUnit \umm{\square\um}
 % \modulolinenumbers[5]
 %
-% \floatname{algorithm}{Pseudo code}
-% \renewcommand{\algorithmicrequire}{\textbf{Input:}}
-% \renewcommand{\algorithmicensure}{\textbf{Output:}}
-% \renewcommand{\algorithmiccomment}[1]{\hspace{1em}\emph{\{#1\}}}
 %
-% %\newcommand{\tss}[1]{\textsubscript{#1}}
-% %\newcommand{\tSs}[1]{\textsuperscript{#1}}
-%
-% %%\newcommand{\texttwosuperior}{\(^2\)}  % Unicode character ²
-% %\newcommand{\texttwosuperior}{\textsuperscript{2}}  % Unicode character ²
-% %\newcommand{\texttimes}{\(\times\)}  % Unicode character ×
-% %\newcommand{\textmu}{\(\mu\)}  % Unicode character ×
-%
-% \renewcommand{\vec}[1]{\mathbf{#1}}  % Vectors and matrices.
-%
-% %\DeclareUnicodeCharacter{03C3}{\(\sigma\)}
-% \DeclareUnicodeCharacter{2096}{\text{\textsubscript{k}}}
-% \DeclareUnicodeCharacter{2098}{\text{\textsubscript{m}}}
-% \DeclareUnicodeCharacter{2081}{\text{\textsubscript{1}}}
-% \DeclareUnicodeCharacter{2082}{\text{\textsubscript{2}}}
-% \DeclareUnicodeCharacter{1D68}{\text{\textsubscript{\(\rho\)}}}
-%
-% \DeclareMathOperator{\e}{e}
-% \DeclareMathOperator{\TE}{TE}
-% %\DeclareMathOperator{\indx}{indx}  % A variable in pseudocode
-% \newcommand{\indx}{B}
 %
 % \hyphenation{Lii-ma-tai-nen}
 %
@@ -531,15 +545,6 @@ Magwire MM, Bayer F, Webster CL, Cao C, Jiggins FM.
 % \end{frontmatter}
 %
 % \linenumbers
-%
-% \include{chapters/1-introduction}
-% \include{chapters/2-methods}
-% \include{chapters/3-results}
-% \include{chapters/4-discussion}
-% \include{chapters/5-acknowledgements}
-% \include{chapters/6-tables}
-% \include{chapters/7-figures}
-% \include{chapters/8-captions}
 %
 % \section*{References}
 % \bibliography{library}
