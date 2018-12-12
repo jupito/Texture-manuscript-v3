@@ -186,6 +186,11 @@
 \fancyfootoffset[L]{2.25in}
 \lfoot{\today}
 
+
+% JPT: Additional packages
+\usepackage{algorithmic, algorithm}
+
+
 %% Include all macros below
 
 \newcommand{\lorem}{{\bf LOREM}}
@@ -208,20 +213,20 @@
 %\DeclareMathOperator{\indx}{indx}  % A variable in pseudocode
 \newcommand{\indx}{B}
 
-% \floatname{algorithm}{Pseudo code}
-% \renewcommand{\algorithmicrequire}{\textbf{Input:}}
-% \renewcommand{\algorithmicensure}{\textbf{Output:}}
-% \renewcommand{\algorithmiccomment}[1]{\hspace{1em}\emph{\{#1\}}}
-%
+\floatname{algorithm}{Pseudo code}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\renewcommand{\algorithmiccomment}[1]{\hspace{1em}\emph{\{#1\}}}
+
 % %\newcommand{\tss}[1]{\textsubscript{#1}}
 % %\newcommand{\tSs}[1]{\textsuperscript{#1}}
 %
 % %%\newcommand{\texttwosuperior}{\(^2\)}  % Unicode character ²
 % %\newcommand{\texttwosuperior}{\textsuperscript{2}}  % Unicode character ²
 % %\newcommand{\texttimes}{\(\times\)}  % Unicode character ×
-% %\newcommand{\textmu}{\(\mu\)}  % Unicode character ×
-%
-% \renewcommand{\vec}[1]{\mathbf{#1}}  % Vectors and matrices.
+% %\newcommand{\textmu}{\(\mu\)}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}  % Vectors and matrices.
 
 % TODO
 \newcommand{\citep}{\cite}
@@ -469,13 +474,13 @@ Springfield, MA, USA\\
 %rhoncus vitae.
 
 \include{chapters/1-introduction}
-%% \include{chapters/2-methods}
-%% \include{chapters/3-results}
-%% \include{chapters/4-discussion}
-%% \include{chapters/5-acknowledgements}
-%% \include{chapters/6-tables}
-%% \include{chapters/7-figures}
-%% \include{chapters/8-captions}
+\include{chapters/2-methods}
+\include{chapters/3-results}
+\include{chapters/4-discussion}
+\include{chapters/5-acknowledgements}
+\include{chapters/6-tables}
+\include{chapters/7-figures}
+\include{chapters/8-captions}
 
 \nolinenumbers
 
@@ -531,11 +536,8 @@ Springfield, MA, USA\\
 
 
 
-% \usepackage[T1]{fontenc}
-% \usepackage[utf8]{inputenc}
 % %\usepackage{latexsym}
 % \usepackage[abbreviations = true]{siunitx}
-% \usepackage{algorithmic, algorithm}
 % %\hypersetup{colorlinks,%
 % %    citecolor=blue,%
 % %    filecolor=blue,%
