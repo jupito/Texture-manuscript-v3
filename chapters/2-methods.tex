@@ -135,14 +135,14 @@ implementation and with visual inspections of parametric maps and distributions.
 The signal intensity of a T₂w image is not a specific tissue property and
 this non-standardness of T₂w images (``intensity drift'') requires
 standardization to a common scale. To correct this bias, a histogram alignment
-method was used, as described by \citet{Nyul1999,Nyul2000}. This simple method
-transforms the images to make their histograms match at certain landmark
-locations,  and interpolates the values between.
+method was used, as described by Nyúl et al.\ \cite{Nyul1999, Nyul2000}. This
+simple method transforms the images to make their histograms match at certain
+landmark locations, and interpolates the values between.
 
 In this study, the deciles (i.e.\ every tenth percentile) were used as
-landmarks, as suggested by \citet{Nyul1999}. Only delineated prostate volume was
-considered for histogram averages, as other parts of the image might distort the
-learning. The result was validated by visual inspection.
+landmarks, as suggested by Nyúl et al.\ \cite{Nyul1999}. Only delineated
+prostate volume was considered for histogram averages, as other parts of the
+image might distort the learning. The result was validated by visual inspection.
 
 \subsubsection{DWI fitting}
 
@@ -230,7 +230,7 @@ window'' algorithm. This means that the local voxel neighborhood for
 calculations is represented as a fixed-shape subwindow centered at each voxel in
 turn. The output image, a texture feature map, consists of the feature values
 positioned on corresponding neighborhood center locations. A more detailed
-explanation is provided by \citet{Clausi2002Rapid}, for example.
+explanation is provided by Clausi et al.\ \cite{Clausi2002Rapid}, for example.
 
 Seven window configurations were used for DWI and nine for T₂w and T₂
 data. These square-shaped windows had evenly spaced voxel side lengths of 3, 5,
@@ -256,10 +256,10 @@ popular method of texture characterization. It observes all the pixel gray level
 pairings that occur in the image at a certain distance and direction. In this
 study, the GLCM was calculated for each window using four different voxel
 distances of 1 to 4 (unless prevented by window dimensions). Because the 22
-GLCM-derived features introduced by \citet{Haralick1973} have correlation
-\citep{Albregtsen2008}, using only three to five features have been recommended
-\citep{Clausi2002Analysis, Albregtsen2008, Gebejes2013a} in order to minimize
-redundancy and dimensionality.
+GLCM-derived features introduced by Haralick et al.\ \cite{Haralick1973} have
+correlation \citep{Albregtsen2008}, using only three to five features have been
+recommended \citep{Clausi2002Analysis, Albregtsen2008, Gebejes2013a} in order to
+minimize redundancy and dimensionality.
 
 In this study, the six GLCM features implemented by the Scikit-image software
 library \citep{VanderWalt2014} were extracted. These features, namely contrast,
@@ -282,9 +282,9 @@ were extracted per image type (T₂w, ADCₘ, ADCₖ, K, T₂).
 In addition to the sliding window approach, the same GLCM-based features were
 also extracted using the minimum bounding box (MBB) around the whole lesion
 area of each image slice as the window, while ignoring any non-lesion voxels.
-This procedure is similar to the method used in a study by \citet{Vignati2015}.
-The MBB-GLCM features were averaged over slices, and 48 features in total were
-extracted per image type.
+This procedure is similar to the method used in a study by Vignati et
+al.\ \cite{Vignati2015}. The MBB-GLCM features were averaged over slices, and
+48 features in total were extracted per image type.
 
 Local binary patterns (LBP) \citep{Ojala1996} is a method that compares every
 voxel intensity value to a certain number of neighboring values on a circle
@@ -305,8 +305,9 @@ filter, shaped by its parameters, responds to specific local spatial frequency
 properties of the image \citep{Turner1986}. Gabor filters are sensitive to edges
 in the image, so given that different lesions contain different regions, the
 detected edges between the regions could yield different responses. In this
-study, the texture extraction scheme described by \citet{Tuceryan1998} was
-applied, which uses the sliding window on the Gabor-filtered complex images.
+study, the texture extraction scheme described by Tüceryan et
+al.\ \cite{Tuceryan1998} was applied, which uses the sliding window on the
+Gabor-filtered complex images.
 
 Based on experimentation and data visualization, the filter bank included the
 combinations of five different frequencies for the sinusoidal
@@ -414,9 +415,10 @@ ordering-by-the-number-of-wins method, in which the score of a data point is the
 number of times it obtains a larger predicted value than the other point during
 the LPOCV rounds when it is one of the two held out points. These LPOCV scores
 were then used to perform the ROC curve analysis, whose validity was previously
-demonstrated by \citet{Balcan2008}. More precisely, using the LPOCV scores of
-the data points and their corresponding true label, the AUC and 95\% confidence
-interval (CI) were calculated using the R package by \citet{LeDell2015}.
+demonstrated by Balcan et al.\ \cite{Balcan2008}. More precisely, using the
+LPOCV scores of the data points and their corresponding true label, the AUC and
+95\% confidence interval (CI) were calculated using the R package by LeDell et
+al.\ \cite{LeDell2015}.
 
 The feature selection and hyperparameter selection process as part of the LPOCV
 is illustrated in Pseudo code~\ref{alg:pseudocode}. The algorithm starts with a

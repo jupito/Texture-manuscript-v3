@@ -1,12 +1,12 @@
 \section{Discussion}
 
 There is an increasing number of research groups studying and developing CAD of
-prostate cancer. The topic was recently reviewed by \citet{Lemaitre2015}. Most
-of the publications have focused on the task of cancer detection rather than
-characterization. However, both are required for proper treatment decision
-planning. In this study, we built a classifier for prostate cancer
-characterization utilizing texture features extracted from T₂w, the
-monoexponential and kurtosis models of high-b-value DWI, and T₂ maps.
+prostate cancer. The topic was recently reviewed by Lemaître et
+al.\ \cite{Lemaitre2015}. Most of the publications have focused on the task of
+cancer detection rather than characterization. However, both are required for
+proper treatment decision planning. In this study, we built a classifier for
+prostate cancer characterization utilizing texture features extracted from T₂w,
+the monoexponential and kurtosis models of high-b-value DWI, and T₂ maps.
 
 Several studies have demonstrated correlation between ADCₘ values and Gleason
 score based on biopsy \citep{Turkbey2011, Tamada2008} or prostatectomy specimens
@@ -30,8 +30,8 @@ This allows evaluating a huge number of feature combinations, as the
 regularization prevents overfitting caused by high dimensionality.
 
 Texture analysis of multiparametric MRI has previously seen limited use in PCa
-characterization. \citet{Fehr2015} evaluated PCa characterization with the
-whole-lesion first order statistics and GLCM texture features from a
+characterization. Fehr et al.\ \cite{Fehr2015} evaluated PCa characterization
+with the whole-lesion first order statistics and GLCM texture features from a
 similar-size dataset of ADC and T₂w. They used oversampling to ward off effect
 of class imbalance. Similarly to our study, they integrated dynamic feature
 selection as part of the training (using the recursive feature selection support
@@ -44,17 +44,18 @@ parameters derived from kurtosis function do not lead to improved performance of
 ADCm (monoexponential function). The effect of noise remains to be explored in
 future studies.
 
-\citet{Tiwari2013} classified PCa using GLCM and simple gradient features from
-T₂w and MR spectroscopy (MRS). A multi-kernel classifier with graph embedding
-was used to reduce dimensionality. Compared to the current study, they had fewer
-patients, and the classification was done on equally-sized, rectangular
-metavoxels.
+Tiwari et al.\ \cite{Tiwari2013} classified PCa using GLCM and simple gradient
+features from T₂w and MR spectroscopy (MRS). A multi-kernel classifier with
+graph embedding was used to reduce dimensionality. Compared to the current
+study, they had fewer patients, and the classification was done on
+equally-sized, rectangular metavoxels.
 
-Furthermore, \citet{Wibmer2015} studied the associations of Gleason scores and
-individual GLCM features from ADC and T₂w of PZ lesions, using generalized
-linear regression and generalized estimating equations; and \citet{Vignati2015}
-tested Gleason score differentiation using two of the GLCM features (contrast
-and homogeneity) from T₂w and ADC individually.
+Furthermore, Wibmer et al.\ \cite{Wibmer2015} studied the associations of
+Gleason scores and individual GLCM features from ADC and T₂w of PZ lesions,
+using generalized linear regression and generalized estimating equations; and
+Vignati et al.\ \cite{Vignati2015} tested Gleason score differentiation using
+two of the GLCM features (contrast and homogeneity) from T₂w and ADC
+individually.
 
 Contrarily to previous approaches to performing non-rigid deformation and
 co-registration of datasets with subsequent resampling to common space and
@@ -69,9 +70,9 @@ improved by an added step of co-registering MRI to histology images
 
 We highlight the limitation of performing re-slicing and
 non-rigid deformation of MR data sets to common space and then co-registering
-with whole mount prostatectomy sections. As correctly noted by
-\citet{Bourne2017}, co-registration of whole mount prostatectomy sections to MRI
-data sets is important. However, the effect of re-slicing and non-rigid
+with whole mount prostatectomy sections. As noted by Bourne et
+al.\ \cite{Bourne2017}, co-registration of whole mount prostatectomy sections to
+MRI data sets is important. However, the effect of re-slicing and non-rigid
 deformation of MR data sets to common space remains to be explored.
 
 The gray-level co-occurrence matrix may well be the most widely used tool for
@@ -85,12 +86,12 @@ morphological analysis like shape recognition rather than local texture
 analysis, although they have been used for texture as well~\citep{Tuceryan1994,
 Laws1980, Tuceryan1990}. To the best of our knowledge, there are no published
 studies using moment-based texture analysis for detection or characterization of
-prostate cancer using MRI data sets. \citet{Tahmasbi2011} used Zernike moments
-to characterize breast cancer, but as a global mass descriptor and not for
-texture. Our results suggest that moment-based texture features might be
-valuable for PCa characterization. More specifically, the best 1\% features of
-the image types K and T₂, and the final model ADCₘ, K, and T₂w combined
-included some of the texture features based on Hu or Zernike moments.
+prostate cancer using MRI data sets. Tahmasbi et al.\ \cite{Tahmasbi2011} used
+Zernike moments to characterize breast cancer, but as a global mass descriptor
+and not for texture. Our results suggest that moment-based texture features
+might be valuable for PCa characterization. More specifically, the best 1\%
+features of the image types K and T₂, and the final model ADCₘ, K, and T₂w
+combined included some of the texture features based on Hu or Zernike moments.
 
 The GLCM summarizes pixel intensity occurrences, the Gabor descriptors detect
 gradients of certain frequencies, and the LBP responds to point-like intensity
