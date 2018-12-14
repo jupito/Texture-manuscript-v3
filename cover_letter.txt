@@ -1,0 +1,44 @@
+Jussi Toivonen
+Department of Future Technologies
+FIN-20014 University of Turku
+Email: jussi.toivonen@utu.fi
+
+December 14, 2018
+
+
+
+PLOS ONE
+
+
+Dear Editors,
+
+I write to submit a manuscript for publication as a scientific article titled
+*Machine learning of prostate MRI: towards improved non-invasive prostate cancer
+characterization*
+and written by
+Jussi Toivonen, Ileana Montoya Perez, Parisa Movahedi, Harri Merisaari, Marko
+Pesola, Pekka Taimen, Peter J. Boström, Jonne Pohjankukka, Aida Kiviniemi,
+Tapio Pahikkala, Hannu J. Aronen, and Ivan Jambor.
+
+In this study, we develop and validate a machine learning classifier system for
+prediction of a prostate cancer risk factor (Gleason score) using various
+texture features of multiparametric magnetic resonance imaging data (T₂w, DWI,
+T₂) from one hundred tumors.
+
+In particular, the process simultaneously includes a very large number of
+features with different image types, texture extraction methods, and extraction
+parameters, in order to find optimal feature combinations. We utilize a machine
+learning technique that tolerates large dimensionality and class imbalance,
+while performing implicit feature selection.
+
+Our method successfully found models with good prediction performance, while
+also finding out which image types and texture extraction methods worked well
+together.
+
+Compared to previously published work on prostate cancer characterization, we
+include a large number of texture extractors with some new ones, while
+utilizing a novel approach to classifier design.
+
+
+Yours sincerely,
+Jussi Toivonen
