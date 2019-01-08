@@ -4,19 +4,19 @@
 
 To develop and validate a classifier system for prediction of prostate cancer
 Gleason score using texture features of T₂-weighted imaging (T₂w), diffusion
-weighted imaging (DWI), and T₂-mapping (T₂).
+weighted imaging (DWI) acquired using high b values, and T₂-mapping (T₂).
 
 
 \subsection*{Methods}
 
-T₂w, DWI, and T₂ data sets of 62 patients with histologically confirmed prostate
-cancer were acquired at 3T using surface array coils. The DWI data sets were
-post-processed using monoexponential and kurtosis models, while T₂w was
-standardized to a common scale. Local statistics and 8 different texture
-descriptors were utilized at different configurations to extract a total of
-7105 unique per-tumor features. Regularized logistic regression with implicit
-feature selection and leave pair out cross validation was used to discriminate
-tumors with 3+3 vs >3+3 Gleason scores.
+T₂w, DWI (12 b values, 0--2000 s/mm²), and T₂ data sets of 62 patients with
+histologically confirmed prostate cancer were acquired at 3T using surface array
+coils. The DWI data sets were post-processed using monoexponential and kurtosis
+models, while T₂w was standardized to a common scale. Local statistics and 8
+different texture descriptors were utilized at different configurations to
+extract a total of 7105 unique per-tumor features. Regularized logistic
+regression with implicit feature selection and leave pair out cross validation
+was used to discriminate tumors with 3+3 vs >3+3 Gleason scores.
 
 
 \subsection*{Results}
@@ -30,5 +30,5 @@ transform, and Zernike moments.
 \subsection*{Conclusion}
 
 Texture feature analysis of DWI and T₂w hold promise for improved non-invasive
-Gleason score prediction. The optimal texture extraction methods and parameters
-differ by image type.
+Gleason score prediction. In multisequence setting, the optimal texture
+extraction methods and parameters differ by image type.
