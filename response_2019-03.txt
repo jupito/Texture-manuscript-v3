@@ -1,0 +1,94 @@
+Draft of reply to reviewers. Original comments are included, responses begin
+with "*".
+
+
+Reviewer #1:
+
+In the manuscript "Machine learning of prostate MRI: towards improved
+non-invasive prostate cancer characterization", Toivonen et al. develop and
+evaluate a radiomics-based classifier system for prediction of prostate cancer
+Gleason score. The authors use radiomics features from T2-weighted imaging
+(T2w), diffusion weighted imaging (DWI), and T2-mapping (T2) from patients that
+subsequently underwent prostatectomy. The DWI data sets were post-processed
+using monoexponential and kurtosis models.
+
+The paper is well written, and the approach is detailed sufficiently. As a
+general comment on the recent surge of published radiomics papers, while each
+paper identifies significant radiomics features, no effort has been made to
+connect any of these features with previously published ones. This manuscript is
+no exception. More than 1000 features are extracted from four types of images.
+There are long lists of variables for each of the four image types; it is not
+clear what will be the impact of these findings for future applications. In
+addition, the data are acquired in a single institution with the same magnet and
+imaging sequences. Again, it is not clear how applicable the identified features
+will be in other circumstances. The models are not validated in an independent
+dataset.
+
+* [What do they mean by "connecting the features with previously published
+  ones"? Comparing them to existing literature? This was done a little, could be
+  done more and with more recent papers.]
+* TODO: Update and expand literature survey and comparison.
+* TODO: Mention in Discussion as a drawback, that there was no testing with
+  independent data set (although the machine learning method used does not
+  require a separate testing set).
+
+The authors analyze a very rich and unique dataset. For instance, the DWI data
+contains 12 b-values. In my view, there are missed opportunities to address
+important questions, such as: is there an added value for mapping T2; which
+three b-values result in apparent diffusion coefficient (ADC) with the highest
+correlation with Gleason Score.
+
+* It is mentioned in the Discussion section, line 556, that adding texture
+  features from T2 did not improve classifier performance.
+* The evaluation of b-values was not included in the goals of this study, as it
+  can be addressed separately.
+
+Figure 1 is misleading; there is little correspondence between the figure legend
+and the content. The Field of View, displayed on T2-w and DWI are different. The
+labels of the radiomics features are shifted.
+
+* TODO: Clarify Fig 1 and make cosmetic fixes.
+
+Figure 2: Please, list the abbreviations. Why the RP lesions appear differently
+on the different sequences?
+
+* TODO: Open abbreviations in Fig 2.
+* The lesions look a bit different in the histology and the different sequences,
+  because they did not include slices from exactly same locations.
+
+
+Reviewer #2:
+
+The manuscript showed that a machine learning-based model on imaging features
+from multiple MRI sequences provides improved predictive power to discriminate
+tumors with 3+3 vs >3+3 Gleason scores in prostate cancer. This paper was well
+written and authors performed several tests to show the superiority of the
+proposed method. I would suggest to accept this paper if authors can address the
+following issues.
+
+1. It is not clear why authors extracted imaging features in 2D slices. Please
+explain why you did use 3D volume images.
+
+* We extracted texture features from 2D slices, because the images were highly
+anisotropic (about 5x1x1 mm³). This is mentioned in Section 2.5, line 185.
+Various slices from 3D images were used in order to make use of more data.
+
+2. Shape-based features were not used. Do you think that shape-based features
+are not relevant to Gleason scores. Please mention this in the paper.
+
+* Including shape-based features might be useful for Gleason score
+characterization. However, it would require a considerable amount of additional
+work. In this manuscript we decided to focus on texture features.
+* TODO: Mention how shape features have been used in existing literature.
+
+3. Is there any correlation in imaging features between different image types?
+
+* TODO: How should we test feature correlation between image types?
+
+4. Table 5 shows the improved performance when imaging features from different
+image types were combined. The models including all features are not practical
+in terms of interpretation and model building. What are the results if 18
+statistical features and top 1% features were combined.
+
+* TODO: Estimate classification performance with a combination of statistical
+  and top 1% (5%?) texture features.
