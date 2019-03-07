@@ -28,9 +28,9 @@ dataset.
   ones"? Comparing them to existing literature? This was done a little, could be
   done more and with more recent papers.]
 * TODO: Update and expand literature survey and comparison.
-* TODO: Mention in Discussion as a drawback, that there was no testing with
-  independent data set (although the machine learning method used does not
-  require a separate testing set).
+* It is true that only one data set was used. This is mentioned as drawback in
+  the Discussion section, line 533. We are planning to analyze the repeatability
+  of texture features in another study, when we have more dataset available.
 
 The authors analyze a very rich and unique dataset. For instance, the DWI data
 contains 12 b-values. In my view, there are missed opportunities to address
@@ -52,7 +52,7 @@ labels of the radiomics features are shifted.
 Figure 2: Please, list the abbreviations. Why the RP lesions appear differently
 on the different sequences?
 
-* TODO: Open abbreviations in Fig 2.
+* We have now listed the abbreviations in Fig 2.
 * The lesions look a bit different in the histology and the different sequences,
   because they did not include slices from exactly same locations.
 
