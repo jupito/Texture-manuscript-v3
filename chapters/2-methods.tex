@@ -103,15 +103,14 @@ implementation and with visual inspections of parametric maps and distributions.
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\textwidth]{figures/fig1}
-    \caption{{\bf The post-processing pipeline.}
-    The T₂-weighted imaging (T₂w) data set is standardized, while the
-    monoexponential and kurtosis models are applied to diffusion weighted
-    imaging (DWI) data set. The T₂ relaxation values are obtained using a two
-    parameter monoexponential function. Subsequently, the features are
-    calculated using T₂w and parametric maps. The feature selection is performed
-    by choosing 1\% of the features with highest AUC\@. Then with the selected
-    features a logistic regression model is fitted and used to predict the
-    lesion's Gleason score group.}%
+    \caption{{\bf The pipeline.}
+    The T₂-weighted images (T₂w) are standardized, the monoexponential and
+    kurtosis models are fitted to the diffusion weighted images (DWI), and the
+    T₂ relaxation values are obtained using a two parameter monoexponential
+    function. Texture features are extracted subsequently. Top 1\% of the
+    features are selected by AUC\@. A logistic regression model is fitted to the
+    selected features, and is used to predict the lesion's Gleason score
+    class.}%
     \label{fig:pipeline}
 \end{figure}
 
