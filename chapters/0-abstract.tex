@@ -2,31 +2,37 @@
 
 \subsection*{Purpose}
 
-To develop and validate a classifier system for prediction of prostate cancer (PCa)
-Gleason score (GS) using radiomics and texture features of T₂-weighted imaging (T₂w), diffusion
-weighted imaging (DWI) acquired using high b values, and T₂-mapping (T₂).
+To develop and validate a classifier system for prediction of prostate cancer
+(PCa) Gleason score (GS) using radiomics and texture features of T₂-weighted
+imaging (T₂w), diffusion weighted imaging (DWI) acquired using high b values,
+and T₂-mapping (T₂).
 
 
 \subsection*{Methods}
 
 T₂w, DWI (12 b values, 0--2000 s/mm²), and T₂ data sets of 62 patients with
-histologically confirmed PCa were acquired at 3T using surface array
-coils. The DWI data sets were post-processed using monoexponential and kurtosis
-models, while T₂w was standardized to a common scale. Local statistics and 8
-different radiomics/texture descriptors were utilized at different configurations to
+histologically confirmed PCa were acquired at 3T using surface array coils. The
+DWI data sets were post-processed using monoexponential and kurtosis models,
+while T₂w was standardized to a common scale. Local statistics and 8 different
+radiomics/texture descriptors were utilized at different configurations to
 extract a total of 7105 unique per-tumor features. Regularized logistic
 regression with implicit feature selection and leave pair out cross validation
-was used to discriminate tumors with 3+3 vs >3+3 GS.
+was used to discriminate tumors with 3+3 vs >3+3 GS\@.
 
 
 \subsection*{Results}
 
-In total, 100 PCa lesions were analysed, of those 20 and 80 had GS of 3+3 and >3+3, respectively. The best model performance was obtained by selecting the top 1\% features of
-T₂w, ADCₘ and K with ROC AUC of 0.88 (95\% CI of 0.82--0.95). Features from T2 mapping provided little added value. The most useful
-texture features were based on the gray-level co-occurrence matrix, Gabor
-transform, and Zernike moments.
+In total, 100 PCa lesions were analysed, of those 20 and 80 had GS of 3+3 and
+>3+3, respectively. The best model performance was obtained by selecting the top
+1\% features of T₂w, ADCₘ and K with ROC AUC of 0.88 (95\% CI of 0.82--0.95).
+Features from T2 mapping provided little added value. The most useful texture
+features were based on the gray-level co-occurrence matrix, Gabor transform, and
+Zernike moments.
 
 
 \subsection*{Conclusion}
 
-Texture feature analysis of DWI, post-processed using monoexponential and kurtosis models, and T₂w demonstrated good classification performance for GS of PCa. In multisequence setting, the optimal radiomics based texture extraction methods and parameters differed between different image types.
+Texture feature analysis of DWI, post-processed using monoexponential and
+kurtosis models, and T₂w demonstrated good classification performance for GS of
+PCa. In multisequence setting, the optimal radiomics based texture extraction
+methods and parameters differed between different image types.
