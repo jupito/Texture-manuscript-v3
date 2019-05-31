@@ -1,0 +1,2314 @@
+% Based on plos-latex-template/plos_latex_template.tex.
+
+% Template for PLoS
+% Version 3.5 March 2018
+%
+% % % % % % % % % % % % % % % % % % % % % %
+%
+% -- IMPORTANT NOTE
+%
+% This template contains comments intended
+% to minimize problems and delays during our production
+% process. Please follow the template instructions
+% whenever possible.
+%
+% % % % % % % % % % % % % % % % % % % % % % %
+%
+% Once your paper is accepted for publication,
+% PLEASE REMOVE ALL TRACKED CHANGES in this file
+% and leave only the final text of your manuscript.
+% PLOS recommends the use of latexdiff to track changes during review, as this
+% will help to maintain a clean tex file.
+% Visit https://www.ctan.org/pkg/latexdiff?lang=en for info or contact us at
+% latex@plos.org.
+%
+%
+% There are no restrictions on package use within the LaTeX files except that
+% no packages listed in the template may be deleted.
+%
+% Please do not include colors or graphics in the text.
+%
+% The manuscript LaTeX source should be contained within a single file (do not
+% use \input, \externaldocument, or similar commands).
+%
+% % % % % % % % % % % % % % % % % % % % % % %
+%
+% -- FIGURES AND TABLES
+%
+% Please include tables/figure captions directly after the paragraph where they
+% are first cited in the text.
+%
+% DO NOT INCLUDE GRAPHICS IN YOUR MANUSCRIPT
+% - Figures should be uploaded separately from your manuscript file.
+% - Figures generated using LaTeX should be extracted and removed from the PDF
+%   before submission.
+% - Figures containing multiple panels/subfigures must be combined into one
+%   image file before submission.
+% For figure citations, please use "Fig" instead of "Figure".
+% See http://journals.plos.org/plosone/s/figures for PLOS figure guidelines.
+%
+% Tables should be cell-based and may not contain:
+% - spacing/line breaks within cells to alter layout or alignment
+% - do not nest tabular environments (no tabular environments within tabular
+%   environments)
+% - no graphics or colored text (cell background color/shading OK)
+% See http://journals.plos.org/plosone/s/tables for table guidelines.
+%
+% For tables that exceed the width of the text column, use the adjustwidth
+% environment as illustrated in the example table in text below.
+%
+% % % % % % % % % % % % % % % % % % % % % % % %
+%
+% -- EQUATIONS, MATH SYMBOLS, SUBSCRIPTS, AND SUPERSCRIPTS
+%
+% IMPORTANT
+% Below are a few tips to help format your equations and other special
+% characters according to our specifications. For more tips to help reduce the
+% possibility of formatting errors during conversion, please see our LaTeX
+% guidelines at http://journals.plos.org/plosone/s/latex
+%
+% For inline equations, please be sure to include all portions of an equation in
+% the math environment.  For example, x$^2$ is incorrect; this should be
+% formatted as $x^2$ (or $\mathrm{x}^2$ if the romanized font is desired).
+%
+% Do not include text that is not math in the math environment. For example, CO2
+% should be written as CO\textsubscript{2} instead of CO$_2$.
+%
+% Please add line breaks to long display equations when possible in order to fit
+% size of the column.
+%
+% For inline equations, please do not include punctuation (commas, etc) within
+% the math environment unless this is part of the equation.
+%
+% When adding superscript or subscripts outside of brackets/braces, please group
+% using {}.  For example, change "[U(D,E,\gamma)]^2" to "{[U(D,E,\gamma)]}^2".
+%
+% Do not use \cal for caligraphic font.  Instead, use \mathcal{}
+%
+% % % % % % % % % % % % % % % % % % % % % % % %
+%
+% Please contact latex@plos.org with any questions.
+%
+% % % % % % % % % % % % % % % % % % % % % % % %
+
+\documentclass[10pt,letterpaper]{article}
+\usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
+
+% amsmath and amssymb packages, useful for mathematical formulas and symbols
+\usepackage{amsmath,amssymb}
+
+% Use adjustwidth environment to exceed column width (see example table in text)
+\usepackage{changepage}
+
+% Use Unicode characters when possible
+%\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% textcomp package and marvosym package for additional characters
+\usepackage{textcomp,marvosym}
+
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+
+% Use nameref to cite supporting information files (see Supporting Information
+% section for more info)
+\usepackage{nameref,hyperref}
+
+% line numbers
+\usepackage[right]{lineno}
+
+% ligatures disabled
+\usepackage{microtype}
+\DisableLigatures[f]{encoding = *, family = * }
+
+% color can be used to apply background shading to table cells only
+\usepackage[table]{xcolor}
+
+% array package and thick rules for tables
+\usepackage{array}
+
+% create "+" rule type for thick vertical lines
+\newcolumntype{+}{!{\vrule width 2pt}}
+
+% create \thickcline for thick horizontal lines of variable length
+\newlength\savedwidth
+\newcommand\thickcline[1]{%
+  \noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%
+  \cline{#1}%
+  \noalign{\vskip\arrayrulewidth}%
+  \noalign{\global\arrayrulewidth\savedwidth}%
+}
+
+% \thickhline command for thick horizontal lines that span the table
+\newcommand\thickhline{\noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%
+\hline
+\noalign{\global\arrayrulewidth\savedwidth}}
+
+
+% Remove comment for double spacing
+%\usepackage{setspace}
+%\doublespacing
+
+% Text layout
+\raggedright
+\setlength{\parindent}{0.5cm}
+\textwidth 5.25in
+\textheight 8.75in
+
+% Bold the 'Figure #' in the caption and separate it from the title/caption with
+% a period Captions will be left justified
+\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
+\renewcommand{\figurename}{Fig}
+
+% Use the PLoS provided BiBTeX style
+\bibliographystyle{plos2015}
+
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+
+
+% Header and Footer with logo
+\usepackage{lastpage,fancyhdr,graphicx}
+\usepackage{epstopdf}
+%\pagestyle{myheadings}
+\pagestyle{fancy}
+\fancyhf{}
+%\setlength{\headheight}{27.023pt}
+%\lhead{\includegraphics[width=2.0in]{PLOS-submission.eps}}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrule}{\hrule height 2pt \vspace{2mm}}
+\fancyheadoffset[L]{2.25in}
+\fancyfootoffset[L]{2.25in}
+\lfoot{\today}
+
+
+% JPT: Additional packages
+\usepackage{algorithmic, algorithm}
+
+
+%% Include all macros below
+
+\newcommand{\lorem}{{\bf LOREM}}
+\newcommand{\ipsum}{{\bf IPSUM}}
+\newcommand{\turku}{Turku, Finland}
+\newcommand{\utu}{University of Turku}
+\newcommand{\tyks}{Turku University Hospital}
+\newcommand{\deptdr}{Dept.\ of Diagnostic Radiology}
+\newcommand{\deptft}{Dept.\ of Future Technologies}
+
+%\DeclareUnicodeCharacter{03C3}{\(\sigma\)}
+\DeclareUnicodeCharacter{2096}{\text{\textsubscript{k}}}
+\DeclareUnicodeCharacter{2098}{\text{\textsubscript{m}}}
+\DeclareUnicodeCharacter{2081}{\text{\textsubscript{1}}}
+\DeclareUnicodeCharacter{2082}{\text{\textsubscript{2}}}
+\DeclareUnicodeCharacter{1D68}{\text{\textsubscript{\(\rho\)}}}
+
+\DeclareMathOperator{\e}{e}
+\DeclareMathOperator{\TE}{TE}
+%\DeclareMathOperator{\indx}{indx}  % A variable in pseudocode
+\newcommand{\indx}{B}
+
+\floatname{algorithm}{Pseudo code}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\renewcommand{\algorithmiccomment}[1]{\hspace{1em}\emph{\{#1\}}}
+
+% %\newcommand{\tss}[1]{\textsubscript{#1}}
+% %\newcommand{\tSs}[1]{\textsuperscript{#1}}
+%
+% %%\newcommand{\texttwosuperior}{\(^2\)}  % Unicode character ²
+% %\newcommand{\texttwosuperior}{\textsuperscript{2}}  % Unicode character ²
+% %\newcommand{\texttimes}{\(\times\)}  % Unicode character ×
+% %\newcommand{\textmu}{\(\mu\)}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}  % Vectors and matrices.
+\newcommand{\ci}[1]{{\small (#1)}}  % CI range for the AUCs.
+
+% TODO
+\newcommand{\citep}{\cite}
+%\newcommand{\citet}[1]{TODO:{#1}~\cite{#1}}
+
+%% END MACROS SECTION
+
+
+\begin{document}
+\vspace*{0.2in}
+
+% Title must be 250 characters or less.
+\begin{flushleft}
+{\Large
+% Please use "sentence case" for title and headings (capitalize only the first
+% word in a title (or heading), the first word in a subtitle (or subheading),
+% and any proper nouns).
+% % \title{Machine learning of prostate MRI: towards improved non-invasive
+% % prostate cancer characterization}
+\textbf\newline{Radiomics and machine learning of multisequence multiparametric
+prostate MRI:\ towards improved non-invasive prostate cancer characterization}
+}
+\newline
+% Insert author names, affiliations and corresponding author email (do not
+% include titles, positions, or degrees).
+\\
+%Name Surname\textsuperscript{1,2*\textcurrency},
+Jussi~Toivonen\textsuperscript{1,2*},
+Ileana~Montoya~Perez\textsuperscript{1,2},
+Parisa~Movahedi\textsuperscript{1,2},
+Harri~Merisaari\textsuperscript{1,2,3},
+Marko~Pesola\textsuperscript{1},
+Pekka~Taimen\textsuperscript{4},
+Peter~J.~Boström\textsuperscript{5},
+Jonne~Pohjankukka\textsuperscript{2},
+Aida~Kiviniemi\textsuperscript{1,6},
+Tapio~Pahikkala\textsuperscript{2},
+Hannu~J.~Aronen\textsuperscript{1,6},
+Ivan~Jambor\textsuperscript{1,7}
+\\
+\bigskip
+%\textbf{1} Affiliation Dept/Program/Center, Institution Name, City, State, Country
+\textbf{1} \deptdr, \utu, \turku\\
+\textbf{2} \deptft, \utu, \turku\\
+\textbf{3} Turku PET Centre, \utu, \turku\\
+\textbf{4} Institute of Biomedicine, \utu{} and
+    Dept.\ of Pathology, \tyks, \turku\\
+\textbf{5} Dept.\ of Urology, \tyks, \turku\\
+\textbf{6} Medical Imaging Centre of Southwest Finland, \tyks, \turku\\
+\textbf{7} Department of Radiology, Icahn School of Medicine at Mount Sinai, New
+    York, NY, USA\\
+\bigskip
+
+% Insert additional author notes using the symbols described below. Insert
+% symbol callouts after author names as necessary.
+%
+% Remove or comment out the author notes below if they aren't used.
+
+% Current address notes
+% change symbol to "\textcurrency a" if more than one current address note
+%\textcurrency Current Address: Dept/Program/Center, Institution Name, City, State, Country
+%\textcurrency Current Address: \deptft, \utu, \turku
+% % %\corraddress{Ivan Jambor MD PhD, Department of Diagnostic Radiology, University
+% % %of Turku, Turku, FI-20521, Finland}
+% % %\presentadd[\authfn{2}]{Department of Radiology, University of
+% % %Massachusetts---Baystate, Springfield, MA, USA}
+%\textcurrency b foo
+
+% Use the asterisk to denote corresponding authorship and provide email address
+% in note below.
+%* correspondingauthor@institute.edu
+* jussi.toivonen@utu.fi
+
+\end{flushleft}
+% Please keep the abstract below 300 words
+\section*{Abstract}
+%Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta
+%erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante
+%cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend
+%volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar
+%non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id.
+%Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet
+%enim ultrices, ultrices elit pulvinar, volutpat risus.
+%\input{chapters/0-abstract}
+%\section*{Abstract}
+
+\subsection*{Purpose}
+
+To develop and validate a classifier system for prediction of prostate cancer
+(PCa) Gleason score (GS) using radiomics and texture features of T₂-weighted
+imaging (T₂w), diffusion weighted imaging (DWI) acquired using high b values,
+and T₂-mapping (T₂).
+
+
+\subsection*{Methods}
+
+T₂w, DWI (12 b values, 0--2000 s/mm²), and T₂ data sets of 62 patients with
+histologically confirmed PCa were acquired at 3T using surface array coils. The
+DWI data sets were post-processed using monoexponential and kurtosis models,
+while T₂w was standardized to a common scale. Local statistics and 8 different
+radiomics/texture descriptors were utilized at different configurations to
+extract a total of 7105 unique per-tumor features. Regularized logistic
+regression with implicit feature selection and leave pair out cross validation
+was used to discriminate tumors with 3+3 vs >3+3 GS\@.
+
+
+\subsection*{Results}
+
+In total, 100 PCa lesions were analysed, of those 20 and 80 had GS of 3+3 and
+>3+3, respectively. The best model performance was obtained by selecting the top
+1\% features of T₂w, ADCₘ and K with ROC AUC of 0.88 (95\% CI of 0.82--0.95).
+Features from T2 mapping provided little added value. The most useful texture
+features were based on the gray-level co-occurrence matrix, Gabor transform, and
+Zernike moments.
+
+
+\subsection*{Conclusion}
+
+Texture feature analysis of DWI, post-processed using monoexponential and
+kurtosis models, and T₂w demonstrated good classification performance for GS of
+PCa. In multisequence setting, the optimal radiomics based texture extraction
+methods and parameters differed between different image types.
+
+\linenumbers
+
+%% Use "Eq" instead of "Equation" for equation citations.
+%\section*{Introduction}
+%Lorem ipsum dolor sit~\cite{bib1} amet, consectetur adipiscing elit. Curabitur
+%eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui
+%eu ante cursus gravida non sed sem. Nullam Eq~(\ref{eq:schemeP}) sapien tellus,
+%commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus
+%finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam,
+%quis maximus dolor faucibus id.~\cite{bib2} Nunc convallis sodales ante, ut
+%ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit
+%pulvinar, volutpat risus.
+%
+%\begin{eqnarray}
+%\label{eq:schemeP}
+%	\mathrm{P_Y} = \underbrace{H(Y_n) - H(Y_n|\mathbf{V}^{Y}_{n})}_{S_Y} + \underbrace{H(Y_n|\mathbf{V}^{Y}_{n})- H(Y_n|\mathbf{V}^{X,Y}_{n})}_{T_{X\rightarrow Y}},
+%\end{eqnarray}
+%
+%\section*{Materials and methods}
+%\subsection*{Etiam eget sapien nibh}
+%
+%% For figure citations, please use "Fig" instead of "Figure".
+%Nulla mi mi, Fig~\ref{fig1} venenatis sed ipsum varius, volutpat euismod diam.
+%Proin rutrum vel massa non gravida. Quisque tempor sem et dignissim rutrum.
+%Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at justo vitae
+%nulla elementum commodo eu id massa. In vitae diam ac augue semper tincidunt eu
+%ut eros. Fusce fringilla erat porttitor lectus cursus, \nameref{S1_Video} vel
+%sagittis arcu lobortis. Aliquam in enim semper, aliquam massa id, cursus neque.
+%Praesent faucibus semper libero.
+%
+%% Place figure captions after the first paragraph in which they are cited.
+%\begin{figure}[!h]
+%\caption{{\bf Bold the figure title.}
+%Figure caption text here, please use this space for the figure panel
+%descriptions instead of using subfigure commands. A: Lorem ipsum dolor sit
+%amet. B: Consectetur adipiscing elit.}
+%\label{fig1}
+%\end{figure}
+%
+%% Results and Discussion can be combined.
+%\section*{Results}
+%Nulla mi mi, venenatis sed ipsum varius, Table~\ref{table1} volutpat euismod
+%diam. Proin rutrum vel massa non gravida. Quisque tempor sem et dignissim
+%rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at justo
+%vitae nulla elementum commodo eu id massa. In vitae diam ac augue semper
+%tincidunt eu ut eros. Fusce fringilla erat porttitor lectus cursus, vel
+%sagittis arcu lobortis. Aliquam in enim semper, aliquam massa id, cursus neque.
+%Praesent faucibus semper libero.
+%
+%% Place tables after the first paragraph in which they are cited.
+%\begin{table}[!ht]
+%% Comment out/remove adjustwidth environment if table fits in text column.
+%\begin{adjustwidth}{-2.25in}{0in}
+%\centering
+%\caption{
+%{\bf Table caption Nulla mi mi, venenatis sed ipsum varius, volutpat euismod diam.}}
+%\begin{tabular}{|l+l|l|l|l|l|l|l|}
+%\hline
+%\multicolumn{4}{|l|}{\bf Heading1} & \multicolumn{4}{|l|}{\bf Heading2}\\ \thickhline
+%$cell1 row1$ & cell2 row 1 & cell3 row 1 & cell4 row 1 & cell5 row 1 & cell6 row 1 & cell7 row 1 & cell8 row 1\\ \hline
+%$cell1 row2$ & cell2 row 2 & cell3 row 2 & cell4 row 2 & cell5 row 2 & cell6 row 2 & cell7 row 2 & cell8 row 2\\ \hline
+%$cell1 row3$ & cell2 row 3 & cell3 row 3 & cell4 row 3 & cell5 row 3 & cell6 row 3 & cell7 row 3 & cell8 row 3\\ \hline
+%\end{tabular}
+%\begin{flushleft} Table notes Phasellus venenatis, tortor nec vestibulum mattis, massa tortor interdum felis, nec pellentesque metus tortor nec nisl. Ut ornare mauris tellus, vel dapibus arcu suscipit sed.
+%\end{flushleft}
+%\label{table1}
+%\end{adjustwidth}
+%\end{table}
+%
+%
+%% PLOS does not support heading levels beyond the 3rd (no 4th level headings).
+%\subsection*{\lorem\ and \ipsum\ nunc blandit a tortor}
+%\subsubsection*{3rd level heading}
+%Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien
+%nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur
+%fringilla pulvinar lectus consectetur pellentesque. Quisque augue sem,
+%tincidunt sit amet feugiat eget, ullamcorper sed velit. Sed non aliquet felis.
+%Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris commodo justo
+%ac dui pretium imperdiet. Sed suscipit iaculis mi at feugiat.
+%
+%\begin{enumerate}
+%	\item{react}
+%	\item{diffuse free particles}
+%	\item{increment time by dt and go to 1}
+%\end{enumerate}
+%
+%
+%\subsection*{Sed ac quam id nisi malesuada congue}
+%
+%Nulla mi mi, venenatis sed ipsum varius, volutpat euismod diam. Proin rutrum
+%vel massa non gravida. Quisque tempor sem et dignissim rutrum. Lorem ipsum
+%dolor sit amet, consectetur adipiscing elit. Morbi at justo vitae nulla
+%elementum commodo eu id massa. In vitae diam ac augue semper tincidunt eu ut
+%eros. Fusce fringilla erat porttitor lectus cursus, vel sagittis arcu lobortis.
+%Aliquam in enim semper, aliquam massa id, cursus neque. Praesent faucibus
+%semper libero.
+%
+%\begin{itemize}
+%	\item First bulleted item.
+%	\item Second bulleted item.
+%	\item Third bulleted item.
+%\end{itemize}
+%
+%\section*{Discussion}
+%Nulla mi mi, venenatis sed ipsum varius, Table~\ref{table1} volutpat euismod
+%diam. Proin rutrum vel massa non gravida. Quisque tempor sem et dignissim
+%rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at justo
+%vitae nulla elementum commodo eu id massa. In vitae diam ac augue semper
+%tincidunt eu ut eros. Fusce fringilla erat porttitor lectus cursus, vel
+%sagittis arcu lobortis. Aliquam in enim semper, aliquam massa id, cursus neque.
+%Praesent faucibus semper libero~\cite{bib3}.
+%
+%\section*{Conclusion}
+%
+%CO\textsubscript{2} Maecenas convallis mauris sit amet sem ultrices gravida.
+%Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod
+%ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque. Quisque
+%augue sem, tincidunt sit amet feugiat eget, ullamcorper sed velit.
+%
+%Sed non aliquet felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+%Mauris commodo justo ac dui pretium imperdiet. Sed suscipit iaculis mi at
+%feugiat. Ut neque ipsum, luctus id lacus ut, laoreet scelerisque urna.
+%Phasellus venenatis, tortor nec vestibulum mattis, massa tortor interdum felis,
+%nec pellentesque metus tortor nec nisl. Ut ornare mauris tellus, vel dapibus
+%arcu suscipit sed. Nam condimentum sem eget mollis euismod. Nullam dui urna,
+%gravida venenatis dui et, tincidunt sodales ex. Nunc est dui, sodales sed
+%mauris nec, auctor sagittis leo. Aliquam tincidunt, ex in facilisis elementum,
+%libero lectus luctus est, non vulputate nisl augue at dolor. For more
+%information, see \nameref{S1_Appendix}.
+%
+%\section*{Supporting information}
+%
+%% Include only the SI item label in the paragraph heading. Use the
+%% \nameref{label} command to cite SI items in the text.
+%\paragraph*{S1 Fig.}
+%\label{S1_Fig}
+%{\bf Bold the title sentence.} Add descriptive text after the title of the item (optional).
+%
+%\paragraph*{S2 Fig.}
+%\label{S2_Fig}
+%{\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+%
+%\paragraph*{S1 File.}
+%\label{S1_File}
+%{\bf Lorem ipsum.}  Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+%
+%\paragraph*{S1 Video.}
+%\label{S1_Video}
+%{\bf Lorem ipsum.}  Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+%
+%\paragraph*{S1 Appendix.}
+%\label{S1_Appendix}
+%{\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+%
+%\paragraph*{S1 Table.}
+%\label{S1_Table}
+%{\bf Lorem ipsum.} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque.
+%
+%\section*{Acknowledgments}
+%Cras egestas velit mauris, eu mollis turpis pellentesque sit amet. Interdum et
+%malesuada fames ac ante ipsum primis in faucibus. Nam id pretium nisi. Sed ac
+%quam id nisi malesuada congue. Sed interdum aliquet augue, at pellentesque quam
+%rhoncus vitae.
+
+%\include{chapters/1-introduction}
+\newpage
+\section{Introduction}
+
+Prostate cancer (PCa) is the most common cancer in men, and the second most
+common among the causes of death related to cancer. For example in USA, 161~360
+new cases of PCa are estimated to be diagnosed in 2017, while the estimated
+cancer related deaths are 26~730 \citep{Siegel2017}. However, in approximately
+half of the cases of newly diagnosed PCa, the patients have a low risk of death
+from the disease \citep{Walsh2007, Draisma2003}. Due to this wide range of
+possible outcomes, it is important to accurately predict the risk caused by
+PCa and to stratify patients accordingly aiming to limit over-treatment and
+PCa mortality simultaneously.
+
+The Gleason score is a commonly used marker for estimating the possible threat
+posed by a PCa lesion, based on histopathological analysis of biopsy and
+prostatectomy specimens under the microscope \citep{Epstein2005}. It is a two or
+three-component numerical grading that is based on observed structural patterns,
+and can be expected to provide indication of tissue abnormality and tumor's
+estimated likeliness to spread (metastatic potential). Gleason score can be
+estimated using speciments acquired by using transrectal ultrasound (TRUS)
+guided prostate biopsy. Unfortunately, in 30--50\% of patients the findings
+based on systematic TRUS do not represent true Gleason score \citep{Nepple2009,
+Steinberg1997, Rajinikanth2008}.
+
+Magnetic resonance imaging (MRI) is increasingly being used for the detection of
+PCa lesions. Diffusion weighted MR imaging (DWI) has been shown to have
+potential for the detection and characterization of PCa. DWI data sets are
+still usually being analyzed by measuring only the first-order statistical
+properties found in parametric maps such as apparent diffusion coefficient of
+the monoexponential function (ADCₘ) \citep{Turkbey2011, Toivonen2015,
+Jambor2015Relaxation}.
+
+Various different fitting methods have been applied for modeling PCa DWI signal
+decay. The biexponential function \citep{Mulkern2006} provides the best fitting
+quality for DWI data sets acquired using ``high'' b values ($\sim$2000~s/mm²)
+\citep{Jambor2015Evaluation}. However, it is not robust to noise and has low
+repeatability. In contrast, the kurtosis function \citep{Jensen2005} provides
+similar fitting quality while being substantially more robust to noise
+\citep{Jambor2015Evaluation}. Texture features of parametric maps derived from
+the kurtosis function have not been evaluated and hold promise by better signal
+characterization compared with the most commonly used monoexponential function
+\citep{Toivonen2015}. Other MRI methods, such as T₂-mapping (T₂) and anatomical
+T₂-weighted imaging (T₂w), could provide complimentary information to DWI for
+prediction of PCa characteristics \citep{Jambor2015Relaxation}.
+
+Computer-aided diagnostics (CAD) based on MRI has been demonstrated to have
+complementary role to a reporting radiologist in PCa detection \citep{Kwak2015,
+Viswanath2012, Ginsburg2014}. However, only a limited number of studies focused
+on characterizing the detected PCa lesions, and they typically utilize only a
+small number of texture features. Tiwari et al.\ \cite{Tiwari2013} used MR
+spectroscopy data and various texture features from T₂w to first detect PCa and
+then predict its Gleason score. Peng et al.\ \cite{Peng2013} evaluated
+histogram-based features from multiparametric MRI regarding correlation with
+Gleason score. Texture features from DWI and T₂w have been assessed for
+differentiating Gleason scores \citep{Wibmer2015, Vignati2015, Fehr2015}.
+Rozenberg et al.\ \cite{Rozenberg2016} evaluated whole-lesion histogram and
+texture features from DWI in order to predict Gleason score upgrade after
+radical prostatectomy.
+
+The aim of this study was to use carefully optimized high quality MRI data sets
+to develop and validate machine learning methods for non-invasive Gleason score
+prediction, meaning prediction of PCa aggressiveness. In this study, we built
+and evaluated a classifier system based on multiple texture features of high
+quality T₂w, DWI (the monoexponential and kurtosis functions), and T₂ relaxation
+maps for prediction of PCa Gleason score dichotomized as 3+3 (low risk) vs >3+3
+(high risk). Moreover, we explored which combinations of imaging modalities and
+texture extraction methods are most useful for this task.
+
+The current study is first of its kind in multiple aspects: a)~direct comparison
+of textures extracted from T₂w and T₂ relaxation maps, b)~elevation of texture
+features from non-monoexponetial DWI signal decay using high quality data sets,
+and c)~evaluation of a large number of texture extraction methods and parameters
+to calculate them in a multi-dimensional high quality MRI data sets of patients
+with PCa.
+
+All data sets, post-processing program code as well as all MR sequences are
+freely available for review upon request following publication of the
+manuscript.
+
+%\include{chapters/2-methods}
+\newpage
+\section{Methods}
+
+The Ethics Committee of the Hospital District of Southwest Finland has approved
+this study. All patients have given written informed consent. The MR
+examinations were performed between March 2013 and May 2014. The study enrolled
+72 consecutive patients with histologically confirmed PCa who were scheduled for
+robotic assisted laparoscopic prostatectomy.
+
+Two of the patients had the Gonadotropin releasing hormone antagonist
+(Degarelix, Ferring Pharmaceuticals) started just before the MR examination. The
+rest of the patients had no prostate-related hormonal, surgical, or radiotherapy
+treatment before or during imaging.
+
+A subset of the data has already been used in previous studies. DWI data sets
+(12 b values, 0--2000 s/mm²) of 48 patients were used for evaluating
+mathematical models of DWI \citep{Toivonen2015, Jambor2015Relaxation,
+Jambor2015Evaluation}, while T₂ of 37 patients were used in feasibility
+evaluation of relaxation along fictitious field and continuous wave T₁ᵨ imaging
+of PCa \citep{Jambor2015Relaxation, Jambor2015Rotating}.
+
+
+\subsection{MRI examination}
+
+The MR examinations, as previously described \citep{Jambor2015Evaluation,
+Toivonen2015, Jambor2015Relaxation}, were performed using a 3T MR scanner
+(Ingenuity PET/MR, Philips, Cleveland, USA), a two channel volume whole body RF
+coil for excitation, and a 32 channel manufacture's cardiac coils for measuring
+the signal.
+
+Transversal single shot turbo spin echo (TSE) T₂-weighted images (T₂w) were
+acquired with repetition time/echo time (TR/TE) 4668/130 ms, field of view (FOV)
+250×250 mm², matrix size 250×320, slice thickness 2.5 mm, no intersection gap,
+and SENSE \citep{Pruessmann1999} factor~2. The acquisition time was 1~min 10~s.
+
+For acquiring the DWI data sets, a single shot spin-echo based sequence was used
+with monopolar diffusion gradient scheme and echo-planar read out. Other
+parameters were TR/TE 3141/51 ms, FOV 250×250 mm², acquisition matrix 100×99,
+reconstruction matrix 224×224, slice thickness 5.0 mm, number of slices 20,
+intersection gap 0.5 mm, diffusion gradients applied in three directions,
+diffusion gradient timing ($\Delta$) 24.5 ms, diffusion gradient duration
+($\delta$) 12.6 ms, diffusion time ($\Delta-\delta/3$) 20.3 ms, SENSE
+\citep{Pruessmann1999} factor~2, partial-Fourier acquisition 0.69, SPAIR fat
+suppression, and b~values (number of signal averages) 0 (2), 100 (2), 300 (2),
+500 (2), 700 (2), 900 (2), 1100 (2), 1300 (2), 1500 (2), 1700 (3), 1900 (4),
+2000 (4) s/mm². The acquisition time was 8~min 48~s.
+
+T₂ relaxation values (T₂ mapping) were obtained using a gradient and spin echo
+(GraSE) sequence with TR/TEs of 686/20, 40, 60, 80, 100 ms, FOV 230×183 mm²,
+acquisition matrix 256×163, reconstruction matrix 512×400, slice thickness 5.0
+mm, and no intersection gap. The acquisition time was 1~min 35~s.
+
+
+\subsection{Histopathological analysis and cancer delineation on MRI}
+
+The whole mount prostatectomy sections were processed as previously described
+\citep{Jambor2015Evaluation, Jambor2015Rotating}. The hematoxylin-eosin stained
+histological slides were first reviewed by one staff board certified pathologist
+and later re-reviewed by one experienced genitourinary pathologist (PT). In the
+cases there were differences between the two reviews, the opinion of the third
+genitourinary pathologist was searched and consensus was reached between the
+involved genitourinary pathologists.
+
+The histology slice thickness of whole mount prostatectomy sections was
+approximately 4 mm (range 4--6 mm). Gleason scores were assigned to tumors as
+combinations of primary, secondary, and tertiary Gleason grade, as defined by
+the 2005 International Society of Urological Pathology Modified Gleason Grading
+System \citep{Epstein2005}. If a Gleason grade pattern higher than the primary
+and secondary grade was present and visually accounted for less than 5\% of the
+tumor volume, it was assigned as tertiary Gleason grade \citep{Epstein2010}.
+
+Prostate cancer extent on each MRI acquisition (T₂w, DWI, T₂) was manually
+delineated by one research fellow (IJ) working in consensus with the
+genitourinary pathologist (PT), using whole mount prostatectomy sections as
+``ground truth.'' Anatomical landmarks were used to align each MRI acquisition
+(T₂w, DWI, T₂) with mount prostatectomy sections.
+
+
+\subsection{Final data set}
+
+Ten of the patients were excluded from further analysis due to presence of
+motion (n=2), severe susceptibility artifacts (n=5), or incomplete data (n=3).
+The characteristics of the remaining 62 patients are shown in Supporting
+Material (Table S1). Their median age was 65 years (range 45--73 years), while
+the median serum PSA value was 9.3 ng/ml (range 1.3--30.0 ng/ml). The number of
+patients having one, two, and three lesions was 29, 28, and 5, respectively.
+
+The final data set was composed of 100 PCa lesions derived from the MRI data
+sets of these 62 patients. In total, 67 and 33 lesions were located in
+peripheral zone (PZ) and central gland (CG), respectively. For the purpose of
+classifier performance evaluation, the Gleason scores of prostate cancer lesions
+were divided into two groups of low (3+3) and high (>3+3), containing 20 and 80
+lesions, respectively.
+
+
+\subsection{MRI data post-processing}
+
+The post-processing pipeline is outlined in Fig~\ref{fig:pipeline}. An
+example case with resulting standardized image and fitted parametric maps is
+shown in Fig~\ref{fig:pmap}. The in-house software used in fitting was
+quality controlled for correctness with cross-comparison to independent
+implementation and with visual inspections of parametric maps and distributions.
+
+\begin{figure}[!ht]
+    \centering
+    %\includegraphics[width=1.0\textwidth]{figures/fig1}
+    \caption{{\bf The pipeline.}
+    The T₂-weighted images (T₂w) are standardized, the monoexponential and
+    kurtosis models are fitted to the diffusion weighted images (DWI), and the
+    T₂ relaxation values are obtained using a two parameter monoexponential
+    function. Texture features are extracted subsequently. Top 1\% of the
+    features are selected by AUC\@. A logistic regression model is fitted to the
+    selected features, and is used to predict the lesion's Gleason score
+    class.}%
+    \label{fig:pipeline}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    %\includegraphics[width=1.0\textwidth]{figures/fig2}
+    \caption{{\bf An example case with parametric maps.}
+    A:~Whole mount prostate histological section.
+    B:~ADCₘ (apparent diffusion coefficient, monoexponential model).
+    C:~ADCₖ (apparent diffusion coefficient, kurtosis model).
+    D:~K (kurtosis parameter, kurtosis model).
+    E:~T₂w (T₂-weighted imaging).
+    F:~T₂ (T₂-mapping).
+    This is from patient \#43 (see Table~S1). The two lesions are outlined;
+    their Gleason scores are 4+3 (lower, posterolateral region) and 3+4 (upper,
+    anterior region).}%
+    \label{fig:pmap}
+\end{figure}
+
+\subsubsection{T₂w standardization}
+
+The signal intensity of a T₂w image is not a specific tissue property and
+this non-standardness of T₂w images (``intensity drift'') requires
+standardization to a common scale. To correct this bias, a histogram alignment
+method was used, as described by Nyúl et al.\ \cite{Nyul1999, Nyul2000}. This
+simple method transforms the images to make their histograms match at certain
+landmark locations, and interpolates the values between.
+
+In this study, the deciles (i.e.\ every tenth percentile) were used as
+landmarks, as suggested by Nyúl et al.\ \cite{Nyul1999}. Only delineated
+prostate volume was considered for histogram averages, as other parts of the
+image might distort the learning. The result was validated by visual inspection.
+
+\subsubsection{DWI fitting}
+
+Diffusion weighted imaging data sets were fitted on voxel level using the
+monoexponential model:
+
+\begin{equation}
+  S(b) = S_0 \exp(-b \text{ADCₘ})
+\end{equation}
+
+and the kurtosis model \citep{Jensen2005}:
+
+\begin{equation}
+  S(b) = S_0 \exp\left(
+    -b \text{ADCₖ} + \frac{1}{6} b^2 \text{ADCₖ}^2 \text{K}
+  \right)
+\end{equation}
+
+where $S(b)$ is the signal intensity as a function of $b$ value, $S_0$ is the
+signal intensity at $b=0$~s/mm², ADCₘ is the apparent diffusion coefficient
+of the monoexponential model, ADCₖ is the apparent diffusion coefficient of
+the kurtosis model, and K is the kurtosis.
+
+The fitting procedure was performed using the Broyden-Fletcher-Goldfarb-Shanno
+(BFGS) algorithm \citep{Shanno1985} implemented by the dlib \citep{King2009}
+library. In order to find a reliable fit and prevent local minima, the algorithm
+was executed with multiple evenly spaced initialization values. Their intervals
+(step sizes) were for ADCₘ 0.1--3.0~µm²/ms (0.01~µm²/ms), for ADCₖ
+0.01--3.0~µm²/ms (0.1~µm²/ms), and for K 0.0001--4.0 (0.2).
+
+\subsubsection{T₂ fitting}
+
+T₂ relaxation values were calculated on a single voxel level using a two
+parameter monoexponential function:
+
+\begin{equation}
+  S(\TE) = S_0 \exp(-\TE / \text{T₂})
+\end{equation}
+
+where $S(\TE)$ is the signal intensity at given time $\TE$, $S_0$ is the signal
+intensity at $\TE=0$~ms, and T₂ is the spin-spin relaxation time.
+
+The Levenberg-Marquardt algorithm was used for fitting, as implemented by the
+SciPy library, with the multiple initialization values of 0.0~ms to 300~ms with
+step size of 50~ms. T₂ relaxation values were constrained to 1--300~ms interval.
+
+
+\subsection{Feature extraction}
+
+Texture extraction methods can be roughly categorized into four main groups
+\citep{Castellano2004}, although this taxonomy is somewhat ambiguous. The
+statistical approach is based on local spatial distributions and relationships
+of intensity occurrences in the image. The structural methods use well-defined
+geometrical primitives to measure texture. The model-based methods attempt to
+represent the image properties as parameters of various mathematical models. The
+transform methods use signal processing transformations such as Fourier and
+wavelets to analyze the image in a different space.
+
+In this study, the gray-level co-occurrence matrix, the local binary patterns,
+and the histogram of oriented gradients can be assigned into the statistical
+category, and the Sobel operator into the structural one. The Hu and Zernike
+moments belong to the model-based group, while the Gabor filter and the Haar
+wavelet are transform methods.
+
+The selection of texture extraction methods used in this study was based mainly
+on prior experiences in existing MRI literature \citep{Castellano2004,
+Lemaitre2015} and the availability of applicable open-source software
+components. All of these texture descriptor methods, except the Hu and Zernike
+moments, have been previously used for CAD of PCa. However, detailed information
+on their implementation and parameter selection are usually very scarce. This
+issue was addressed in this study by providing complete information on the
+parameters, and by using a wide array of them.
+
+Three-dimensional texture extraction of MRI has been utilized in various
+studies, including some of PCa diagnosis \citep{Depeursinge2014}. In this study,
+however, texture analysis was performed only in 2D and per-slice, due to voxel
+anisotropy.
+
+\subsubsection{General implementation details}
+
+Several texture descriptor methods with various parameter combinations were used
+for extracting 2D texture features from the manually delineated PCa lesions.
+Most of the methods in this study inherently incorporate the so-called ``sliding
+window'' algorithm. This means that the local voxel neighborhood for
+calculations is represented as a fixed-shape subwindow centered at each voxel in
+turn. The output image, a texture feature map, consists of the feature values
+positioned on corresponding neighborhood center locations. A more detailed
+explanation is provided by Clausi et al.\ \cite{Clausi2002Rapid}, for example.
+
+Seven window configurations were used for DWI and nine for T₂w and T₂
+data. These square-shaped windows had evenly spaced voxel side lengths of 3, 5,
+…, 15 for DWI and 3, 7, …, 35 for the higher-resolution T₂w and T₂. These
+lengths correspond to 3.3--17 mm for DWI and 1.4--16 mm for T₂w and T₂,
+maintaining similar physical cover over different resolutions.
+
+For each lesion, the window was placed on all possible locations along the
+transverse planes so that it still stayed completely within the lesion area. In
+cases of the window not fitting completely inside lesion area, the window
+locations with maximum lesion area were used. Extracted texture feature maps
+were then averaged over all slices to be used as lesion-wise median features.
+The use of different window sizes and parameter combinations resulted in 1281
+features per DWI image type (ADCₘ, ADCₖ, K) and 1631 features per other image
+type (T₂w, T₂), totaling 7105 features all five image types combined. The free
+software libraries Scikit-image \citep{VanderWalt2014} and Mahotas
+\citep{Coelho2013} were utilized in the implementation of the process.
+
+\subsubsection{Method-specific implementation details}
+
+The gray-level co-occurrence matrix (GLCM) \citep{Haralick1973} is a very
+popular method of texture characterization. It observes all the pixel gray level
+pairings that occur in the image at a certain distance and direction. In this
+study, the GLCM was calculated for each window using four different voxel
+distances of 1 to 4 (unless prevented by window dimensions). Because the 22
+GLCM-derived features introduced by Haralick et al.\ \cite{Haralick1973} have
+correlation \citep{Albregtsen2008}, using only three to five features have been
+recommended \citep{Clausi2002Analysis, Albregtsen2008, Gebejes2013a} in order to
+minimize redundancy and dimensionality.
+
+In this study, the six GLCM features implemented by the Scikit-image software
+library \citep{VanderWalt2014} were extracted. These features, namely contrast,
+dissimilarity, homogeneity, energy, correlation, and angular second moment
+(i.e.\ uniformity), are among the ones most commonly used in previous studies
+\citep{Clausi2002Rapid}. They are generally considered effective texture
+discriminators, and maintain invariance regarding scale and shift
+\citep{Clausi2002Analysis}. In order to gain orientation invariance, the results
+were averaged over four bidirectional axes, and mean range over the orientations
+was added \citep{Haralick1973}.
+
+Since GLCM requires a discrete source image, the images needed prior
+normalization depending on source type. All images were quantized by uniform
+scaling to 32 gray levels, based on previous studies \citep{Clausi2002Analysis,
+Clausi2002Rapid, Albregtsen2008}. The image type specific source intensity
+ranges for scaling were manually defined by observing prostate volume
+histograms. In total 324--420 GLCM related features with sliding window approach
+were extracted per image type (T₂w, ADCₘ, ADCₖ, K, T₂).
+
+In addition to the sliding window approach, the same GLCM-based features were
+also extracted using the minimum bounding box (MBB) around the whole lesion
+area of each image slice as the window, while ignoring any non-lesion voxels.
+This procedure is similar to the method used in a study by Vignati et
+al.\ \cite{Vignati2015}. The MBB-GLCM features were averaged over slices, and
+48 features in total were extracted per image type.
+
+Local binary patterns (LBP) \citep{Ojala1996} is a method that compares every
+voxel intensity value to a certain number of neighboring values on a circle
+around it. Each comparison result is stored as a single bit that tells whether
+the neighbor is larger or smaller than the center. The bit patterns are
+collected from the neighborhood and encoded as numbers, and the resulting
+histogram can then be used as a feature vector invariant to gray scale. In this
+study, the LBP were calculated within each window, observing eight interpolated
+neighboring points at the maximum radius allowed by window size. The different
+orientations of the uniform patterns were combined into rotation-invariant
+groups, and all non-uniform patterns were treated as a single pattern. Pattern
+frequency histograms were then used as features resulting in 70--90 different
+features per image type.
+
+The Gabor function \citep{Gabor1946} is a Gaussian modulated by a sinusoidal
+wave. Gabor filter banks can be used for texture characterization, as each
+filter, shaped by its parameters, responds to specific local spatial frequency
+properties of the image \citep{Turner1986}. Gabor filters are sensitive to edges
+in the image, so given that different lesions contain different regions, the
+detected edges between the regions could yield different responses. In this
+study, the texture extraction scheme described by Tüceryan et
+al.\ \cite{Tuceryan1998} was applied, which uses the sliding window on the
+Gabor-filtered complex images.
+
+Based on experimentation and data visualization, the filter bank included the
+combinations of five different frequencies for the sinusoidal
+($f=0.1,0.2,…,0.5$ per voxel), three sizes for a circular Gaussian
+envelope ($\sigma=1,2,3$), and four bidirectional orientations. A number of
+derived features have been suggested \citep{Clausi2000, Hammouda2000,
+Grigorescu2002}. Here, the extracted features included mean of the real part,
+variance of the real part, mean of the absolute of the real part, and mean of
+the magnitude. Various ways to achieve orientation invariance have been proposed
+\citep{Arivazhagan2006, Han2007, Chu2009, Rahman2011}, although not all are
+equally suitable for texture classification. In this study, the simple method of
+summing filtered images over orientations was used \citep{Han2007}, yielding
+420--540 features per image type.
+
+The Haar transform is a simple wavelet decomposition of the image. Providing
+local spatial frequency information, it is useful as a tool of texture analysis
+\citep{Lonnestad1992}. In this study, a four-level Haar transform was first done
+for each image slice, and the three higher frequency coefficient planes were
+used, upscaled to the original size. For each sliding window, the mean absolute
+value and the standard deviation were then extracted as features
+\citep{Lonnestad1992}, resulting in 168--216 features per image type.
+
+Image moments are weighted averages that describe the distribution of intensity
+within image. A few variations are widely used as object shape descriptors, but
+they have also been applied to texture analysis \citep{Tuceryan1994}. In this
+study, logarithms of the absolute values of the seven Hu moments \citep{Hu1962},
+and the magnitude values of the complex Zernike moments \citep{Teague1980} up to
+the 8th degree were calculated for each window. The Hu moments are invariant
+regarding translation, scaling, rotation, and reflection
+\citep{Theodoridis2003}. The Zernike moment magnitudes are rotation invariant,
+robust to noise, and, due to their orthogonality, have minimal redundancy
+\citep{Tahmasbi2011, Amayeh2005}. In total, 49--63 Hu moments and 175--225
+Zernike moments were extracted from each image type.
+
+The histogram of oriented gradients \citep{Dalal2005} is an algorithm developed
+primarily for object recognition. It describes an object as a set of local
+gradient direction distributions. In this study, it was applied for texture
+analysis, using a single cell with eight directions for each window. The average
+over windows was then used as a feature, resulting in one feature per window
+size and 7--9 features in total per image type.
+
+The Sobel operator \citep{Sobel1990} is a simple convolution filter that
+emphasizes edges in image. The shape of the kernel window is 3×3 by definition,
+so no other window sizes were used. Instead, the median of the whole lesion-wide
+texture map was used, both with the lesion edge voxels included and excluded,
+resulting in 2 features.
+
+In addition, first-order statistical features were calculated over the whole
+lesion. First-order statistics observe only the probabilistic distribution of
+intensity values, ignoring their spatial relations. Existing literature
+typically utilizes averages and some of the percentiles \citep{Shaish2016}.
+Here, 18 features were included, namely mean, standard deviation, range,
+minimum, maximum, quartiles, deciles, kurtosis, and skewness.
+
+
+\subsection{Classification}
+
+For image types ADCₘ, ADCₖ, and K, a corresponding data set of 100 data points and
+1281 features were used to build models for predicting prostate lesion
+aggressiveness based on Gleason score, while for T₂w and T₂ the number of
+features was 1631. The features were normalized to zero mean and unit variance.
+The data points were divided into two groups by Gleason score, low and high
+(3+3 and >3+3, respectively).
+
+Logistic regression with either L1 or L2 regularization \citep{Friedman2010}
+implemented by Python Scikit-learn library \citep{Pedregosa2011} were used to
+train the low vs high Gleason score classifiers. Both regularization mechanisms
+compensate the high dimensionality of the data by penalizing large coefficient
+values of the inferred linear models, which in turn makes them less likely to
+overfit to the training data and more able to generalize to data unseen in the
+training phase.
+
+L1 regularization has the additional property of shrinking the coefficients of
+the least useful features down to zero, and hence it also performs feature
+selection \citep{Park2007}. The number of coefficients ending down to zero
+depends on the amount of regularization. However, regularizing too strongly
+might lose valuable features and lead to underfitting. Therefore, it was also
+tested whether the simultaneous use of the classical filtering based feature
+selection approach would improve the prediction performance.
+
+The predictive performance of the models built by the regularized logistic
+regression algorithms was estimated by a nested cross validation strategy
+\citep{Varma2006}, which consisted of an outer leave-pair-out cross-validation
+(LPOCV) \citep{Airola2011} and an inner 10-fold cross validation (10FCV) for
+hyperparameter selection. In LPOCV every possible pair of data points were held
+out at a time as test set, while the remaining data formed the training set used
+to build the model for predicting on the held out pair. Both the filter based
+feature selection and the hyperparameter selection were performed for each
+round on LPOCV using the training set.
+
+For selecting the best features, their performance was estimated using the
+receiver operating characteristic (ROC) curve, summarized as the area under the
+ROC curve (AUC). Ranked by AUC, the highest-performing 1\% of all features
+(including statistical ones) were used to train the classifier.
+
+After selecting the features the training set was transformed accordingly and
+the optimum regularization hyperparameter value was selected from $\omega =
+\{0.001, 0.01, 0.1, 1, 10\}$, as measured by the AUC in stratified 10FCV\@. A
+classifier was then trained with the selected features and the regularization
+hyperparameter, and used for performing predictions on the two data points held
+out during the LPOCV round.
+
+Afterwards, each data point was assigned an LPOCV score according to the
+ordering-by-the-number-of-wins method, in which the score of a data point is the
+number of times it obtains a larger predicted value than the other point during
+the LPOCV rounds when it is one of the two held out points. These LPOCV scores
+were then used to perform the ROC curve analysis, whose validity was previously
+demonstrated by Balcan et al.\ \cite{Balcan2008}. More precisely, using the
+LPOCV scores of the data points and their corresponding true label, the AUC and
+95\% confidence interval (CI) were calculated using the R package by LeDell et
+al.\ \cite{LeDell2015}.
+
+The feature selection and hyperparameter selection process as part of the LPOCV
+is illustrated in Pseudo code~\ref{alg:pseudocode}. The algorithm starts with a
+loop referred as LPOCV\@. During this loop the indices associated with the test
+pair in turn, $(i,j)$ with $i \neq j$, are not included in the index set $C$ of
+training data. Every feature AUC is calculated using data from matrix $\vec{X}$
+and label vector $\vec{y}$. The notation $\vec{X}[C,k]$ refers to the submatrix
+of $\vec{X}$ containing the rows indexed by $C$ and the columns by $k$, that is,
+the vector with the values for $k$th feature in the training data. The top 1\%
+independent features are indexed by $\indx$. The optimum regularization
+hyperparameter value $\alpha \in \omega$ is calculated using 10FCV on data
+$(\vec{y}[C], \vec{X}[C,\indx])$, which is then used to train a model $f$ to
+make predictions on the test pair $(\vec{X}[i,\indx], \vec{X}[j,\indx])$. The
+last line of the pseudo code describes the calculation of LPOCV score using
+ordering-by-the-number-of-wins method.
+
+\begin{algorithm}[!h]
+  \caption{{\bf LPOCV with inner feature selection by AUC filtering and
+  hyperparameter selection.}}%
+  \label{alg:pseudocode}
+
+  \begin{algorithmic}
+    \REQUIRE{$\vec{X}$, matrix of $n$ lesions × $F$ features}
+    \REQUIRE{$\vec{y}$, vector of labels (1 high, -1 low)}
+    \REQUIRE{$\omega = \{0.001, 0.01, 0.1, 1, 10\}$, set of hyperparameters}
+    \ENSURE{LPOCV scores}
+    \FOR[All possible lesion pairs]{$i, j \in \{1,2,\dotsc,n\}$}
+      \STATE{$C \gets \{1,2,\dotsc,n\} \setminus \{i,j\}$}
+          \COMMENT{All lesions except $i,j$}
+      \STATE{$\vec{auc} \gets$ vector of length $F$}
+      \FOR{$k \in \{1,2,\dotsc,F\}$}
+        \STATE{$\vec{auc}[k] \gets \mathrm{AUC}(\vec{X}[C,k], \vec{y}[C])$}
+            \COMMENT{Calculate AUC for each feature}
+        \STATE{$\vec{auc}[k] \gets \max(\vec{auc}[k], 1-\vec{auc}[k])$}
+            \COMMENT{Handle inverse correlation}
+      \ENDFOR{}
+    \STATE{$\indx \gets \arg\mathrm{sort}(\vec{auc})[1 \dotso (0.01 \times F)]$}
+        \COMMENT{Get indices of the best features}
+    \STATE{$\alpha \gets \mathrm{gridSearch}(\vec{y}[C], \vec{X}[C,\indx], \omega)$}
+        \COMMENT{Grid search with 10FCV, returns the best hyperparameter}
+    \STATE{$f \gets A(\vec{y}[C], \vec{X}[C,\indx], \alpha)$}
+        \COMMENT{Train model f with algorithm A and hyperparameter $\alpha$}
+    \STATE{$\vec{W}_{ij} \gets H(f(\vec{X}[i,\indx]) - f(\vec{X}[j,\indx]))$}
+        \COMMENT{Matrix W stores results from Heaviside function (H) of i and j
+        prediction difference}
+    \ENDFOR{}
+    \STATE{$\tilde{\vec{y}} \gets \vec{W} \textbf{1}$}
+        \COMMENT{Score of each element obtained by summing along axis j}
+    \RETURN{$\tilde{\vec{y}}$}
+        \COMMENT{Returns LPOCV scores}
+  \end{algorithmic}
+\end{algorithm}
+
+
+\subsection{Addressing bias and imbalance}
+
+It is important to note that the nested cross-validation scheme allows feature
+selection and hyperparameter tuning while avoiding bias in the performance
+estimate \citep{Varma2006}. In each round of LPOCV, the pair of data points left
+for testing does not affect the feature selection nor the hyperparameter tuning
+of the predictive model in turn.
+
+The ratio between low and high Gleason score is 1:4 in the data set, so there is
+some degree of imbalance between classes. However, the model performance was
+estimated using LPOCV together with AUC, and that degree of imbalance in the
+classes has low effect on these methods \citep{Airola2011, Smith2014}. LPOCV is
+an unbiased estimate of the prediction performance of a model
+\citep{Airola2011}, and the ROC AUC is not affected by imbalance as it measures
+how accurately a model ranks a random positive unit from a negative one
+\citep{Fawcett2006}.
+
+%\include{chapters/3-results}
+\newpage
+\section{Results}
+
+The highest ranking features for differentiating Gleason scores are summarized
+by texture extraction method in Table~\ref{tab:texture_best1p}. Features based
+on Gabor filters were included in all image types. GLCM features were selected
+for T₂w and T₂, and Zernike moments for K and T₂. Features from the Hu
+moments and LBP were also selected for T₂, in which the top 1\% had more
+variability than other image types, regarding both the texture extraction method
+and window size.
+
+\begin{table}[!h]
+\begin{adjustwidth}{-2.25in}{0in}
+\centering
+\caption{{\bf Texture methods ranked in the best one percent.}}%
+\label{tab:texture_best1p}
+
+\begin{tabular}{c c c c}
+\hline
+Image type & Window sizes & Texture extraction methods & AUC range \\
+\hline
+T₂w & 27 & MBB-GLCM, GLCM, Gabor & 0.71--0.84 \\
+ADCₘ & 11 & Gabor & 0.79--0.80 \\
+ADCₖ & 11 & Gabor & 0.79--0.80 \\
+K & 7, 9 & Zernike, Gabor & 0.78--0.83 \\
+T₂ & 15, 19, 27, 31, 35 & Zernike, Hu, MBB-GLCM, LBP, GLCM, Gabor & 0.71--0.75 \\
+\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+
+
+\subsection{Univariate Analysis}
+
+ROC analysis was performed for each texture feature. The resulting best features
+are shown in Table~\ref{tab:texture_imagetype}. The best one was MBB-GLCM
+homogeneity in T₂w with AUC=0.84.
+
+\begin{table}[!h]
+\centering
+\caption{{\bf Best texture feature per image type.}}%
+\label{tab:texture_imagetype}
+
+\begin{tabular}{c c c c}
+\hline
+Image type & Window sizes & Type of Texture feature & AUC \\
+\hline
+T₂w & NA & MBB-GLCM\@: homogeneity, $d$=3, range & 0.84 \\
+ADCₘ & 11 & Gabor: $\sigma$=1, $f$=0.3, mean & 0.80 \\
+ADCₖ & 11 & Gabor: $\sigma$=2, $f$=0.1, mean & 0.80 \\
+K & 7 & Zernike: index=7 & 0.83 \\
+T₂ & 35 & Zernike: index=3 & 0.75 \\
+\hline
+\end{tabular}
+\end{table}
+
+A similar analysis was performed for the first-order statistical features;
+results are shown in Table~\ref{tab:stats_imagetype}. Although the best
+statistical features had good performance for most of the modalities, they did
+not out-perform the best texture features.
+
+\begin{table}[!h]
+\centering
+\caption{{\bf Best statistical feature per image type.}}%
+\label{tab:stats_imagetype}
+
+\begin{tabular}{c c c}
+\hline
+Image type & Statistical feature & AUC \\
+\hline
+T₂w & Minimum & 0.72 \\
+ADCₘ & Minimum & 0.79 \\
+ADCₖ & Minimum & 0.79 \\
+K & Range & 0.78 \\
+T₂ & 20th percentile & 0.55 \\
+\hline
+\end{tabular}
+\end{table}
+
+Some of the high-ranking features are visualized in Fig~\ref{fig:tmap}. ROC
+curves for best statistical and texture features are presented in
+Fig~\ref{fig:roc}.
+
+Some of the top features were highly correlated between different image types.
+See Table~S13 in Supporting Material for Spearman rank correlation coefficients
+for the features listed in Tables~2 and~3, calculated across image types. In
+addition, Table~S14 contains similar correlation metrics for all feature pairs,
+where top five features were taken from each image type.
+
+\begin{figure}[!ht]
+    \centering
+    %\includegraphics[width=1.0\textwidth]{figures/fig3}
+    \caption{{\bf An example of texture feature maps.}
+    These are extracted from DWI parametric maps (ADCₘ, ADCₖ, K), T₂-weighted
+    imaging (T₂w), and parametric map of T₂ relaxation values (T₂). Source image
+    type, window size, and texture descriptor parameters are shown above the
+    images. The two lesions are outlined; their Gleason scores are 4+3 (lower)
+    and 3+4 (upper).}%
+    \label{fig:tmap}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    %\includegraphics[width=1.0\textwidth]{figures/fig4}
+    \caption{{\bf ROC curves within each image type (T₂w, ADCₘ, ADCₖ, K, T₂).}
+    A:~The best statistical feature. B:~The best texture feature. The final
+    model of the best selected features from ADCₘ, K, and T₂w obtained using L1
+    regularized logistic regression and validated with leave-pair-out
+    cross-validation (LPOCV) is also included in both A and B.}%
+    \label{fig:roc}
+\end{figure}
+
+
+\subsection{Multivariate Analysis}
+
+The prediction performance of the models trained using regularized logistic
+regression was estimated by LPOCV\@. Both L1 and L2 regularization methods were
+utilized separately. Table~\ref{tab:auc_imagetype} contains the results for
+models within each image type using all of the features and top 1\% of them. The
+results are presented as ROC AUC values along with 95\% confidence intervals.
+
+\begin{table}[!h]
+\begin{adjustwidth}{-2.25in}{0in}
+\centering
+%\caption{{\bf Area under the receiver operating curve values estimated using
+%outer leave-pair-out cross-validation (LPOCV) per image type with all
+%features, top 1\% features filtered by AUC, and the 18 statistical
+%features.}}%
+\caption{{\bf Performance figures for each image type alone.} They are ROC AUC
+(receiver operating characteristic, area under curve) values estimated using
+outer leave-pair-out cross-validation (LPOCV) and different feature subsets.}%
+\label{tab:auc_imagetype}
+
+%\begin{tabular}{p{3em} p{5.2em} | p{3em} p{7.2em} | p{5.7em} p{7.2em} | p{7.2em}}
+\begin{tabular}{c c  c c  c c  c}
+\hline
+& & \multicolumn{2}{c}{All features} & \multicolumn{2}{c}{Top 1\% features} & 18 statistical \\
+Image type & ML algorithm & N & AUC \ci{95\%~CI} & N & AUC \ci{95\%~CI} & AUC \ci{95\%~CI} \\
+\hline
+T₂w  & Log. Reg. L1 & 1631 & 0.82 \ci{0.72--0.92} & 16 & 0.80 \ci{0.69--0.90} & 0.67 \ci{0.56--0.77} \\
+     & Log. Reg. L2 &      & 0.68 \ci{0.55--0.82} &    & 0.75 \ci{0.64--0.87} & 0.71 \ci{0.60--0.81} \\
+ADCₘ & Log. Reg. L1 & 1281 & 0.67 \ci{0.55--0.79} & 12 & 0.71 \ci{0.60--0.82} & 0.79 \ci{0.68--0.90} \\
+     & Log. Reg. L2 &      & 0.69 \ci{0.57--0.81} &    & 0.75 \ci{0.65--0.86} & 0.75 \ci{0.63--0.86} \\
+ADCₖ & Log. Reg. L1 & 1281 & 0.71 \ci{0.58--0.83} & 12 & 0.74 \ci{0.63--0.84} & 0.78 \ci{0.69--0.88} \\
+     & Log. Reg. L2 &      & 0.73 \ci{0.63--0.83} &    & 0.76 \ci{0.65--0.86} & 0.73 \ci{0.61--0.84} \\
+K    & Log. Reg. L1 & 1281 & 0.64 \ci{0.52--0.77} & 12 & 0.78 \ci{0.67--0.89} & 0.75 \ci{0.61--0.88} \\
+     & Log. Reg. L2 &      & 0.73 \ci{0.60--0.85} &    & 0.76 \ci{0.64--0.87} & 0.73 \ci{0.60--0.86} \\
+T₂   & Log. Reg. L1 & 1631 & 0.58 \ci{0.45--0.71} & 16 & 0.51 \ci{0.37--0.65} & 0.67 \ci{0.55--0.79} \\
+     & Log. Reg. L2 &      & 0.70 \ci{0.59--0.82} &    & 0.56 \ci{0.43--0.69} & 0.56 \ci{0.43--0.68} \\
+\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+
+Similar performance estimates of the models combining features from different
+image types are presented in Table~\ref{tab:auc_combinations}.
+
+\begin{table}[!h]
+\begin{adjustwidth}{-2.25in}{0in}
+\centering
+%\caption{{\bf Area under the receiver operating curve values estimated using
+%outer leave-pair-out cross-validation (LPOCV) for the combinations of the
+%image types.}}%
+\caption{{\bf Performance figures for image type combinations.} They are ROC AUC
+(receiver operating characteristic, area under curve) values estimated using
+outer leave-pair-out cross-validation (LPOCV) and different feature subsets.}%
+\label{tab:auc_combinations}
+
+%\begin{tabular}{l p{5.2em} p{3em} p{7.2em} p{5.7em} p{7.2em}}
+\begin{tabular}{c c  c c  c c}
+\hline
+& & \multicolumn{2}{c}{All features} & \multicolumn{2}{c}{Top 1\% features} \\
+Image types & ML algorithm & N & AUC \ci{95\%~CI} & N & AUC \ci{95\%~CI} \\
+\hline
+ADCₖ, K                & Log. Reg. L1 & 2562 & 0.61 \ci{0.49--0.74} & 25 & 0.82 \ci{0.72--0.92} \\
+                       & Log. Reg. L2 &      & 0.72 \ci{0.60--0.83} &    & 0.81 \ci{0.70--0.91} \\
+ADCₘ, K                & Log. Reg. L1 & 2562 & 0.57 \ci{0.45--0.70} & 25 & 0.81 \ci{0.71--0.91} \\
+                       & Log. Reg. L2 &      & 0.72 \ci{0.60--0.84} &    & 0.79 \ci{0.68--0.89} \\
+ADCₘ, ADCₖ, K          & Log. Reg. L1 & 3843 & 0.58 \ci{0.44--0.72} & 38 & 0.83 \ci{0.74--0.92} \\
+                       & Log. Reg. L2 &      & 0.69 \ci{0.56--0.81} &    & 0.79 \ci{0.70--0.88} \\
+ADCₘ, ADCₖ, K, T₂      & Log. Reg. L1 & 5474 & 0.61 \ci{0.47--0.74} & 54 & 0.84 \ci{0.75--0.92} \\
+                       & Log. Reg. L2 &      & 0.77 \ci{0.66--0.87} &    & 0.79 \ci{0.70--0.88} \\
+ADCₘ, ADCₖ, K, T₂w     & Log. Reg. L1 & 5474 & 0.78 \ci{0.68--0.89} & 54 & 0.88 \ci{0.81--0.95} \\
+                       & Log. Reg. L2 &      & 0.70 \ci{0.58--0.82} &    & 0.86 \ci{0.78--0.93} \\
+ADCₘ, ADCₖ, K, T₂, T₂w & Log. Reg. L1 & 7105 & 0.74 \ci{0.62--0.86} & 71 & 0.88 \ci{0.81--0.95} \\
+                       & Log. Reg. L2 &      & 0.79 \ci{0.69--0.90} &    & 0.86 \ci{0.78--0.93} \\
+ADCₘ, K, T₂            & Log. Reg. L1 & 4193 & 0.69 \ci{0.56--0.82} & 41 & 0.83 \ci{0.74--0.91} \\
+                       & Log. Reg. L2 &      & 0.78 \ci{0.68--0.88} &    & 0.82 \ci{0.73--0.90} \\
+ADCₘ, K, T₂w           & Log. Reg. L1 & 4193 & 0.81 \ci{0.71--0.91} & 41 & 0.88 \ci{0.82--0.95} \\
+                       & Log. Reg. L2 &      & 0.70 \ci{0.59--0.82} &    & 0.86 \ci{0.79--0.93} \\
+ADCₘ, K, T₂, T₂w       & Log. Reg. L1 & 5824 & 0.76 \ci{0.65--0.87} & 58 & 0.87 \ci{0.81--0.94} \\
+                       & Log. Reg. L2 &      & 0.79 \ci{0.68--0.89} &    & 0.85 \ci{0.77--0.92} \\
+ADCₖ, K, T₂            & Log. Reg. L1 & 4193 & 0.53 \ci{0.40--0.66} & 41 & 0.81 \ci{0.72--0.91} \\
+                       & Log. Reg. L2 &      & 0.80 \ci{0.71--0.89} &    & 0.81 \ci{0.71--0.91} \\
+ADCₖ, K, T₂w           & Log. Reg. L1 & 4193 & 0.81 \ci{0.72--0.91} & 41 & 0.85 \ci{0.77--0.93} \\
+                       & Log. Reg. L2 &      & 0.72 \ci{0.61--0.84} &    & 0.84 \ci{0.76--0.92} \\
+T₂, T₂w                & Log. Reg. L1 & 3262 & 0.82 \ci{0.73--0.91} & 32 & 0.66 \ci{0.52--0.79} \\
+                       & Log. Reg. L2 &      & 0.78 \ci{0.68--0.88} &    & 0.61 \ci{0.48--0.74} \\
+\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+
+
+\subsubsection{All features within individual image types}
+
+When using all features and L1 regularization (Table~\ref{tab:auc_imagetype}),
+T₂w had AUC=0.82, DWI derived parametric maps (ADCₘ, ADCₖ, K) had AUC range
+0.64--0.71, and T₂ derived features had AUC=0.58.
+
+In contrast to L1, L2 regularization yielded better performance for all image
+types except T₂w where AUC dropped to 0.68. DWI-derived parametric maps (ADCₘ,
+ADCₖ, K) had AUC range 0.69--0.73, and T₂ derived features had AUC=0.70.
+
+These results indicate that, when it comes to logistic regression models, all
+features weighted by L2 regularization may perform better than fewer features
+selected by L1, with the exception of T₂w images. With T₂w, L1 regularization
+performed better than L2, suggesting that a subset of features would perform
+better than all of them.
+
+
+\subsubsection{Selected features within individual image types}
+
+The feature selection was based on filtering features by AUC\@. Only the best
+1\% of features (12 or 16 features, depending on image modality) with highest
+ranking AUC were selected in each image type. When using L1 regularization, the
+best T₂w features showed better performance (AUC=0.80) than the features of
+DWI-derived parametric maps (ADCₘ, ADCₖ, K), which had AUC range 0.71--0.78. The
+best T₂ features had AUC=0.51 which is the lowest performance among the
+modalities.
+
+The estimated AUC values using L2 regularization and the best 1\% features,
+compared with L1 regularization, were lower for T₂w and K.
+
+The texture features did not substantially out-perform the 18 statistical
+features the corresponding image type (Table~\ref{tab:auc_imagetype}), except in
+T₂w where the texture feature model obtained with L1 regularization had the best
+performance among all other models. The highest AUC value based on statistical
+features was 0.79, achieved using L1 regularization and ADCₘ. The corresponding
+value for the best 1\% texture features was 0.71.
+
+The AUC values for the top-1\% texture features based on T₂w, ADCₘ, ADCₖ, K,
+and T₂ are shown in supporting material Tables S2, S4, S6, S8, and S10,
+respectively. Similarly, AUCs for the statistical features for each image
+type are shown in supporting material Tables S3, S5, S7, S9, and S11.
+
+
+\subsubsection{All features of combined image types}
+
+No substantial improvements of AUC values were present when combining all
+features of all image types (Table~\ref{tab:auc_combinations}). The AUCs were
+within range 0.53--0.82 with L1 regularization and within 0.69--0.80 with L2.
+
+
+\subsubsection{Selected features of combined image types}
+
+In contrast to the use all features, a better model performance was present when
+combining the best 1\% features of all image types (T₂w, ADCₘ, ADCₖ, K,
+T₂). The best performing model with AUC=0.88 was obtained when selecting the
+best 1\% features based on ADCₘ, K and T₂w. The combinations of features
+extracted from DWI parametric maps (ADCₘ, ADCₖ, K) and those extracted from T₂w
+and T₂ together with the feature selection method lead to improved prediction
+performance regardless of the regularization method (L1, L2).
+
+The final model proposed to differentiate low from high Gleason score PCa
+includes the features from ADCₘ, K, and T₂w listed in Table~S12. The expected
+performance ROC is presented in Fig~\ref{fig:roc}.
+
+%\include{chapters/4-discussion}
+\newpage
+\section{Discussion}
+
+There is an increasing number of research groups studying and developing CAD of
+prostate cancer. The topic was recently reviewed by Lemaître et
+al.\ \cite{Lemaitre2015}. Most of the publications have focused on the task of
+cancer detection rather than characterization. However, both are required for
+proper treatment decision planning. In this study, we built a classifier for
+prostate cancer characterization utilizing texture features extracted from T₂w,
+the monoexponential and kurtosis models of high-b-value DWI, and T₂ maps.
+
+Several studies have demonstrated correlation between ADCₘ values and Gleason
+score based on biopsy \citep{Turkbey2011, Tamada2008} or prostatectomy specimens
+\citep{Toivonen2015, Peng2013, Boesen2015, Rosenkrantz2015, Donati2014}. Most of
+the studies evaluating the performance of DWI for Gleason score prediction have
+used first-order statistical features, which do not consider the spatial
+relationships between voxels. Analyzing the texture may add useful information
+regarding tumor heterogeneity and other structural properties. In our previous
+studies we observed rectangular, fixed-shape regions-of-interest, and each tumor
+was characterized by only one variable per image type \citep{Toivonen2015,
+Jambor2015Relaxation, Jambor2015Rotating}. However, in this study we measured
+the texture properties of each of the image types (T₂w, ADCₘ, ADCₖ, K, T₂).
+We have shown that the characterization performance of prostate cancer can be
+improved by combining texture features from the monoexponential and kurtosis
+models, and the T₂w.
+
+Most studies on texture analysis of PCa include only a small number of texture
+descriptors and configurations \citep{Kwak2015, Viswanath2012, Ginsburg2014}. In
+this study, we utilized a large number of both, from multiparametric source.
+This allows evaluating a huge number of feature combinations, as the
+regularization prevents overfitting caused by high dimensionality.
+
+Texture analysis of multiparametric MRI has previously seen limited use in PCa
+characterization. Fehr et al.\ \cite{Fehr2015} evaluated PCa characterization
+with the whole-lesion first order statistics and GLCM texture features from a
+similar-size dataset of ADC and T₂w. They used oversampling to ward off effect
+of class imbalance. Similarly to our study, they integrated dynamic feature
+selection as part of the training (using the recursive feature selection support
+vector machine, RFE-SVM). In our study, we included a much more diverse and
+numerous set of features, as one of our goals was to evaluate various texture
+extraction methods. Moreover, we have for the first time demonstrated that using
+texture features from K (kurtosis function) provided improvements to ADCₘ
+(monoexponential function). This is important since first order statistics of
+parameters derived from kurtosis function do not lead to improved performance of
+ADCm (monoexponential function). The effect of noise remains to be explored in
+future studies.
+
+Tiwari et al.\ \cite{Tiwari2013} classified PCa using GLCM and simple gradient
+features from T₂w and MR spectroscopy (MRS). A multi-kernel classifier with
+graph embedding was used to reduce dimensionality. Compared to the current
+study, they had fewer patients, and the classification was done on
+equally-sized, rectangular metavoxels.
+
+Furthermore, Wibmer et al.\ \cite{Wibmer2015} studied the associations of
+Gleason scores and individual GLCM features from ADC and T₂w of PZ lesions,
+using generalized linear regression and generalized estimating equations; and
+Vignati et al.\ \cite{Vignati2015} tested Gleason score differentiation using
+two of the GLCM features (contrast and homogeneity) from T₂w and ADC
+individually.
+
+Contrarily to previous approaches to performing non-rigid deformation and
+co-registration of datasets with subsequent resampling to common space and
+resolution \citep{Viswanath2012, Ginsburg2014}, in the current study the
+prostate and tumor masks were done for each MR imaging method (T₂w, DWI, T₂)
+individually, allowing us to perform texture analyses at their original native
+resolutions. Estimating the effect of co-registration and resampling on texture
+extraction is not trivial, and the process could cause loss of information.
+However, the accuracy of the delineations in this study could be potentially
+improved by an added step of co-registering MRI to histology images
+\citep{Bourne2017}.
+
+We highlight the limitation of performing re-slicing and
+non-rigid deformation of MR data sets to common space and then co-registering
+with whole mount prostatectomy sections. As noted by Bourne et
+al.\ \cite{Bourne2017}, co-registration of whole mount prostatectomy sections to
+MRI data sets is important. However, the effect of re-slicing and non-rigid
+deformation of MR data sets to common space remains to be explored.
+
+The gray-level co-occurrence matrix may well be the most widely used tool for
+texture analysis of prostate MRI data sets. The Sobel operator, Gabor filters,
+Haar transform, and local binary patterns have already been extensively applied
+for texture analysis of prostate MRI, as have a few others~\citep{Lemaitre2015}
+not included in this study.
+
+The image moments, on the other hand, have been used more often for global
+morphological analysis like shape recognition rather than local texture
+analysis, although they have been used for texture as well~\citep{Tuceryan1994,
+Laws1980, Tuceryan1990}. To the best of our knowledge, there are no published
+studies using moment-based texture analysis for detection or characterization of
+prostate cancer using MRI data sets. Tahmasbi et al.\ \cite{Tahmasbi2011} used
+Zernike moments to characterize breast cancer, but as a global mass descriptor
+and not for texture. Our results suggest that moment-based texture features
+might be valuable for PCa characterization. More specifically, the best 1\%
+features of the image types K and T₂, and the final model ADCₘ, K, and T₂w
+combined included some of the texture features based on Hu or Zernike moments.
+
+The GLCM summarizes pixel intensity occurrences, the Gabor descriptors detect
+gradients of certain frequencies, and the LBP responds to point-like intensity
+transformation patterns. The image moments describe the mass distribution of the
+image content which is seen as a function that is integrated over space. Given
+the supposed difference in tissue heterogeneity, it makes sense that a metric
+based on mass distribution would discriminate lesions of varying Gleason scores.
+
+Most of the texture extraction methods in this study use the sliding window
+algorithm with seven or nine different window sizes depending on image
+resolution. Usually, the window should be large enough to provide reliable
+statistical information about its contents to characterize the texture, yet
+small enough so that patches of different classes do not overlap too much
+\citep{Haralick1973, Clausi2002Analysis}. The nature of each texture extraction
+algorithm also affects the specific role and usefulness of each window
+configuration. The optimal window size depends on method and data, and typically
+cannot be estimated in practice without experimentation \citep{Puig2001}. Most
+of the previous studies have utilized a very small number of different window
+sizes, often without presenting validation for the choice. In this study, we
+explored several window sizes simultaneously. This approach greatly increases
+the number of features, which is usually something to be avoided in order to
+produce an effective classifier. However, the machine learning method we used
+scales well to a large number of features.
+
+In addition to texture features, shape descriptors might provide information
+useful for Gleason score characterization \citep{Hoeks2011}. However, we
+decided to leave them out of this study and focus on texture features only.
+Including shape features would have required to treat lesions of different
+prostate regions differently, since lesions in peripheral zone might spread
+differently than lesions in central/transitional zone.
+
+We have evaluated an extensive number of MRI texture features in multivariate
+setting for their ability to predict the Gleason score of prostate cancer.
+Moreover, we have presented a machine learning system that, from a very large
+number of candidate features, searches for a relevant subset for the task and
+alternatively weights the features accordingly.
+
+The single feature with highest
+prediction performance estimate (AUC = 0.84) was a gray-level co-occurrence
+matrix homogeneity of T₂w. The Gabor transform features performed well with the
+ADC and K parameters. The lowest percentile statistics were useful with ADC and
+T₂w. The features based on Hu and Zernike moments performed well for K and T₂.
+Our results imply that a specific set of features and feature extraction methods
+is needed to obtain maximal information from DWI, T₂w, and T₂.
+
+The highest
+overall performance estimate (AUC = 0.88) was obtained for the model utilizing a
+small subset of texture features from the ADCₘ, K, and T₂w parameters. These
+features included texture descriptors based on gray-level co-occurrence matrix,
+Gabor transform, and the Zernike and Hu moments.
+
+Our study has several limitations. First of all, only 62 patients were included
+and further validation of our results in large patient cohort is needed. All of
+the patients had gone through prostatectomy, and therefore it is biased on the
+high Gleason score group with 80\% of the lesions. As is the case with many
+previous studies, only one MRI data set per imaging method per patient was
+evaluated. Therefore, the repeatability of the texture features cannot be
+evaluated. Ideally, quantitative imaging methods would have high reliability and
+repeatability, allowing the use of derived features for disease characterization
+\citep{Shrout1979}.
+
+Many of the texture extraction methods used in this study could be further
+refined. Variations of the methods and the derived features have been proposed,
+for example for Gabor filters \citep{Clausi2000}, and local binary patterns
+\citep{Guo2012, Maenpaa2003}. For Gabor filters, schemes for unsupervised tuning
+of optimal parameters have been proposed \citep{Teuner1995}. The Zernike moments
+can be provided scale and transformation invariance \citep{Khotanzad1990}.
+
+In the cross-validation process the set of selected features was slightly
+different in every round, implying that some of the features may convey similar
+information. This is natural since we tested such a large number of feature
+candidates.
+
+In this study, we focused on the characterization of histologically confirmed
+and manually delineated cancer lesions. In a more practical setting, this
+process should be preceded by automatic segmentation of the prostate and
+detection of cancerous tissue. This limitation should be addressed in future
+studies.
+
+Studies show increased risk of PCa specific mortality for Gleason score 4+3 in
+comparison to 3+4~\citep{Wright2009}. Differentiating these scores in the
+characterization process would be useful in addition to the 3+3 vs >3+3
+threshold that was considered in this study.
+
+Our results suggest that the use of texture features extracted from T₂w, ADCₘ,
+and K parametric maps leads to improved PCa characterization accuracy compared
+to the more commonly used statistical features of DWI. In contrast, adding
+features from T₂ did not improve the classification accuracy. The results
+point out certain features and feature combinations that were succesful, out of
+a very numerous set that includes various source image types, texture extraction
+methods, window sizes, and method-specific configurations. Most of the useful
+methods have already performed well in other studies (GLCM, Gabor, LBP).
+However, the image moment based texture features (Hu, Zernike) appear to be
+novel in the context of PCa characterization.
+
+%\include{chapters/5-acknowledgements}
+\newpage
+\section{Acknowledgements}
+
+This study was financially supported by grants from Instrumentarium Research
+Foundation, Sigrid Jusélius Foundation, Turku University Hospital, TYKS-SAPA
+research fund, Finnish Cancer Society, Finnish Cultural Foundation, and Orion
+Research Foundation. PT was supported by a Clinical Researcher Funding from the
+Academy of Finland. We thank Jaakko Liippo (Turku University Hospital, Turku,
+Finland) for his help in scanning the histological slides, and Anitta Entonen
+(Turku University Hospital, Turku, Finland) for her help with patient enrollment
+and assistance during MRI examinations.
+
+%\include{chapters/8-captions}
+\newpage
+\newcommand{\fig}[2]{\item Patient #1: #2 map, prostate mask, lesion masks.}
+\newcommand{\figADCm}[1]{\fig{#1}{ADCₘ}}
+\newcommand{\figTtw}[1]{\fig{#1}{T₂w}}
+\newcommand{\figTt}[1]{\fig{#1}{T₂}}
+
+\newcommand{\histology}[2]{\item Patient #1: #2.}
+\newcommand{\pink}[1]{\histology{#1}{prostatectomy section}}
+
+
+\section{Supporting Material}
+
+Supporting Material is available at \url{http://mrc.utu.fi/data}. Program code
+is available at \url{https://github.com/jupito/dwilib}.
+
+%\subsection{Supporting Tables}
+%
+%\begin{enumerate}
+%\item Patient characteristics.
+%\item T₂-weighted imaging: best 1\% features.
+%\item T₂-weighted imaging: statistical features.
+%\item Apparent diffusion coefficient of the monoexponential model (ADCₘ): best
+%  1\% features.
+%\item Apparent diffusion coefficient of the monoexponential model (ADCₘ):
+%  statistical features.
+%\item Apparent diffusion coefficient of the kurtosis model (ADCₖ): best 1\%
+%  features.
+%\item Apparent diffusion coefficient of the kurtosis model (ADCₖ): statistical
+%  features.
+%\item Kurtosis parameter of the kurtosis model (K): best 1\% features.
+%\item Kurtosis parameter of the kurtosis model (K): statistical features.
+%\item T₂ relaxation values (T₂): best 1\% features.
+%\item T₂ relaxation values (T₂): statistical features.
+%\item Final proposed model features.
+%\item Best features' correlations among image types, sorted by absolute Spearman
+%  rank correlation coefficients ($\rho$), with corresponding p values and the
+%  features' single performance estimates as ROC AUCs.
+%\item All possible pairs of top five features of each image type, sorted by
+%  absolute Spearman rank correlation coefficients ($\rho$), with corresponding p
+%  values and the features' single performance estimates as ROC AUCs. Here image
+%  type and window size are included in the front of feature names.
+%\end{enumerate}
+
+\paragraph*{S1 File.}
+\label{S1_File}
+{\bf Supporting Tables.}
+Patient characteristics; best features of each image type; features in final
+proposed model; best features' correlation coefficients among image types.
+
+\paragraph*{S2 File.}
+\label{S2_File}
+{\bf Supporting Figures.}
+Files DWI-Mono-ADCm-xxx.png, T2-fitted-xxx.png, and T2w-std-xxx.png correspond
+to ADCm and T2 parametric maps, and T2-weighted images of each patient,
+respectively. On the first row of slices they show positions of regions of
+interest placed on the prostate cancer lesions (red, yellow) and around whole
+prostate (white). The prostate mask is on the second row, while the remaining
+rows are lesion masks. Files histology-xx.jpg contain the whole mount
+prostatectomy sections of each patient, with tumor outlines in green. Please
+note that identical MRI acquisition protocol has been used on all patients,
+including slice thickness. Here all prostate cancer masks are show with
+corresponding whole mount prostatectomy sections.
+
+\paragraph*{S3 File.}
+\label{S3_File}
+{\bf Lesion Radiomics.}
+This file contains 7105 radiomics calculated for each 100 lesion from 62
+patients in CSV format (comma-separated values). The first column contains the
+patient ID number. The second column contains the Gleason score group used for
+classifying: --1 for low score group, 1 for high score group. The rest of the
+columns are the calculated feature averages over each lesion. The first row with
+column description contains the feature names. 
+
+
+%\subsection{Supporting Figures}
+%
+%\begin{enumerate}
+%\figADCm{01} \figADCm{02} \figADCm{03} \figADCm{04} \figADCm{05}
+%\figADCm{06} \figADCm{07} \figADCm{08} \figADCm{09} \figADCm{10}
+%\figADCm{11} \figADCm{12} \figADCm{13} \figADCm{14} \figADCm{15}
+%\figADCm{16} \figADCm{17} \figADCm{18} \figADCm{19} \figADCm{20}
+%\figADCm{21} \figADCm{22} \figADCm{23} \figADCm{24} \figADCm{25}
+%\figADCm{26} \figADCm{27} \figADCm{28} \figADCm{29} \figADCm{30}
+%\figADCm{31} \figADCm{32} \figADCm{33} \figADCm{34} \figADCm{35}
+%\figADCm{36} \figADCm{37} \figADCm{38} \figADCm{39} \figADCm{40}
+%\figADCm{41} \figADCm{42} \figADCm{43} \figADCm{44} \figADCm{45}
+%\figADCm{46} \figADCm{47} \figADCm{48} \figADCm{49} \figADCm{50}
+%\figADCm{51} \figADCm{52} \figADCm{53} \figADCm{54} \figADCm{55}
+%\figADCm{56} \figADCm{57} \figADCm{58} \figADCm{59} \figADCm{60}
+%\figADCm{61} \figADCm{62}
+%\figTtw{01} \figTtw{02} \figTtw{03} \figTtw{04} \figTtw{05}
+%\figTtw{06} \figTtw{07} \figTtw{08} \figTtw{09} \figTtw{10}
+%\figTtw{11} \figTtw{12} \figTtw{13} \figTtw{14} \figTtw{15}
+%\figTtw{16} \figTtw{17} \figTtw{18} \figTtw{19} \figTtw{20}
+%\figTtw{21} \figTtw{22} \figTtw{23} \figTtw{24} \figTtw{25}
+%\figTtw{26} \figTtw{27} \figTtw{28} \figTtw{29} \figTtw{30}
+%\figTtw{31} \figTtw{32} \figTtw{33} \figTtw{34} \figTtw{35}
+%\figTtw{36} \figTtw{37} \figTtw{38} \figTtw{39} \figTtw{40}
+%\figTtw{41} \figTtw{42} \figTtw{43} \figTtw{44} \figTtw{45}
+%\figTtw{46} \figTtw{47} \figTtw{48} \figTtw{49} \figTtw{50}
+%\figTtw{51} \figTtw{52} \figTtw{53} \figTtw{54} \figTtw{55}
+%\figTtw{56} \figTtw{57} \figTtw{58} \figTtw{59} \figTtw{60}
+%\figTtw{61} \figTtw{62}
+%\figTt{01} \figTt{02} \figTt{03} \figTt{04} \figTt{05}
+%\figTt{06} \figTt{07} \figTt{08} \figTt{09} \figTt{10}
+%\figTt{11} \figTt{12} \figTt{13} \figTt{14} \figTt{15}
+%\figTt{16} \figTt{17} \figTt{18} \figTt{19} \figTt{20}
+%\figTt{21} \figTt{22} \figTt{23} \figTt{24} \figTt{25}
+%\figTt{26} \figTt{27} \figTt{28} \figTt{29} \figTt{30}
+%\figTt{31} \figTt{32} \figTt{33} \figTt{34} \figTt{35}
+%\figTt{36} \figTt{37} \figTt{38} \figTt{39} \figTt{40}
+%\figTt{41} \figTt{42} \figTt{43} \figTt{44} \figTt{45}
+%\figTt{46} \figTt{47} \figTt{48} \figTt{49} \figTt{50}
+%\figTt{51} \figTt{52} \figTt{53} \figTt{54} \figTt{55}
+%\figTt{56} \figTt{57} \figTt{58} \figTt{59} \figTt{60}
+%\figTt{61} \figTt{62}
+%\pink{01} \pink{02} \pink{03} \pink{04} \pink{05}
+%\pink{06} \pink{07} \pink{08} \pink{09} \pink{10}
+%\pink{11} \pink{12} \pink{13} \pink{14} \pink{15}
+%\pink{16} \pink{17} \pink{18} \pink{19} \pink{20}
+%\pink{21} \pink{22} \pink{23} \pink{24} \pink{25}
+%\pink{26} \pink{27} \pink{28} \pink{29} \pink{30}
+%\pink{31} \pink{32} \pink{33} \pink{34} \pink{35}
+%\pink{36} \pink{37} \pink{38} \pink{39} \pink{40}
+%\pink{41} \pink{42} \pink{43} \pink{44} \pink{45}
+%\pink{46} \pink{47} \pink{48} \pink{49} \pink{50}
+%\pink{51} \pink{52} \pink{53} \pink{54} \pink{55}
+%\pink{56} \pink{57} \pink{58} \pink{59} \pink{60}
+%\pink{61} \pink{62}
+%\end{enumerate}
+
+
+\nolinenumbers
+
+%% Either type in your references using
+%% \begin{thebibliography}{}
+%% \bibitem{}
+%% Text
+%% \end{thebibliography}
+%%
+%% or
+%%
+%% Compile your BiBTeX database using our plos2015.bst
+%% style file and paste the contents of your .bbl file
+%% here. See http://journals.plos.org/plosone/s/latex for
+%% step-by-step instructions.
+%%
+%\begin{thebibliography}{10}
+%
+%\bibitem{bib1}
+%Conant GC, Wolfe KH.
+%\newblock {{T}urning a hobby into a job: how duplicated genes find new
+%  functions}.
+%\newblock Nat Rev Genet. 2008 Dec;9(12):938--950.
+%
+%\bibitem{bib2}
+%Ohno S.
+%\newblock Evolution by gene duplication.
+%\newblock London: George Alien \& Unwin Ltd. Berlin, Heidelberg and New York:
+%  Springer-Verlag.; 1970.
+%
+%\bibitem{bib3}
+%Magwire MM, Bayer F, Webster CL, Cao C, Jiggins FM.
+%\newblock {{S}uccessive increases in the resistance of {D}rosophila to viral
+%  infection through a transposon insertion followed by a {D}uplication}.
+%\newblock PLoS Genet. 2011 Oct;7(10):e1002337.
+%
+%\end{thebibliography}
+
+%\section*{References}
+\newpage
+
+%\bibliography{library}
+
+
+
+\begin{thebibliography}{10}
+
+\bibitem{Siegel2017}
+Siegel RL, Miller KD, Jemal A.
+\newblock {Cancer statistics, 2017}.
+\newblock CA: A Cancer Journal for Clinicians. 2017;67(1):7--30.
+\newblock doi:{10.3322/caac.21387}.
+
+\bibitem{Walsh2007}
+Walsh PC, DeWeese TL, Eisenberger MA.
+\newblock {Localized Prostate Cancer}.
+\newblock New England Journal of Medicine. 2007;357(26):2696--2705.
+\newblock doi:{10.1056/NEJMcp0706784}.
+
+\bibitem{Draisma2003}
+Draisma G, Boer R, Otto SJ, van~der Cruijsen IW, Damhuis RAM, Schroder FH,
+  et~al.
+\newblock {Lead Times and Overdetection Due to Prostate-Specific Antigen
+  Screening: Estimates From the European Randomized Study of Screening for
+  Prostate Cancer}.
+\newblock JNCI Journal of the National Cancer Institute. 2003;95(12):868--878.
+\newblock doi:{10.1093/jnci/95.12.868}.
+
+\bibitem{Epstein2005}
+Epstein JI, Allsbrook WC, Amin MB, Egevad LL.
+\newblock {The 2005 International Society of Urological Pathology (ISUP)
+  Consensus Conference on Gleason Grading of Prostatic Carcinoma}.
+\newblock The American Journal of Surgical Pathology. 2005;29(9):1228--1242.
+\newblock doi:{10.1097/01.pas.0000173646.99337.b1}.
+
+\bibitem{Nepple2009}
+Nepple KG, Wahls TL, Hillis SL, Joudi FN.
+\newblock {Gleason score and laterality concordance between prostate biopsy and
+  prostatectomy specimens}.
+\newblock International Braz J Urol. 2009;35(5):559--564.
+\newblock doi:{10.1590/S1677-55382009000500007}.
+
+\bibitem{Steinberg1997}
+Steinberg DM, Sauvageot J, Piantadosi S, Epstein JI.
+\newblock {Correlation of Prostate Needle Biopsy and Radical Prostatectomy
+  Gleason Grade in Academic and Community Settings}.
+\newblock The American Journal of Surgical Pathology. 1997;21(5):566--576.
+\newblock doi:{10.1097/00000478-199705000-00010}.
+
+\bibitem{Rajinikanth2008}
+Rajinikanth A, Manoharan M, Soloway CT, Civantos FJ, Soloway MS.
+\newblock {Trends in Gleason Score: Concordance Between Biopsy and
+  Prostatectomy over 15 Years}.
+\newblock Urology. 2008;72(1):177--182.
+\newblock doi:{10.1016/j.urology.2007.10.022}.
+
+\bibitem{Turkbey2011}
+Turkbey B, Shah VP, Pang Y, Bernardo M, Xu S, Kruecker J, et~al.
+\newblock {Is Apparent Diffusion Coefficient Associated with Clinical Risk
+  Scores for Prostate Cancers that Are Visible on 3-T MR Images?}
+\newblock Radiology. 2011;258(2):488--495.
+\newblock doi:{10.1148/radiol.10100667}.
+
+\bibitem{Toivonen2015}
+Toivonen J, Merisaari H, Pesola M, Taimen P, Bostr{\"{o}}m PJ, Pahikkala T,
+  et~al.
+\newblock {Mathematical models for diffusion-weighted imaging of prostate
+  cancer using b values up to 2000 s/mm²: Correlation with Gleason score and
+  repeatability of region of interest analysis}.
+\newblock Magnetic Resonance in Medicine. 2015;74(4):1116--1124.
+\newblock doi:{10.1002/mrm.25482}.
+
+\bibitem{Jambor2015Relaxation}
+Jambor I, Pesola M, Merisaari H, Taimen P, Bostr{\"{o}}m PJ, Liimatainen T,
+  et~al.
+\newblock {Relaxation along fictitious field, diffusion-weighted imaging, and T
+  2 mapping of prostate cancer: Prediction of cancer aggressiveness}.
+\newblock Magnetic Resonance in Medicine. 2016;75(5):2130--2140.
+\newblock doi:{10.1002/mrm.25808}.
+
+\bibitem{Mulkern2006}
+Mulkern RV, Barnes AS, Haker SJ, Hung YP, Rybicki FJ, Maier SE, et~al.
+\newblock {Biexponential characterization of prostate tissue water diffusion
+  decay curves over an extended b-factor range}.
+\newblock Magnetic Resonance Imaging. 2006;24(5):563--568.
+\newblock doi:{10.1016/j.mri.2005.12.008}.
+
+\bibitem{Jambor2015Evaluation}
+Jambor I, Merisaari H, Taimen P, Bostr{\"{o}}m P, Minn H, Pesola M, et~al.
+\newblock {Evaluation of different mathematical models for diffusion-weighted
+  imaging of normal prostate and prostate cancer using high b-values: A
+  repeatability study}.
+\newblock Magnetic Resonance in Medicine. 2015;73(5):1988--1998.
+\newblock doi:{10.1002/mrm.25323}.
+
+\bibitem{Jensen2005}
+Jensen JH, Helpern JA, Ramani A, Lu H, Kaczynski K.
+\newblock {Diffusional kurtosis imaging: The quantification of non-gaussian
+  water diffusion by means of magnetic resonance imaging}.
+\newblock Magnetic Resonance in Medicine. 2005;53(6):1432--1440.
+\newblock doi:{10.1002/mrm.20508}.
+
+\bibitem{Kwak2015}
+Kwak JT, Xu S, Wood BJ, Turkbey B, Choyke PL, Pinto Pa, et~al.
+\newblock {Automated prostate cancer detection using T2-weighted and
+  high-b-value diffusion-weighted magnetic resonance imaging}.
+\newblock Medical Physics. 2015;42(5):2368--2378.
+\newblock doi:{10.1118/1.4918318}.
+
+\bibitem{Viswanath2012}
+Viswanath SE, Bloch NB, Chappelow JC, Toth R, Rofsky NM, Genega EM, et~al.
+\newblock {Central gland and peripheral zone prostate tumors have significantly
+  different quantitative imaging signatures on 3 tesla endorectal, in vivo
+  T2-weighted MR imagery}.
+\newblock Journal of Magnetic Resonance Imaging. 2012;36(1):213--224.
+\newblock doi:{10.1002/jmri.23618}.
+
+\bibitem{Ginsburg2014}
+Ginsburg SB, Viswanath SE, Bloch BN, Rofsky NM, Genega EM, Lenkinski RE, et~al.
+\newblock {Novel PCA-VIP scheme for ranking MRI protocols and identifying
+  computer-extracted MRI measurements associated with central gland and
+  peripheral zone prostate tumors}.
+\newblock Journal of Magnetic Resonance Imaging. 2015;41(5):1383--1393.
+\newblock doi:{10.1002/jmri.24676}.
+
+\bibitem{Tiwari2013}
+Tiwari P, Kurhanewicz J, Madabhushi A.
+\newblock {Multi-kernel graph embedding for detection, Gleason grading of
+  prostate cancer via MRI/MRS}.
+\newblock Medical Image Analysis. 2013;17(2):219--235.
+\newblock doi:{10.1016/j.media.2012.10.004}.
+
+\bibitem{Peng2013}
+Peng Y, Jiang Y, Yang C, Brown JB, Antic T, Sethi I, et~al.
+\newblock {Quantitative Analysis of Multiparametric Prostate MR Images:
+  Differentiation between Prostate Cancer and Normal Tissue and Correlation
+  with Gleason Score—A Computer-aided Diagnosis Development Study}.
+\newblock Radiology. 2013;267(3):787--796.
+\newblock doi:{10.1148/radiol.13121454}.
+
+\bibitem{Wibmer2015}
+Wibmer A, Hricak H, Gondo T, Matsumoto K, Veeraraghavan H, Fehr D, et~al.
+\newblock {Haralick texture analysis of prostate MRI: utility for
+  differentiating non-cancerous prostate from prostate cancer and
+  differentiating prostate cancers with different Gleason scores}.
+\newblock European Radiology. 2015;25(10):2840--2850.
+\newblock doi:{10.1007/s00330-015-3701-8}.
+
+\bibitem{Vignati2015}
+Vignati A, Mazzetti S, Giannini V, Russo F, Bollito E, Porpiglia F, et~al.
+\newblock {Texture features on T2-weighted magnetic resonance imaging: new
+  potential biomarkers for prostate cancer aggressiveness}.
+\newblock Physics in Medicine and Biology. 2015;60(7):2685--2701.
+\newblock doi:{10.1088/0031-9155/60/7/2685}.
+
+\bibitem{Fehr2015}
+Fehr D, Veeraraghavan H, Wibmer A, Gondo T, Matsumoto K, Vargas HA, et~al.
+\newblock {Automatic classification of prostate cancer Gleason scores from
+  multiparametric magnetic resonance images}.
+\newblock Proceedings of the National Academy of Sciences.
+  2015;112(46):E6265--E6273.
+\newblock doi:{10.1073/pnas.1505935112}.
+
+\bibitem{Rozenberg2016}
+Rozenberg R, Thornhill RE, Flood TA, Hakim SW, Lim C, Schieda N.
+\newblock {Whole-Tumor Quantitative Apparent Diffusion Coefficient Histogram
+  and Texture Analysis to Predict Gleason Score Upgrading in Intermediate-Risk
+  3 + 4 = 7 Prostate Cancer}.
+\newblock American Journal of Roentgenology. 2016;206(4):775--782.
+\newblock doi:{10.2214/AJR.15.15462}.
+
+\bibitem{Jambor2015Rotating}
+Jambor I, Pesola M, Taimen P, Merisaari H, Bostr{\"{o}}m PJ, Minn H, et~al.
+\newblock {Rotating frame relaxation imaging of prostate cancer: Repeatability,
+  cancer detection, and Gleason score prediction}.
+\newblock Magnetic Resonance in Medicine. 2016;75(1):337--344.
+\newblock doi:{10.1002/mrm.25647}.
+
+\bibitem{Pruessmann1999}
+Pruessmann KP, Weiger M, Scheidegger MB, Boesiger P.
+\newblock {SENSE: Sensitivity encoding for fast MRI}.
+\newblock Magnetic Resonance in Medicine. 1999;42(5):952--962.
+\newblock doi:{10.1002/(SICI)1522-2594(199911)42:5<952::AID-MRM16>3.0.CO;2-S}.
+
+\bibitem{Epstein2010}
+Epstein JI.
+\newblock {An Update of the Gleason Grading System}.
+\newblock The Journal of Urology. 2010;183(2):433--440.
+\newblock doi:{10.1016/j.juro.2009.10.046}.
+
+\bibitem{Nyul1999}
+Ny{\'{u}}l LG, Udupa JK.
+\newblock {On standardizing the MR image intensity scale}.
+\newblock Magnetic Resonance in Medicine. 1999;42(6):1072--1081.
+\newblock doi:{10.1002/(SICI)1522-2594(199912)42:6<1072::AID-MRM11>3.0.CO;2-M}.
+
+\bibitem{Nyul2000}
+Ny{\'{u}}l LG, Udupa JK, {Xuan Zhang}.
+\newblock {New variants of a method of MRI scale standardization}.
+\newblock IEEE Transactions on Medical Imaging. 2000;19(2):143--150.
+\newblock doi:{10.1109/42.836373}.
+
+\bibitem{Shanno1985}
+Shanno D.
+\newblock {On broyden-fletcher-goldfarb-shanno method}.
+\newblock Journal of Optimization Theory and Applications. 1985;46:87--94.
+
+\bibitem{King2009}
+King DE.
+\newblock {Dlib-ml: A Machine Learning Toolkit}.
+\newblock Journal of Machine Learning Research. 2009;10:1755--1758.
+\newblock doi:{10.1145/1577069.1755843}.
+
+\bibitem{Castellano2004}
+Castellano G, Bonilha L, Li LM, Cendes F.
+\newblock {Texture analysis of medical images}.
+\newblock Clinical Radiology. 2004;59(12):1061--1069.
+\newblock doi:{10.1016/j.crad.2004.07.008}.
+
+\bibitem{Lemaitre2015}
+Lema{\^{i}}tre G, Mart{\'{i}} R, Freixenet J, Vilanova JC, Walker PM,
+  Meriaudeau F.
+\newblock {Computer-Aided Detection and diagnosis for prostate cancer based on
+  mono and multi-parametric MRI: A review}.
+\newblock Computers in Biology and Medicine. 2015;60:8--31.
+\newblock doi:{10.1016/j.compbiomed.2015.02.009}.
+
+\bibitem{Depeursinge2014}
+Depeursinge A, Foncubierta-Rodriguez A, {Van De Ville} D, M{\"{u}}ller H.
+\newblock {Three-dimensional solid texture analysis in biomedical imaging:
+  Review and opportunities}.
+\newblock Medical Image Analysis. 2014;18(1):176--196.
+\newblock doi:{10.1016/j.media.2013.10.005}.
+
+\bibitem{Clausi2002Rapid}
+Clausi DA, Zhao Y.
+\newblock {Rapid extraction of image texture by co-occurrence using a hybrid
+  data structure}.
+\newblock Computers {\&} Geosciences. 2002;28(6):763--774.
+\newblock doi:{10.1016/S0098-3004(01)00108-X}.
+
+\bibitem{VanderWalt2014}
+van~der Walt S, Sch{\"{o}}nberger JL, Nunez-Iglesias J, Boulogne F, Warner JD,
+  Yager N, et~al.
+\newblock {scikit-image: image processing in Python}.
+\newblock PeerJ. 2014;2:e453.
+\newblock doi:{10.7717/peerj.453}.
+
+\bibitem{Coelho2013}
+Coelho LP.
+\newblock {Mahotas: Open source software for scriptable computer vision}.
+\newblock Journal of Open Research Software. 2013;1(1):e3.
+\newblock doi:{10.5334/jors.ac}.
+
+\bibitem{Haralick1973}
+Haralick RM, Shanmugam K, Dinstein I.
+\newblock {Textural Features for Image Classification}.
+\newblock IEEE Transactions on Systems, Man, and Cybernetics.
+  1973;SMC-3(6):610--621.
+\newblock doi:{10.1109/TSMC.1973.4309314}.
+
+\bibitem{Albregtsen2008}
+Albregtsen F.
+\newblock {Statistical Texture Measures Computed from Gray Level Coocurrence
+  Matrices}.
+\newblock Image Processing Laboratory, Department of Informatics, University of
+  Oslo; 2008.
+
+\bibitem{Clausi2002Analysis}
+Clausi DA.
+\newblock {An analysis of co-occurrence texture statistics as a function of
+  grey level quantization}.
+\newblock Canadian Journal of Remote Sensing. 2002;28(1):45--62.
+\newblock doi:{10.5589/m02-004}.
+
+\bibitem{Gebejes2013a}
+Gebejes A, Huertas R.
+\newblock {Texture Characterization based on Grey-Level Co-occurrence Matrix}.
+\newblock ICTIC - Proceedings in Conference of Informatics and Management
+  Sciences. 2013;2(1):375--378.
+
+\bibitem{Ojala1996}
+Ojala T, Pietik{\"{a}}inen M, Harwood D.
+\newblock {A comparative study of texture measures with classification based on
+  featured distributions}.
+\newblock Pattern Recognition. 1996;29(1):51--59.
+\newblock doi:{10.1016/0031-3203(95)00067-4}.
+
+\bibitem{Gabor1946}
+Gabor D.
+\newblock {Theory of communication. Part 1: The analysis of information}.
+\newblock Journal of the Institution of Electrical Engineers - Part III: Radio
+  and Communication Engineering. 1946;93(26):429--441.
+\newblock doi:{10.1049/ji-3-2.1946.0074}.
+
+\bibitem{Turner1986}
+Turner MR.
+\newblock {Texture discrimination by Gabor functions.}
+\newblock Biological cybernetics. 1986;55(2-3):71--82.
+\newblock doi:{10.1007/BF00341922}.
+
+\bibitem{Tuceryan1998}
+T{\"{u}}ceryan M, Jain AK.
+\newblock {Texture Analysis}.
+\newblock In: Pattern Recognition. 2nd ed. World Scientific Publishing Co.;
+  1998. p. 207--248.
+
+\bibitem{Clausi2000}
+Clausi DA, {Ed Jernigan} M.
+\newblock {Designing Gabor filters for optimal texture separability}.
+\newblock Pattern Recognition. 2000;33(11):1835--1849.
+\newblock doi:{10.1016/S0031-3203(99)00181-8}.
+
+\bibitem{Hammouda2000}
+Mital DP.
+\newblock {Texture segmentation using Gabor filters}.
+\newblock In: KES'2000. Fourth International Conference on Knowledge-Based
+  Intelligent Engineering Systems and Allied Technologies. Proceedings (Cat.
+  No.00TH8516). vol.~1. IEEE; 2000. p. 109--112.
+
+\bibitem{Grigorescu2002}
+Grigorescu SE, Petkov N, Kruizinga P.
+\newblock {Comparison of texture features based on Gabor filters}.
+\newblock IEEE Transactions on Image Processing. 2002;11(10):1160--1167.
+\newblock doi:{10.1109/TIP.2002.804262}.
+
+\bibitem{Arivazhagan2006}
+Arivazhagan S, Ganesan L, Priyal SP.
+\newblock {Texture classification using Gabor wavelets based rotation invariant
+  features}.
+\newblock Pattern Recognition Letters. 2006;27(16):1976--1982.
+\newblock doi:{10.1016/j.patrec.2006.05.008}.
+
+\bibitem{Han2007}
+Han J, Cheng H, Xin D, Yan X.
+\newblock {Frequent pattern mining: current status and future directions}.
+\newblock Data Mining and Knowledge Discovery. 2007;15(1):55--86.
+\newblock doi:{10.1007/s10618-006-0059-1}.
+
+\bibitem{Chu2009}
+Chu X, Chan KL.
+\newblock {Rotation and Scale Invariant Texture Analysis with Tunable Gabor
+  Filter Banks}.
+\newblock In: Advances in Image and Video Technology; 2009. p. 83--93.
+
+\bibitem{Rahman2011}
+Rahman MH, Pickering MR, Frater MR.
+\newblock {Scale and Rotation Invariant Gabor Features for Texture Retrieval}.
+\newblock In: 2011 International Conference on Digital Image Computing:
+  Techniques and Applications. IEEE; 2011. p. 602--607.
+
+\bibitem{Lonnestad1992}
+Lonnestad T.
+\newblock {A new set of texture features based on the Haar transform}.
+\newblock In: Proceedings., 11th IAPR International Conference on Pattern
+  Recognition. Vol. IV. Conference D: Architectures for Vision and Pattern
+  Recognition,. IEEE Comput. Soc. Press; 1992. p. 676--679.
+
+\bibitem{Tuceryan1994}
+T{\"{u}}ceryan M.
+\newblock {Moment-based texture segmentation}.
+\newblock Pattern Recognition Letters. 1994;15(7):659--668.
+\newblock doi:{10.1016/0167-8655(94)90069-8}.
+
+\bibitem{Hu1962}
+Hu MK.
+\newblock {Visual pattern recognition by moment invariants}.
+\newblock IRE Transactions on Information Theory. 1962;8:179--187.
+\newblock doi:{10.1109/TIT.1962.1057692}.
+
+\bibitem{Teague1980}
+Teague MR.
+\newblock {Image analysis via the general theory of moments}.
+\newblock Journal of the Optical Society of America. 1980;70(8):920.
+\newblock doi:{10.1364/JOSA.70.000920}.
+
+\bibitem{Theodoridis2003}
+Theodoridis K, Koutroumbas S.
+\newblock {Pattern Recognition}.
+\newblock Academic Press; 2003.
+
+\bibitem{Tahmasbi2011}
+Tahmasbi A, Saki F, Shokouhi SB.
+\newblock {Classification of benign and malignant masses based on Zernike
+  moments}.
+\newblock Computers in Biology and Medicine. 2011;41(8):726--735.
+\newblock doi:{10.1016/j.compbiomed.2011.06.009}.
+
+\bibitem{Amayeh2005}
+Amayeh G, Erol A, Bebis G, Nicolescu M.
+\newblock {Accurate and Efficient Computation of High Order Zernike Moments}.
+\newblock In: Advances in visual computing; 2005. p. 462--469.
+
+\bibitem{Dalal2005}
+Dalal N, Triggs B.
+\newblock {Histograms of Oriented Gradients for Human Detection}.
+\newblock In: 2005 IEEE Computer Society Conference on Computer Vision and
+  Pattern Recognition (CVPR'05). vol.~1. IEEE; 2005. p. 886--893.
+
+\bibitem{Sobel1990}
+Sobel I.
+\newblock {An isotropic 3×3 image gradient operator}.
+\newblock In: Freeman H, editor. Machine vision for three-dimensional scenes.
+  Academic Press; 1990.
+
+\bibitem{Shaish2016}
+Shaish H, Kang SK, Rosenkrantz AB.
+\newblock {The utility of quantitative ADC values for differentiating high-risk
+  from low-risk prostate cancer: a systematic review and meta-analysis}.
+\newblock Abdominal Radiology. 2017;42(1):260--270.
+\newblock doi:{10.1007/s00261-016-0848-y}.
+
+\bibitem{Friedman2010}
+Friedman J, Hastie T, Tibshirani R.
+\newblock {Regularization Paths for Generalized Linear Models via Coordinate
+  Descent}.
+\newblock Journal of Statistical Software. 2010;33(1).
+\newblock doi:{10.18637/jss.v033.i01}.
+
+\bibitem{Pedregosa2011}
+Pedregosa F, Varoquaux G, Gramfort A, Michel V, Thirion B, Grisel O, et~al.
+\newblock {Scikit-learn: Machine Learning in Python}.
+\newblock Journal of Machine Learning Research. 2012;12:2825--2830.
+\newblock doi:{10.1007/s13398-014-0173-7.2}.
+
+\bibitem{Park2007}
+Park MY, Hastie T.
+\newblock {L1-regularization path algorithm for generalized linear models}.
+\newblock Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology). 2007;69(4):659--677.
+\newblock doi:{10.1111/j.1467-9868.2007.00607.x}.
+
+\bibitem{Varma2006}
+Varma S, Simon R.
+\newblock {Bias in error estimation when using cross-validation for model
+  selection.}
+\newblock BMC bioinformatics. 2006;7:91.
+\newblock doi:{10.1186/1471-2105-7-91}.
+
+\bibitem{Airola2011}
+Airola A, Pahikkala T, Waegeman W, {De Baets} B, Salakoski T.
+\newblock {An experimental comparison of cross-validation techniques for
+  estimating the area under the ROC curve}.
+\newblock Computational Statistics {\&} Data Analysis. 2011;55(4):1828--1844.
+\newblock doi:{10.1016/j.csda.2010.11.018}.
+
+\bibitem{Balcan2008}
+Balcan MF, Bansal N, Beygelzimer A, Coppersmith D, Langford J, Sorkin GB.
+\newblock {Robust reductions from ranking to classification}.
+\newblock Machine Learning. 2008;72(1-2):139--153.
+\newblock doi:{10.1007/s10994-008-5058-6}.
+
+\bibitem{LeDell2015}
+LeDell E, Petersen M, van~der Laan M.
+\newblock {Computationally efficient confidence intervals for cross-validated
+  area under the ROC curve estimates}.
+\newblock Electronic Journal of Statistics. 2015;9(1):1583--1607.
+\newblock doi:{10.1214/15-EJS1035}.
+
+\bibitem{Smith2014}
+Smith GCS, Seaman SR, Wood AM, Royston P, White IR.
+\newblock {Correcting for Optimistic Prediction in Small Data Sets}.
+\newblock American Journal of Epidemiology. 2014;180(3):318--324.
+\newblock doi:{10.1093/aje/kwu140}.
+
+\bibitem{Fawcett2006}
+Fawcett T.
+\newblock {An introduction to ROC analysis}.
+\newblock Pattern Recognition Letters. 2006;27(8):861--874.
+\newblock doi:{10.1016/j.patrec.2005.10.010}.
+
+\bibitem{Tamada2008}
+Tamada T, Sone T, Jo Y, Toshimitsu S, Yamashita T, Yamamoto A, et~al.
+\newblock {Apparent diffusion coefficient values in peripheral and transition
+  zones of the prostate: Comparison between normal and malignant prostatic
+  tissues and correlation with histologic grade}.
+\newblock Journal of Magnetic Resonance Imaging. 2008;28(3):720--726.
+\newblock doi:{10.1002/jmri.21503}.
+
+\bibitem{Boesen2015}
+Boesen L, Chabanova E, L{\o}gager V, Balslev I, Thomsen HS.
+\newblock {Apparent diffusion coefficient ratio correlates significantly with
+  prostate cancer gleason score at final pathology}.
+\newblock Journal of Magnetic Resonance Imaging. 2015;42(2):446--453.
+\newblock doi:{10.1002/jmri.24801}.
+
+\bibitem{Rosenkrantz2015}
+Rosenkrantz AB, Padhani AR, Chenevert TL, Koh DM, {De Keyzer} F, Taouli B,
+  et~al.
+\newblock {Body diffusion kurtosis imaging: Basic principles, applications, and
+  considerations for clinical practice}.
+\newblock Journal of Magnetic Resonance Imaging. 2015;42(5):1190--1202.
+\newblock doi:{10.1002/jmri.24985}.
+
+\bibitem{Donati2014}
+Donati OF, Mazaheri Y, Afaq A, Vargas Ha, Zheng J, Moskowitz CS, et~al.
+\newblock {Prostate Cancer Aggressiveness: Assessment with Whole-Lesion
+  Histogram Analysis of the Apparent Diffusion Coefficient}.
+\newblock Radiology. 2014;271(1):143--152.
+\newblock doi:{10.1148/radiol.13130973}.
+
+\bibitem{Bourne2017}
+Bourne RM, Bailey C, Johnston EW, Pye H, Heavey S, Whitaker H, et~al.
+\newblock {Apparatus for Histological Validation of In Vivo and Ex Vivo
+  Magnetic Resonance Imaging of the Human Prostate}.
+\newblock Frontiers in Oncology. 2017;7(March).
+\newblock doi:{10.3389/fonc.2017.00047}.
+
+\bibitem{Laws1980}
+Laws KI.
+\newblock {Textured Image Segmentation}.
+\newblock University of Southern California; 1980.
+
+\bibitem{Tuceryan1990}
+T{\"{u}}ceryan M, Jain AK.
+\newblock {Texture segmentation using Voronoi polygons}.
+\newblock IEEE Transactions on Pattern Analysis and Machine Intelligence.
+  1990;12(2):211--216.
+\newblock doi:{10.1109/34.44407}.
+
+\bibitem{Puig2001}
+Puig D, Garc{\'{i}}a M.
+\newblock {Determining optimal window size for texture feature extraction
+  methods}.
+\newblock In: IX Spanish Symposium on Pattern Recognition and Image Analysis.
+  vol.~2; 2001. p. 237--242.
+
+\bibitem{Hoeks2011}
+Hoeks CMA, Barentsz JO, Hambrock T, Yakar D, Somford DM, Heijmink SWTPJ, et~al.
+\newblock Prostate Cancer: Multiparametric MR Imaging for Detection,
+  Localization, and Staging.
+\newblock Radiology. 2011;261(1):46--66.
+\newblock doi:{10.1148/radiol.11091822}.
+
+\bibitem{Shrout1979}
+Shrout PE, Fleiss JL.
+\newblock {Intraclass correlations: uses in assessing rater reliability.}
+\newblock Psychological bulletin. 1979;86(2):420--8.
+
+\bibitem{Guo2012}
+Guo Z, Li Q, You J, Zhang D, Liu W.
+\newblock {Local directional derivative pattern for rotation invariant texture
+  classification}.
+\newblock Neural Computing and Applications. 2012;21(8):1893--1904.
+\newblock doi:{10.1007/s00521-011-0586-6}.
+
+\bibitem{Maenpaa2003}
+M{\"{a}}enp{\"{a}}{\"{a}} T, Pietik{\"{a}}inen M.
+\newblock {Multi-scale Binary Patterns for Texture Analysis}.
+\newblock In: Proceedings of the 13th Scandinavian Conference on Image
+  Analysis. Springer-Verlag; 2003. p. 885--892.
+
+\bibitem{Teuner1995}
+Teuner A, Pichler O, Hosticka BJ.
+\newblock {Unsupervised texture segmentation of images using tuned matched
+  Gabor filters}.
+\newblock IEEE Transactions on Image Processing. 1995;4(6):863--870.
+\newblock doi:{10.1109/83.388091}.
+
+\bibitem{Khotanzad1990}
+Khotanzad A, Hong YH.
+\newblock {Invariant image recognition by Zernike moments}.
+\newblock IEEE Transactions on Pattern Analysis and Machine Intelligence.
+  1990;12(5):489--497.
+\newblock doi:{10.1109/34.55109}.
+
+\bibitem{Wright2009}
+Wright JL, Salinas CA, Lin DW, Kolb S, Koopmeiners J, Feng Z, et~al.
+\newblock {Prostate Cancer Specific Mortality and Gleason 7 Disease Differences
+  in Prostate Cancer Outcomes Between Cases With Gleason 4 + 3 and Gleason 3 +
+  4 Tumors in a Population Based Cohort}.
+\newblock The Journal of Urology. 2009;182(6):2702--2707.
+\newblock doi:{10.1016/j.juro.2009.08.026}.
+
+\end{thebibliography}
+
+
+\end{document}
